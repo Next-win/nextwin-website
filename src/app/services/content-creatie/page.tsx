@@ -7,6 +7,7 @@ import Section from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { SectionTitle } from '@/components/ui/Typography';
 import FaqAccordion, { FaqItem } from '@/components/ui/FaqAccordion';
+import ScrollAnimationWrapper from '@/components/ui/ScrollAnimationWrapper';
 
 export default function ContentCreationServicePage() {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -35,20 +36,6 @@ export default function ContentCreationServicePage() {
           (el as HTMLElement).style.display = 'none';
         });
       }
-      
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      animatedElements.forEach(element => {
-        observer.observe(element);
-      });
       
       // Setup toggle handlers
       if (beforeToggle && afterToggle && indicator) {
@@ -82,10 +69,6 @@ export default function ContentCreationServicePage() {
       }
       
       return () => {
-        animatedElements.forEach(element => {
-          observer.unobserve(element);
-        });
-        
         // Clean up event listeners
         if (beforeToggle && afterToggle) {
           beforeToggle.removeEventListener('click', () => {});
@@ -1060,134 +1043,6 @@ export default function ContentCreationServicePage() {
           </div>
         </div>
       </Section>
-      
-      {/* Animation styles */}
-      <style jsx global>{`
-        .animate-shuffle {
-          animation: shuffle 0.3s ease-in-out;
-          transform-style: preserve-3d;
-        }
-        
-        @keyframes shuffle {
-          0% {
-            transform: translateY(0) rotateX(0);
-            opacity: 1;
-          }
-          50% {
-            transform: translateY(-10px) rotateX(10deg);
-            opacity: 0.5;
-          }
-          100% {
-            transform: translateY(0) rotateX(0);
-            opacity: 1;
-          }
-        }
-
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-
-        .pulse-animation {
-          animation: pulse 3s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-          0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-          50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
-          100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
-        }
-
-        .animate-slow-spin {
-          animation: slow-spin 30s linear infinite;
-        }
-
-        .animate-reverse-slow-spin {
-          animation: slow-spin 25s linear infinite reverse;
-        }
-
-        .animate-slow-spin-medium {
-          animation: slow-spin 20s linear infinite;
-        }
-
-        .animate-float-slow {
-          animation: float 8s ease-in-out infinite;
-        }
-
-        .animate-float-slow-reverse {
-          animation: float 8s ease-in-out infinite reverse;
-        }
-
-        @keyframes slow-spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        
-        @keyframes float {
-          0% { transform: translate(0, 0) rotate(-6deg); }
-          25% { transform: translate(-5px, 5px) rotate(-5deg); }
-          50% { transform: translate(0, 10px) rotate(-7deg); }
-          75% { transform: translate(5px, 5px) rotate(-8deg); }
-          100% { transform: translate(0, 0) rotate(-6deg); }
-        }
-
-        .animation-delay-150 {
-          animation-delay: 150ms;
-        }
-        
-        .animation-delay-300 {
-          animation-delay: 300ms;
-        }
-        
-        .animation-delay-400 {
-          animation-delay: 400ms;
-        }
-        
-        .animation-delay-450 {
-          animation-delay: 450ms;
-        }
-        
-        .animation-delay-600 {
-          animation-delay: 600ms;
-        }
-        
-        .animation-delay-750 {
-          animation-delay: 750ms;
-        }
-
-        .animate-card-float {
-          animation: card-float 6s ease-in-out infinite;
-        }
-        
-        @keyframes card-float {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-          100% { transform: translateY(0); }
-        }
-
-        .animate-float-slow-alt {
-          animation: float-alt 9s ease-in-out infinite;
-        }
-
-        @keyframes float-alt {
-          0% { transform: translate(0, 0) rotate(6deg); }
-          25% { transform: translate(4px, -3px) rotate(7deg); }
-          50% { transform: translate(0, -8px) rotate(5deg); }
-          75% { transform: translate(-4px, -3px) rotate(7.5deg); }
-          100% { transform: translate(0, 0) rotate(6deg); }
-        }
-
-        .animate-float-main {
-          animation: float-main 12s ease-in-out infinite;
-        }
-
-        @keyframes float-main {
-          0% { transform: rotate(-2deg); }
-          25% { transform: translate(2px, 2px) rotate(-1.5deg); }
-          50% { transform: translate(0, 4px) rotate(-2.5deg); }
-          75% { transform: translate(-2px, 2px) rotate(-1.8deg); }
-          100% { transform: rotate(-2deg); }
-        }
-      `}</style>
     </div>
   );
 } 

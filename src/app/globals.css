@@ -192,11 +192,24 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: transform, opacity;
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   
   .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  
+  /* Prevent animations on Safari when user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll {
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
   }
   
   /* Responsive funnel text classes */
@@ -251,5 +264,166 @@
   @keyframes growWidth {
     from { width: 0%; }
     to { width: 75%; }
+  }
+
+  /* Add these animation styles after the existing animate-on-scroll styles */
+
+  .animate-shuffle {
+    animation: shuffle 0.3s ease-in-out;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  @keyframes shuffle {
+    0% {
+      transform: translateY(0) rotateX(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-10px) rotateX(10deg);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(0) rotateX(0);
+      opacity: 1;
+    }
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .pulse-animation {
+    animation: pulse 3s infinite ease-in-out;
+    will-change: transform, box-shadow;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+  }
+
+  .animate-slow-spin {
+    animation: slow-spin 30s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-reverse-slow-spin {
+    animation: slow-spin 25s linear infinite reverse;
+    will-change: transform;
+  }
+
+  .animate-slow-spin-medium {
+    animation: slow-spin 20s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes slow-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  }
+
+  .animate-float-slow-reverse {
+    animation: float 8s ease-in-out infinite reverse;
+    will-change: transform;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  }
+
+  @keyframes float {
+    0% { transform: translate3d(0, 0, 0) rotate(-6deg); }
+    25% { transform: translate3d(-5px, 5px, 0) rotate(-5deg); }
+    50% { transform: translate3d(0, 10px, 0) rotate(-7deg); }
+    75% { transform: translate3d(5px, 5px, 0) rotate(-8deg); }
+    100% { transform: translate3d(0, 0, 0) rotate(-6deg); }
+  }
+
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-450 {
+    animation-delay: 450ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-750 {
+    animation-delay: 750ms;
+  }
+
+  .animate-card-float {
+    animation: card-float 6s ease-in-out infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  }
+
+  @keyframes card-float {
+    0% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -8px, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  .animate-float-slow-alt {
+    animation: float-alt 9s ease-in-out infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  }
+
+  @keyframes float-alt {
+    0% { transform: translate3d(0, 0, 0) rotate(6deg); }
+    25% { transform: translate3d(4px, -3px, 0) rotate(7deg); }
+    50% { transform: translate3d(0, -8px, 0) rotate(5deg); }
+    75% { transform: translate3d(-4px, -3px, 0) rotate(7.5deg); }
+    100% { transform: translate3d(0, 0, 0) rotate(6deg); }
+  }
+
+  .animate-float-main {
+    animation: float-main 12s ease-in-out infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  }
+
+  @keyframes float-main {
+    0% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+    25% { transform: translate3d(2px, 2px, 0) rotate(-1.5deg); }
+    50% { transform: translate3d(0, 4px, 0) rotate(-2.5deg); }
+    75% { transform: translate3d(-2px, 2px, 0) rotate(-1.8deg); }
+    100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+  }
+
+  /* Disable animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-slow-spin,
+    .animate-reverse-slow-spin,
+    .animate-slow-spin-medium,
+    .animate-float-slow,
+    .animate-float-slow-reverse,
+    .animate-card-float,
+    .animate-float-slow-alt,
+    .animate-float-main,
+    .pulse-animation,
+    .animate-shuffle {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
   }
 }
