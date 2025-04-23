@@ -5,11 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
-import { Heading1, Heading2, Paragraph, SectionTitle } from '@/components/ui/Typography';
-import DeviceMockup from '@/components/ui/DeviceMockup';
-import MobileDeviceMockup from '@/components/ui/MobileDeviceMockup';
-import CalendarTimeline from '@/components/ui/CalendarTimeline';
-import CaseStudyGrid from '@/components/ui/CaseStudyGrid';
+import { SectionTitle } from '@/components/ui/Typography';
 import FaqAccordion, { FaqItem } from '@/components/ui/FaqAccordion';
 
 export default function ContentCreationServicePage() {
@@ -172,7 +168,7 @@ export default function ContentCreationServicePage() {
             </h1>
             
             <p className="text-lg text-gray-700 mb-8">
-              Van adembenemende dronevideo's tot professionele productfotografie - wij zorgen samen met onze partner <a href="https://visulions.nl/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">Visulions</a> voor visuele content die je merk laat opvallen en je doelgroep aanspreekt.
+              Van adembenemende dronevideo&apos;s tot professionele productfotografie - wij zorgen samen met onze partner <a href="https://visulions.nl/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">Visulions</a> voor visuele content die je merk laat opvallen en je doelgroep aanspreekt.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 mb-8">
