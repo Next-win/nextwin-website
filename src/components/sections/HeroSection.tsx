@@ -153,7 +153,7 @@ const HeroSection = () => {
                   alt="Next Win Platform"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  priority
+                  priority={true}
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                   className="drop-shadow-xl"
                 />
