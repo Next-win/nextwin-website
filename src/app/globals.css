@@ -1,15 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +14,242 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer utilities {
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  /* 3D Perspective classes */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Device mockup scrolling */
+  @keyframes scrollPage {
+    0% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-70%); 
+    }
+    45% {
+      transform: translateY(-70%);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* iPad/Tablet Mockup */
+  .device-mockup-image {
+    transform-origin: top center;
+    transition: transform 0.3s ease;
+    /* Ensure the image takes full width but preserves ratio */
+    width: 100% !important;
+    height: auto !important;
+    /* Default position at the top */
+    transform: translateY(0);
+  }
+  
+  /* Fallback CSS-based scrolling animation */
+  .device-mockup-image.auto-scroll {
+    animation: deviceScroll 18s ease-in-out infinite;
+  }
+  
+  @keyframes deviceScroll {
+    0%, 5% {
+      transform: translateY(0);
+    }
+    45%, 55% {
+      /* Adjust based on your screencapture aspect ratio */
+      transform: translateY(min(-60%, calc(-100% + 100vh)));
+    }
+    95%, 100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hover animation for the device mockup */
+  .device-hover-animate .device-mockup-image {
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+  
+  .device-hover-animate .device-mockup-image:hover {
+    transform: translateY(min(-60%, calc(-100% + 100vh)));
+    transition-duration: 15s;
+  }
+  
+  /* Mobile Device Mockup */
+  .mobile-device-mockup-image {
+    transform-origin: top center;
+    transition: transform 0.3s ease;
+    /* Ensure the image takes full width but preserves ratio */
+    width: 100% !important;
+    height: auto !important;
+    /* Default position at the top */
+    transform: translateY(0);
+  }
+  
+  /* Mobile CSS-based scrolling animation */
+  .mobile-device-mockup-image.mobile-auto-scroll {
+    animation: mobileDeviceScroll 20s ease-in-out infinite;
+  }
+  
+  @keyframes mobileDeviceScroll {
+    0%, 7% {
+      transform: translateY(0);
+    }
+    47%, 57% {
+      /* More scrolling for mobile screenshots as they're usually longer */
+      transform: translateY(min(-70%, calc(-100% + 100vh)));
+    }
+    97%, 100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hover animation for the mobile device mockup */
+  .device-hover-animate .mobile-device-mockup-image {
+    transition-property: transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+  
+  .device-hover-animate .mobile-device-mockup-image:hover {
+    transform: translateY(min(-70%, calc(-100% + 100vh)));
+    transition-duration: 15s;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Responsive funnel text classes */
+  @media (max-width: 640px) {
+    .funnel-text-lg {
+      font-size: 14px !important;
+    }
+    
+    .funnel-text-md {
+      font-size: 12px !important;
+    }
+    
+    .funnel-text-sm {
+      font-size: 10px !important;
+    }
+    
+    .funnel-text-xs {
+      font-size: 8px !important;
+    }
+    
+    /* Optimize search results for mobile */
+    .search-result-card {
+      padding: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    /* Make animations more subtle on mobile to avoid performance issues */
+    .animate-blob {
+      animation-duration: 10s;
+    }
+  }
+  
+  /* Mobile optimization for search results visualization */
+  @media (max-width: 480px) {
+    .search-results-container {
+      max-height: 400px;
+    }
+    
+    .result-card {
+      height: 90px !important;
+    }
+    
+    .results-container[data-state="before"] .result-card:nth-child(3) {
+      transform: translateY(200px) scale(1) !important;
+    }
+    
+    .results-container[data-state="after"] .result-card:nth-child(2) {
+      transform: translateY(200px) scale(1) !important;
+    }
+  }
+  
+  @keyframes growWidth {
+    from { width: 0%; }
+    to { width: 75%; }
+  }
 }
