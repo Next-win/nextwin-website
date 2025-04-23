@@ -103,31 +103,23 @@ const AboutSection = () => {
             {values.map((value, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all duration-500 relative overflow-hidden group cursor-pointer"
+                className="bg-white rounded-xl shadow-md p-6 border border-gray-100"
               >
-                {/* Decorative background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary-50/30 group-hover:to-primary-100/40 transition-colors duration-500"></div>
-                
-                {/* Accent bar on top */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 to-primary-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                
                 <div className="relative z-10">
                   <div className="flex items-center mb-4">
                     <div className="relative">
-                      {/* Icon container with shadow and gradient */}
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-white shadow-sm group-hover:shadow-md transition-all duration-300">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-white shadow-sm">
                         {value.icon}
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold ml-4 text-gray-900 group-hover:text-primary-700 transition-colors duration-300">{value.title}</h3>
+                    <h3 className="text-xl font-bold ml-4 text-gray-900">{value.title}</h3>
                   </div>
                   
                   <p className="text-gray-600 leading-relaxed">{value.description}</p>
                   
-                  {/* Bottom interactive element */}
                   <div className="mt-4 flex items-center justify-between">
-                    <div className="h-px w-1/3 bg-gray-100 group-hover:bg-primary-100 transition-colors duration-300"></div>
-                    <div className="text-primary-500 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <div className="h-px w-1/3 bg-gray-100"></div>
+                    <div className="text-primary-500">
                       <div className="inline-flex items-center text-sm font-medium">
                         <span className="mr-1">Meer weten</span>
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -142,7 +134,7 @@ const AboutSection = () => {
           </div>
           
           <div className="mt-20 text-center">
-            <a href="/contact" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <a href="/contact" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium shadow-lg">
               Benieuwd hoe we samen kunnen werken?
               <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
