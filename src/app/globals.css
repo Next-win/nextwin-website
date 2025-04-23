@@ -188,37 +188,7 @@
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
-  /* Animation for scroll reveal - JS-free fallback */
-  .animate-on-scroll {
-    /* Base styles now handled inline for better performance */
-    /* This is just a fallback for no-JS environments */
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: transform, opacity;
-    -webkit-font-smoothing: antialiased;
-    backface-visibility: hidden;
-  }
-  
-  /* Used for JS-free environments or when IntersectionObserver fails */
-  .animate-on-scroll-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Backward compatibility with the old class name */
-  .animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Prevent animations for users who prefer reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-on-scroll {
-      transition: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
+  /* Removed all scroll animation related styles */
   
   /* Responsive funnel text classes */
   @media (max-width: 640px) {
@@ -428,8 +398,7 @@
     .animate-float-slow-alt,
     .animate-float-main,
     .pulse-animation,
-    .animate-shuffle,
-    .animate-on-scroll {
+    .animate-shuffle {
       animation: none !important;
       transition: none !important;
       transform: none !important;

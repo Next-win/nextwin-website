@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Section from '../ui/Section';
-import { motion } from 'framer-motion';
 
 const teamMembers = [
   {
@@ -46,39 +45,20 @@ const TeamSection = () => {
             <div className="flex justify-center mb-4">
               <span className="inline-block py-1 px-3 rounded-full bg-primary-50 text-primary-700 text-sm font-medium">Ons Team</span>
             </div>
-            <motion.h2 
-              className="text-3xl md:text-4xl font-bold mb-6 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
               <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
                 Klein, gezellig en gedreven
               </span>
-            </motion.h2>
-            <motion.p 
-              className="text-lg text-gray-600 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            </h2>
+            <p className="text-lg text-gray-600 text-center">
               Bij Next Win zijn we een klein, hecht team van enthousiaste professionals die samen hun passie voor de digitale wereld delen. 
               Samen leveren we het beste resultaat voor onze klanten.
-            </motion.p>
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-3xl mx-auto mb-20">
             {teamMembers.map((member, index) => (
-              <motion.div 
-                key={index}
-                className="group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
+              <div key={index} className="group">
                 <div className="mb-6 relative">
                   <div className="relative h-[380px] w-[280px] mx-auto overflow-hidden rounded-2xl">
                     <Image
@@ -128,38 +108,19 @@ const TeamSection = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <motion.div
-              className="relative bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-gray-100"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div className="relative bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-gray-100">
               <h3 className="text-2xl font-bold mb-8 text-center">
                 Een greep uit onze klanten
               </h3>
               
-              <motion.div 
-                className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
                 {clients.map((client, index) => (
-                  <motion.div 
-                    key={index} 
-                    className="w-32 h-16 flex items-center justify-center"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.05 + 0.3 }}
-                  >
+                  <div key={index} className="w-32 h-16 flex items-center justify-center">
                     <Image
                       src={client.logo}
                       alt={client.name}
@@ -168,9 +129,9 @@ const TeamSection = () => {
                       style={{ objectFit: 'contain' }}
                       className="grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                     />
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
               
               <div className="mt-8 text-center">
                 <a href="/cases" className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
@@ -180,7 +141,7 @@ const TeamSection = () => {
                   </svg>
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
