@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion';
 import { Button } from '../ui/Button';
 import Section from '../ui/Section';
+import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
 
 const workflowSteps = [
   {
@@ -233,72 +234,62 @@ const WorkflowSection = () => {
           </div>
         </div>
 
-        {/* USPs */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300"
-          >
-            <div className="flex items-center mb-4">
-              <div className="bg-green-50 p-2 rounded-full mr-4">
-                <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-lg">Alles in-house</h3>
-            </div>
-            <p className="text-gray-600">Wij hebben alle expertise in huis: strategie, design, development en marketing onder één dak.</p>
-          </motion.div>
+        {/* USP Cards Section - Updated to use ScrollAnimationWrapper */}
+        <div className="mt-24">
+          <div className="text-center mb-10">
+            <ScrollAnimationWrapper>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Waarom voor ons kiezen?</h2>
+            </ScrollAnimationWrapper>
+          </div>
           
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300"
-          >
-            <div className="flex items-center mb-4">
-              <div className="bg-blue-50 p-2 rounded-full mr-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ScrollAnimationWrapper delay={0} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+              <div className="flex items-center mb-4">
+                <div className="bg-green-50 p-2 rounded-full mr-4">
+                  <svg className="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-lg">Alles in-house</h3>
               </div>
-              <h3 className="font-semibold text-lg">Duurzaam & binnen budget</h3>
-            </div>
-            <p className="text-gray-600">Oplossingen die meegroeien met je bedrijf en binnen je budget blijven, zonder verborgen kosten.</p>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300"
-          >
-            <div className="flex items-center mb-4">
-              <div className="bg-purple-50 p-2 rounded-full mr-4">
-                <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                </svg>
+              <p className="text-gray-600">Wij hebben alle expertise in huis: strategie, design, development en marketing onder één dak.</p>
+            </ScrollAnimationWrapper>
+            
+            <ScrollAnimationWrapper delay={0.1} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+              <div className="flex items-center mb-4">
+                <div className="bg-blue-50 p-2 rounded-full mr-4">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-lg">Duurzaam & binnen budget</h3>
               </div>
-              <h3 className="font-semibold text-lg">12 maanden garantie</h3>
-            </div>
-            <p className="text-gray-600">Een jaar lang ondersteuning en updates om te zorgen dat jouw digitale oplossing perfect blijft werken.</p>
-          </motion.div>
-        </div>
+              <p className="text-gray-600">Oplossingen die meegroeien met je bedrijf en binnen je budget blijven, zonder verborgen kosten.</p>
+            </ScrollAnimationWrapper>
+            
+            <ScrollAnimationWrapper delay={0.2} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300">
+              <div className="flex items-center mb-4">
+                <div className="bg-purple-50 p-2 rounded-full mr-4">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-lg">12 maanden garantie</h3>
+              </div>
+              <p className="text-gray-600">Een jaar lang ondersteuning en updates om te zorgen dat jouw digitale oplossing perfect blijft werken.</p>
+            </ScrollAnimationWrapper>
+          </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-20">
-          <Button
-            href="/contact"
-            size="lg"
-            className="bg-primary-600 hover:bg-primary-700 text-white"
-          >
-            Start jouw project
-          </Button>
+          {/* Call to Action */}
+          <div className="text-center mt-20">
+            <Button
+              href="/contact"
+              size="lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white"
+            >
+              Start jouw project
+            </Button>
+          </div>
         </div>
       </div>
     </Section>
