@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Section from '../ui/Section';
-import { motion } from 'framer-motion';
+import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
 
 const values = [
   {
@@ -54,12 +54,8 @@ const AboutSection = () => {
       <Section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
+            <ScrollAnimationWrapper
               className="order-2 lg:order-1"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Creativiteit en strategie
@@ -70,13 +66,10 @@ const AboutSection = () => {
               <p className="text-lg text-gray-600">
                 Wij geloven dat een slimme combinatie van creativiteit, strategie en techniek het verschil maakt in het behalen van online succes. 🚀
               </p>
-            </motion.div>
-            <motion.div
+            </ScrollAnimationWrapper>
+            <ScrollAnimationWrapper
               className="order-1 lg:order-2 relative"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              delay={0.2}
             >
               <div className="relative h-[400px] w-full overflow-hidden rounded-3xl shadow-xl">
                 <Image
@@ -89,7 +82,7 @@ const AboutSection = () => {
                 />
                 <div className="absolute inset-0 bg-primary-600/10"></div>
               </div>
-            </motion.div>
+            </ScrollAnimationWrapper>
           </div>
         </div>
       </Section>
@@ -100,13 +93,7 @@ const AboutSection = () => {
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-primary-600 opacity-10 rounded-full blur-3xl -ml-48 -mb-24"></div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            className="max-w-3xl mx-auto text-center mb-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <ScrollAnimationWrapper className="max-w-3xl mx-auto text-center mb-20">
             <span className="inline-block text-primary-600 font-semibold mb-2">Waar we voor staan</span>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
@@ -116,18 +103,14 @@ const AboutSection = () => {
             <p className="text-lg text-gray-600">
               Deze kernwaarden vormen de basis van hoe wij werken en met onze klanten omgaan
             </p>
-          </motion.div>
+          </ScrollAnimationWrapper>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {values.map((value, index) => (
-              <motion.div 
+              <ScrollAnimationWrapper 
                 key={index}
                 className="bg-white rounded-xl shadow-md p-6 border border-gray-100 hover:shadow-lg transition-all duration-500 relative overflow-hidden group cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -3 }}
+                delay={index * 0.1}
               >
                 {/* Decorative background gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary-50/30 group-hover:to-primary-100/40 transition-colors duration-500"></div>
@@ -161,16 +144,13 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </ScrollAnimationWrapper>
             ))}
           </div>
           
-          <motion.div 
+          <ScrollAnimationWrapper 
             className="mt-20 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            delay={0.3}
           >
             <a href="/contact" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               Benieuwd hoe we samen kunnen werken?
@@ -178,7 +158,7 @@ const AboutSection = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>
-          </motion.div>
+          </ScrollAnimationWrapper>
         </div>
       </Section>
     </>

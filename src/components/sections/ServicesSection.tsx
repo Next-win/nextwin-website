@@ -1,10 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import Section from '../ui/Section';
 import { Button } from '../ui/Button';
+import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
 
 const services = [
   {
@@ -48,46 +48,27 @@ const services = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
 const ServicesSection = () => {
   return (
     <Section id="services" className="bg-white pt-8 pb-16 md:pt-12 md:pb-24">
-      <div className="text-center max-w-3xl mx-auto mb-20">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">
-          <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
-            Onze Services
-          </span>
-        </h2>
-        <p className="text-xl text-gray-600">
-          Wij bieden verschillende diensten aan om jouw bedrijf online te laten groeien.
-        </p>
-      </div>
+      <ScrollAnimationWrapper>
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
+              Onze Services
+            </span>
+          </h2>
+          <p className="text-xl text-gray-600">
+            Wij bieden verschillende diensten aan om jouw bedrijf online te laten groeien.
+          </p>
+        </div>
+      </ScrollAnimationWrapper>
       
-      <motion.div 
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-12"
-      >
-        {services.map((service) => (
-          <motion.div
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {services.map((service, index) => (
+          <ScrollAnimationWrapper 
             key={service.id}
-            variants={item}
+            delay={index * 0.1}
             className="bg-white rounded-xl overflow-hidden shadow-md group hover:shadow-lg transition-all relative z-10"
           >
             <div className="relative h-56 overflow-hidden">
@@ -123,7 +104,7 @@ const ServicesSection = () => {
               </ul>
               
               <Link
-                href={`/services#${service.id}`}
+                href={`/services/${service.id}`}
                 className="text-primary-600 font-medium inline-flex items-center hover:text-primary-700 group-hover:translate-x-1 transition-transform duration-300"
               >
                 Meer details
@@ -132,15 +113,15 @@ const ServicesSection = () => {
                 </svg>
               </Link>
             </div>
-          </motion.div>
+          </ScrollAnimationWrapper>
         ))}
-      </motion.div>
+      </div>
       
-      <div className="text-center mt-16">
+      <ScrollAnimationWrapper delay={0.3} className="text-center mt-16">
         <Button href="/services" size="lg" className="bg-primary-600 hover:bg-primary-700 text-white px-8">
           Alle services bekijken
         </Button>
-      </div>
+      </ScrollAnimationWrapper>
     </Section>
   );
 };
