@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyAppointmentButton from "@/components/ui/StickyAppointmentButton";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Import fonts
 import "@fontsource/inter/400.css";
@@ -50,6 +51,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <StickyAppointmentButton />
+        <SpeedInsights />
       </body>
     </html>
   );
