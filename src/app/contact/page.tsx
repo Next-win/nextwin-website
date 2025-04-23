@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <>
-      <Section spacing="xl" className="pt-32 md:pt-40 mb-16">
+      <Section className="py-32 md:py-40 mb-16">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Contact</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">
