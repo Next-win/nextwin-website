@@ -18,63 +18,89 @@ const ScrollAnimationWrapper: React.FC<ScrollAnimationWrapperProps> = ({
   rootMargin = '0px',
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [observerCreated, setObserverCreated] = useState(false);
+  // Set initial state to visible if on server-side to prevent hydration issues
+  const [isVisible, setIsVisible] = useState(typeof window === 'undefined');
+  const hasBeenObserved = useRef(false);
 
   useEffect(() => {
+    // If already visible, no need to observe
+    if (isVisible) return;
+
     // Skip animation on browsers that support the prefers-reduced-motion media query
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = typeof window !== 'undefined' && 
+      window.matchMedia && 
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     if (prefersReducedMotion) {
       setIsVisible(true);
       return;
     }
 
-    // Only create observer once to prevent duplicate triggers
-    if (observerCreated || !elementRef.current) return;
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isVisible) {
-            // Use requestAnimationFrame for smoother transitions
-            requestAnimationFrame(() => {
+    // If element has already been observed, don't create another observer
+    if (hasBeenObserved.current) return;
+
+    // Create a new observer
+    let observer: IntersectionObserver;
+
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Mark as observed to prevent duplicate observers
+              hasBeenObserved.current = true;
+              
+              // Make visible immediately - no delay for browser performance
               setIsVisible(true);
-              // Immediately unobserve to prevent duplicate triggers
+              
+              // Unobserve after triggering
               if (elementRef.current) {
                 observer.unobserve(elementRef.current);
               }
-            });
-          }
-        });
-      },
-      {
-        threshold,
-        rootMargin,
-      }
-    );
+            }
+          });
+        },
+        {
+          threshold,
+          rootMargin,
+        }
+      );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-      setObserverCreated(true);
+      // Observe the element
+      if (elementRef.current) {
+        observer.observe(elementRef.current);
+      }
+    } catch (error) {
+      // Fallback if IntersectionObserver fails or is not supported
+      console.warn('ScrollAnimationWrapper: IntersectionObserver failed, using fallback', error);
+      setIsVisible(true);
     }
 
+    // Clean up the observer on component unmount
     return () => {
-      if (elementRef.current) {
+      if (observer && elementRef.current) {
         observer.unobserve(elementRef.current);
       }
     };
-  }, [threshold, rootMargin, isVisible, observerCreated]);
+  }, [threshold, rootMargin, isVisible]);
 
+  // Initial visibility class for immediate mount cases (SSR)
+  const visibilityClass = isVisible ? 'animate-on-scroll-visible' : '';
+  
   return (
     <div 
       ref={elementRef}
-      className={`animate-on-scroll ${isVisible ? 'is-visible' : ''} ${className}`}
+      className={`animate-on-scroll ${visibilityClass} ${className}`}
       style={{ 
         animationDelay: delay ? `${delay}s` : undefined,
-        // Force hardware acceleration with transform
+        opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translate3d(0, 0, 0)' : 'translate3d(0, 20px, 0)',
-        // Force proper Safari rendering
-        WebkitBackfaceVisibility: 'hidden'
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+        // Force GPU acceleration for performance
+        willChange: 'transform, opacity',
+        // Improve Safari rendering
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden'
       }}
     >
       {children}
