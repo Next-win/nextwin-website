@@ -104,7 +104,7 @@ const ServicesSection = () => {
               </ul>
               
               <Link
-                href={`/services/${service.id}`}
+                href={`/services#${service.id}`}
                 className="text-primary-600 font-medium inline-flex items-center hover:text-primary-700 group-hover:translate-x-1 transition-transform duration-300"
               >
                 Meer details
@@ -117,10 +117,12 @@ const ServicesSection = () => {
         ))}
       </div>
       
-      <ScrollAnimationWrapper delay={0.3} className="text-center mt-16">
-        <Button href="/services" size="lg" className="bg-primary-600 hover:bg-primary-700 text-white px-8">
-          Alle services bekijken
-        </Button>
+      <ScrollAnimationWrapper delay={0.3}>
+        <div className="text-center mt-16">
+          <Button href="/services" size="lg" className="bg-primary-600 hover:bg-primary-700 text-white px-8">
+            Alle services bekijken
+          </Button>
+        </div>
       </ScrollAnimationWrapper>
     </Section>
   );
