@@ -2,7 +2,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import CasesSection from "@/components/sections/CasesSection";
 import ContactSection from "@/components/sections/ContactSection";
-import WorkflowSection from "@/components/sections/WorkflowSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <ServicesSection />
-        <WorkflowSection />
+        <TestimonialsSection />
         <CasesSection />
         <div className="py-12 md:py-20"></div>
         <ContactSection />

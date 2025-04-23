@@ -41,12 +41,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className="scroll-smooth">
+    <html lang="nl" className="scroll-smooth overflow-x-hidden">
       <body
-        className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
+        className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden relative w-full`}
       >
         <Navbar />
-        <main>
+        <main className="overflow-x-hidden">
           {children}
         </main>
         <Footer />
