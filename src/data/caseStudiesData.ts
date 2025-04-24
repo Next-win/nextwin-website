@@ -21,7 +21,7 @@ export const caseStudiesData: CaseStudy[] = [
     statLabel: 'Conversie',
     statValue: '+92%',
     description: 'B2B webshop voor brandveiligheidsproducten met custom offerte-functionaliteit en volume-kortingen geïntegreerd.',
-    slug: 'fire-safety-shop',
+    slug: '',
   },
   {
     id: 'handgemaakte-sieraden',
@@ -71,11 +71,16 @@ export const caseStudiesData: CaseStudy[] = [
 
 // You can create specialized subsets for different pages
 export const webshopCaseStudies = caseStudiesData.filter(
-  c => c.category === 'E-commerce' || c.category === 'B2B Webshop' || c.category === 'WooCommerce'
+  c => (c.category === 'E-commerce' || c.category === 'B2B Webshop' || c.category === 'WooCommerce') && 
+  c.slug && c.slug.trim() !== ''
 ).slice(0, 3);
 
 export const websiteCaseStudies = caseStudiesData.filter(
-  c => c.category === 'WordPress' || c.category === 'Corporate Website'
+  c => (c.category === 'WordPress' || c.category === 'Corporate Website') && 
+  c.slug && c.slug.trim() !== ''
 ).slice(0, 3);
 
-export const featuredCaseStudies = caseStudiesData.slice(0, 3); 
+// Filter out empty cases
+export const featuredCaseStudies = caseStudiesData.filter(
+  c => c.slug && c.slug.trim() !== ''
+).slice(0, 3); 

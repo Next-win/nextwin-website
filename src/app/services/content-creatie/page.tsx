@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { SectionTitle } from '@/components/ui/Typography';
 import FaqAccordion, { FaqItem } from '@/components/ui/FaqAccordion';
 import ScrollAnimationWrapper from '@/components/ui/ScrollAnimationWrapper';
+import FeaturedCases from '@/components/ui/FeaturedCases';
 
 export default function ContentCreationServicePage() {
   const [isBrowser, setIsBrowser] = useState(false);
@@ -905,77 +906,15 @@ export default function ContentCreationServicePage() {
         </div>
       </Section>
 
-      {/* Portfolio Section - New */}
-      <Section className="py-24 bg-white" id="portfolio">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <SectionTitle
-              subtitle="Ons werk"
-              title="Recente projecten"
-              align="center"
-            />
-            <p className="mt-6 text-lg text-gray-600">
-              Bekijk enkele recente projecten die we samen met Visulions hebben gerealiseerd voor onze klanten.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-500 animate-card-float">
-              <div className="aspect-[4/3] relative">
-                <Image 
-                  src="/images/content-creatie/bedrijfsfilm-mogelijkheden-visulions.jpg.webp"
-                  alt="Bedrijfsfilm project" 
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-80 p-6 flex flex-col justify-end">
-                <h3 className="text-white text-xl font-bold mb-2">Bedrijfsfilm TechCorp</h3>
-                <p className="text-white/80 text-sm mb-4">Professionele bedrijfsvideo die de workflows en teamcultuur vastlegt</p>
-                <div className="flex items-center gap-2">
-                  <span className="px-2 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full text-white">Bedrijfsfilm</span>
-                  <span className="px-2 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full text-white">Interviews</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-500 animate-card-float animation-delay-300">
-              <div className="aspect-[4/3] relative">
-                <Image 
-                  src="/images/content-creatie/la-odeur-promotiefilms-visulions-scaled.jpg.webp"
-                  alt="Productfotografie project" 
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-80 p-6 flex flex-col justify-end">
-                <h3 className="text-white text-xl font-bold mb-2">Product Showcase</h3>
-                <p className="text-white/80 text-sm mb-4">Professionele productfoto's voor een nieuwe e-commerce website</p>
-                <div className="flex items-center gap-2">
-                  <span className="px-2 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full text-white">Productfotografie</span>
-                  <span className="px-2 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full text-white">E-commerce</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-12 text-center">
-            <a 
-              href="https://visulions.nl/projecten/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors group"
-            >
-              Bekijk meer projecten op de Visulions website
-              <svg className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </Section>
+      {/* Portfolio Section - Using FeaturedCases component */}
+      <FeaturedCases 
+        title="Content met impact"
+        subtitle="Succesverhalen"
+        description="Bekijk enkele van onze recente projecten en ontdek hoe we ondernemers zoals jij hebben geholpen."
+        bgColor="bg-gray-50"
+        maxCases={3}
+        showHeader={true}
+      />
 
       {/* FAQ Section */}
       <Section className="py-24 bg-white" id="faq">

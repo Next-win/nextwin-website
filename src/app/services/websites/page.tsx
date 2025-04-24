@@ -9,9 +9,8 @@ import { Heading1, Heading2, Paragraph, SectionTitle } from '@/components/ui/Typ
 import DeviceMockup from '@/components/ui/DeviceMockup';
 import MobileDeviceMockup from '@/components/ui/MobileDeviceMockup';
 import CalendarTimeline from '@/components/ui/CalendarTimeline';
-import CaseStudyGrid from '@/components/ui/CaseStudyGrid';
+import FeaturedCases from '@/components/ui/FeaturedCases';
 import { websiteTimelineData } from '@/data/websiteTimelineData';
-import { websiteCaseStudies } from '@/data/caseStudiesData';
 import FaqAccordion, { FaqItem } from '@/components/ui/FaqAccordion';
 
 export default function WebsitesServicePage() {
@@ -512,25 +511,18 @@ export default function WebsitesServicePage() {
         </div>
       </Section>
 
-      {/* Case Studies Section */}
-      <Section className="py-24 bg-gray-50">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <SectionTitle
-              subtitle="Succesverhalen"
-              title="Websites die impact maken"
-              align="center"
-            />
-            <p className="mt-6 text-lg text-gray-600">
-              Bekijk enkele van onze recente projecten en ontdek hoe we ondernemers zoals jij hebben geholpen.
-            </p>
-          </div>
-          
-          <CaseStudyGrid cases={websiteCaseStudies} />
-        </div>
-      </Section>
-{/* Key Values Section */}
-<Section className="py-24 bg-white">
+      {/* Case Studies Section - Using FeaturedCases component */}
+      <FeaturedCases 
+        title="Websites die impact maken"
+        subtitle="Succesverhalen"
+        description="Bekijk enkele van onze recente projecten en ontdek hoe we ondernemers zoals jij hebben geholpen."
+        bgColor="bg-gray-50"
+        maxCases={3}
+        showHeader={true}
+      />
+
+      {/* Key Values Section */}
+      <Section className="py-24 bg-white">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <SectionTitle

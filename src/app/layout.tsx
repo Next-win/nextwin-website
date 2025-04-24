@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import StickyAppointmentButton from "@/components/ui/StickyAppointmentButton";
+import AppLayout from "@/components/layout/AppLayout";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Import fonts
@@ -45,12 +43,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden relative w-full`}
       >
-        <Navbar />
-        <main className="overflow-x-hidden">
-          {children}
-        </main>
-        <Footer />
-        <StickyAppointmentButton />
+        <AppLayout>{children}</AppLayout>
         <SpeedInsights />
       </body>
     </html>

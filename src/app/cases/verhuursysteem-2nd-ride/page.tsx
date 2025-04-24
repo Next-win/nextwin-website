@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Section from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
+import RelatedCases from '@/components/ui/RelatedCases';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/Dialog';
 import { cn } from '@/lib/utils';
 import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle } from '@/components/ui/Typography';
@@ -726,6 +727,13 @@ export default function CaseStudyPage() {
           </div>
         </div>
       </Section>
+      
+      {/* Related Cases Section */}
+      <RelatedCases 
+        bgColor="bg-white"
+        maxCases={3}
+        excludeCaseId="verhuursysteem-2nd-ride"
+      />
       
       {/* Enhanced Call to Action Section */}
       <Section className="py-32 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 relative overflow-hidden">

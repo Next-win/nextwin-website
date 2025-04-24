@@ -1,6 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import ServicesSection from "@/components/sections/ServicesSection";
-import CasesSection from "@/components/sections/CasesSection";
+import FeaturedCases from "@/components/ui/FeaturedCases";
 import ContactSection from "@/components/sections/ContactSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { Metadata } from "next";
@@ -18,7 +18,7 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <TestimonialsSection />
-        <CasesSection />
+        <FeaturedCases showHeader={true} />
         <div className="py-12 md:py-20"></div>
         <ContactSection />
       </main>

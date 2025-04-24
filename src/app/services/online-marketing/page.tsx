@@ -9,10 +9,10 @@ import { Heading1, Heading2, Paragraph, SectionTitle } from '@/components/ui/Typ
 import DeviceMockup from '@/components/ui/DeviceMockup';
 import MobileDeviceMockup from '@/components/ui/MobileDeviceMockup';
 import CalendarTimeline from '@/components/ui/CalendarTimeline';
-import CaseStudyGrid from '@/components/ui/CaseStudyGrid';
+import FeaturedCases from '@/components/ui/FeaturedCases';
 import { marketingTimelineData } from '@/data/marketingTimelineData';
-import { featuredCaseStudies } from '@/data/caseStudiesData';
 import FaqAccordion, { FaqItem } from '@/components/ui/FaqAccordion';
+import SearchResultsVisualization from '@/components/ui/SearchResultsVisualization';
 
 export default function OnlineMarketingServicePage() {
   useEffect(() => {
@@ -252,281 +252,57 @@ export default function OnlineMarketingServicePage() {
 
           {/* Right column - Featured Image (Desktop) */}
           <div className="hidden lg:block relative">
-            <div className="relative h-[580px] w-full overflow-visible rounded-3xl">
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-80">
-                {/* Creative animated background */}
-                <div className="absolute inset-0 overflow-visible">
-                  {/* Animated gradient blobs */}
-                  <div className="absolute top-[-25%] left-[-20%] w-[60%] h-[60%] rounded-full bg-gradient-to-r from-blue-200/30 to-indigo-300/30 blur-3xl animate-blob"></div>
-                  <div className="absolute bottom-[-25%] right-[-20%] w-[60%] h-[60%] rounded-full bg-gradient-to-r from-green-200/30 to-blue-200/30 blur-3xl animate-blob animation-delay-2000"></div>
-                  <div className="absolute top-[35%] right-[-15%] w-[40%] h-[40%] rounded-full bg-gradient-to-r from-purple-200/30 to-indigo-200/30 blur-3xl animate-blob animation-delay-4000"></div>
-                  <div className="absolute bottom-[25%] left-[-15%] w-[40%] h-[40%] rounded-full bg-gradient-to-r from-blue-200/30 to-green-300/30 blur-3xl animate-blob animation-delay-3000"></div>
-                  
-                  {/* Subtle grid pattern overlay */}
-                  <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                  
-                  {/* Animated accent lines */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0,150 Q100,120 200,150 Q300,180 400,150" fill="none" stroke="rgba(99, 102, 241, 0.07)" strokeWidth="1">
-                      <animate attributeName="d" values="M0,150 Q100,120 200,150 Q300,180 400,150; M0,150 Q100,180 200,150 Q300,120 400,150; M0,150 Q100,120 200,150 Q300,180 400,150" dur="20s" repeatCount="indefinite" />
-                    </path>
-                    <path d="M0,200 Q100,180 200,200 Q300,220 400,200" fill="none" stroke="rgba(79, 70, 229, 0.07)" strokeWidth="1">
-                      <animate attributeName="d" values="M0,200 Q100,180 200,200 Q300,220 400,200; M0,200 Q100,220 200,200 Q300,180 400,200; M0,200 Q100,180 200,200 Q300,220 400,200" dur="25s" repeatCount="indefinite" />
-                    </path>
-                    <path d="M0,250 Q100,230 200,250 Q300,270 400,250" fill="none" stroke="rgba(16, 185, 129, 0.05)" strokeWidth="1">
-                      <animate attributeName="d" values="M0,250 Q100,230 200,250 Q300,270 400,250; M0,250 Q100,270 200,250 Q300,230 400,250; M0,250 Q100,230 200,250 Q300,270 400,250" dur="30s" repeatCount="indefinite" />
-                    </path>
-                  </svg>
-                </div>
-              </div>
-              
-              {/* Search Results Visualization */}
-              <div className="absolute inset-0 p-6">
-                <div className="bg-white rounded-xl shadow-md w-full h-full p-6 flex flex-col">
-                  {/* Header */}
-                  <div className="flex items-center mb-5">
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                      <svg className="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-bold text-gray-800">Zoekresultaten verbeterd</h2>
-                      <p className="text-sm text-gray-500">Positie over tijd met actieve strategie</p>
-                    </div>
-                  </div>
-                  
-                  {/* Search Bar */}
-                  <div className="relative mb-8 group">
-                    <div className="w-full h-14 bg-white rounded-full border border-gray-200 shadow-sm flex items-center px-5 transition-all group-hover:shadow-md">
-                      <svg className="w-5 h-5 text-gray-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                      <span className="text-gray-800 font-medium">digitaal bureau online marketing</span>
-                      
-                      <div className="ml-auto flex space-x-2">
-                        <button className="px-4 py-1.5 rounded-full bg-white border border-gray-200 text-sm">Voor</button>
-                        <button className="px-4 py-1.5 rounded-full bg-blue-500 text-white text-sm">Na</button>
-                      </div>
-                    </div>
-                    <div className="absolute right-3 -bottom-4 bg-blue-50 px-2 py-1 rounded-md text-xs text-blue-700 font-semibold animate-pulse-slow">
-                      Top 3 keywords: +156% verkeer
-                    </div>
-                  </div>
-                  
-                  {/* Search Results */}
-                  <div className="flex-grow overflow-hidden relative">
-                    <div className="search-results-container">
-                      {/* Result 1 - NextWin */}
-                      <div className="search-result-card transform transition-all duration-500 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                        <div className="flex justify-between items-start">
-                          <div className="flex-grow">
-                            <div className="text-green-600 text-sm mb-1 font-medium">www.nextwin.nl</div>
-                            <h3 className="text-blue-600 text-lg font-semibold hover:underline mb-1">Next Win | Resultaatgericht Digitaal Bureau Otterlo</h3>
-                            <p className="text-gray-600 text-sm">Online marketing die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer bezoekers en meer klanten. Bekijk onze cases.</p>
-                            <div className="flex space-x-2 mt-2">
-                              <span className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">SEO</span>
-                              <span className="inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded">Google Ads</span>
-                              <span className="inline-block px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded">Social Media</span>
-                            </div>
-                          </div>
-                          <div className="ml-4 flex flex-col items-end">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                              <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                              </svg>
-                              Positie 1
-                            </span>
-                            <div className="mt-4 bg-gray-50 rounded-lg p-2 text-xs">
-                              <div className="text-gray-500 mb-1">Voorheen:</div>
-                              <div className="text-red-600 font-medium">Positie 8</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Result 2 - Competitor 1 */}
-                      <div className="search-result-card transform transition-all duration-500 translate-y-2 opacity-90 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                        <div className="flex justify-between items-start">
-                          <div className="flex-grow">
-                            <div className="text-green-600 text-sm mb-1">www.competitor1.nl</div>
-                            <h3 className="text-blue-600 text-lg font-semibold hover:underline mb-1">Digitaal Marketing Bureau | Competitor 1</h3>
-                            <p className="text-gray-600 text-sm">Breng uw bedrijf online naar een hoger niveau met onze marketing expertise. Wij zijn het beste digitale bureau voor online marketing.</p>
-                          </div>
-                          <div className="ml-4">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                              <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                              </svg>
-                              Positie 2
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Result 3 - Competitor 2 */}
-                      <div className="search-result-card transform transition-all duration-500 translate-y-4 opacity-80 animate-fade-in" style={{ animationDelay: '0.9s' }}>
-                        <div className="flex justify-between items-start">
-                          <div className="flex-grow">
-                            <div className="text-green-600 text-sm mb-1">www.competitor2.nl</div>
-                            <h3 className="text-blue-600 text-lg font-semibold hover:underline mb-1">Digitale Marketing Services | Competitor 2</h3>
-                            <p className="text-gray-600 text-sm">SEO, SEA en Social Media Marketing voor MKB bedrijven in heel Nederland. Neem vandaag nog contact op.</p>
-                          </div>
-                          <div className="ml-4">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                              <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                              </svg>
-                              Positie 3
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Performance Metrics */}
-                    <div className="absolute right-4 bottom-4 bg-white rounded-xl shadow-lg p-4 w-64 border border-gray-100 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-                      <h4 className="text-sm font-semibold text-gray-700 mb-3">Organisch verkeer</h4>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-gray-600 text-xs">Voor actieve strategie</span>
-                        <span className="font-semibold text-gray-800">523 bezoekers/mnd</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-3">
-                        <div className="bg-gray-400 h-1.5 rounded-full" style={{ width: '25%' }}></div>
-                      </div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-gray-600 text-xs">Na actieve strategie</span>
-                        <span className="font-semibold text-blue-600">1,345 bezoekers/mnd</span>
-                      </div>
-                      <div className="w-full bg-blue-100 rounded-full h-1.5 mb-3">
-                        <div className="bg-blue-500 h-1.5 rounded-full animate-grow-width" style={{ width: '0%' }}></div>
-                      </div>
-                      <div className="flex items-center mt-2">
-                        <div className="bg-green-100 text-green-700 text-xs font-semibold rounded-full px-2 py-0.5 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                          <span>+156%</span>
-                        </div>
-                        <div className="bg-green-100 text-green-700 text-xs font-semibold rounded-full px-2 py-0.5 flex items-center ml-2">
-                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                          <span>Conversies +45%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Mobile visualization - visible only on small screens */}
-          <div className="lg:hidden relative mt-8 mb-4">
-            <div className="relative h-[400px] w-full overflow-hidden rounded-2xl">
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-80">
-                {/* Creative animated background */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {/* Animated gradient blobs - smaller and fewer for mobile */}
-                  <div className="absolute top-[-15%] left-[-15%] w-[50%] h-[50%] rounded-full bg-gradient-to-r from-blue-200/30 to-indigo-300/30 blur-2xl animate-blob"></div>
-                  <div className="absolute bottom-[-15%] right-[-15%] w-[50%] h-[50%] rounded-full bg-gradient-to-r from-green-200/30 to-blue-200/30 blur-2xl animate-blob animation-delay-2000"></div>
-                  <div className="absolute top-[40%] right-[-10%] w-[30%] h-[30%] rounded-full bg-gradient-to-r from-purple-200/30 to-indigo-200/30 blur-2xl animate-blob animation-delay-4000"></div>
-                  
-                  {/* Subtle grid pattern overlay */}
-                  <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                </div>
-              </div>
-              
-              {/* Mobile Search Results Visualization - simplified for mobile */}
-              <div className="absolute inset-0 p-4">
-                <div className="bg-white rounded-xl shadow-md w-full h-full p-4 flex flex-col">
-                  {/* Header */}
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-gray-800">Zoekresultaten verbeterd</h2>
-                      <p className="text-xs text-gray-500">Positie over tijd met actieve strategie</p>
-                    </div>
-                  </div>
-                  
-                  {/* Search Bar - simplified */}
-                  <div className="relative mb-6 group">
-                    <div className="w-full h-12 bg-white rounded-full border border-gray-200 shadow-sm flex items-center px-4 transition-all">
-                      <svg className="w-4 h-4 text-gray-400 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                      <span className="text-gray-800 text-sm font-medium">digitaal bureau online marketing</span>
-                    </div>
-                    <div className="absolute right-2 -bottom-3 bg-blue-50 px-2 py-0.5 rounded-md text-xs text-blue-700 font-semibold animate-pulse-slow">
-                      Top 3 keywords: +156% verkeer
-                    </div>
-                  </div>
-                  
-                  {/* Simplified Search Results for mobile */}
-                  <div className="flex-grow overflow-hidden relative">
-                    <div className="flex flex-col space-y-3">
-                      {/* Result 1 - NextWin - compact for mobile */}
-                      <div className="bg-white rounded-lg p-3 border border-gray-100 shadow-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <div className="text-green-600 text-xs">www.nextwin.nl</div>
-                            <h3 className="text-blue-600 text-sm font-semibold mb-1">Next Win | Resultaatgericht Digitaal Bureau</h3>
-                          </div>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                            <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                            </svg>
-                            Positie 1
-                          </span>
-                        </div>
-                      </div>
-                      
-                      {/* Result 2 - Competitor 1 - compact for mobile */}
-                      <div className="bg-white rounded-lg p-3 border border-gray-100 shadow-sm opacity-90 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <div className="text-green-600 text-xs">www.competitor1.nl</div>
-                            <h3 className="text-blue-600 text-sm font-semibold mb-1">Digitaal Marketing Bureau | Competitor 1</h3>
-                          </div>
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                            <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                            </svg>
-                            Positie 2
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Mobile Performance Metrics - simplified */}
-                    <div className="absolute right-1 bottom-1 bg-white rounded-lg shadow-md p-3 border border-gray-100 w-full max-w-[240px] animate-fade-in" style={{ animationDelay: '0.9s' }}>
-                      <h4 className="text-xs font-semibold text-gray-700 mb-2">Resultaat actieve strategie</h4>
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className="bg-green-100 text-green-700 text-xs font-semibold rounded-full px-2 py-0.5 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                          <span>Verkeer +156%</span>
-                        </div>
-                        <div className="bg-green-100 text-green-700 text-xs font-semibold rounded-full px-2 py-0.5 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                          <span>Conversies +45%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SearchResultsVisualization 
+              title="Zoekresultaten verbeterd"
+              subtitle="Positie over tijd met actieve strategie"
+              searchTerm="digitaal bureau online marketing"
+              beforeAfterResults={{
+                before: {
+                  yourResult: {
+                    position: 8,
+                    title: "Next Win | Digitaal bureau en online marketing",
+                    description: "Professionele online marketing diensten van Next Win uit Otterlo. Verbeter je online zichtbaarheid en krijg meer klanten.",
+                    url: "www.nextwin.nl"
+                  },
+                  competitors: [
+                    {
+                      position: 1,
+                      title: "Digitaal Marketing Bureau | Competitor 1",
+                      description: "Breng uw bedrijf online naar een hoger niveau met onze marketing expertise. Wij zijn het beste digitale bureau voor online marketing.",
+                      url: "www.competitor1.nl"
+                    },
+                    {
+                      position: 2,
+                      title: "Digitale Marketing Services | Competitor 2",
+                      description: "SEO, SEA en Social Media Marketing voor MKB bedrijven in heel Nederland. Neem vandaag nog contact op.",
+                      url: "www.competitor2.nl"
+                    }
+                  ]
+                },
+                after: {
+                  yourResult: {
+                    position: 1,
+                    title: "Next Win | Resultaatgericht Digitaal Bureau Otterlo",
+                    description: "Online marketing die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer bezoekers en meer klanten. Bekijk onze cases.",
+                    url: "www.nextwin.nl"
+                  },
+                  competitors: [
+                    {
+                      position: 2,
+                      title: "Digitaal Marketing Bureau | Competitor 1",
+                      description: "Breng uw bedrijf online naar een hoger niveau met onze marketing expertise. Wij zijn het beste digitale bureau voor online marketing.",
+                      url: "www.competitor1.nl"
+                    },
+                    {
+                      position: 3,
+                      title: "Digitale Marketing Services | Competitor 2",
+                      description: "SEO, SEA en Social Media Marketing voor MKB bedrijven in heel Nederland. Neem vandaag nog contact op.",
+                      url: "www.competitor2.nl"
+                    }
+                  ]
+                }
+              }}
+            />
           </div>
         </div>
       </Section>
@@ -1344,23 +1120,15 @@ export default function OnlineMarketingServicePage() {
         </div>
       </Section>
 
-      {/* Case Studies Section */}
-      <Section className="py-24 bg-gray-50">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <SectionTitle
-              subtitle="Succesverhalen"
-              title="Marketing die resultaat levert"
-              align="center"
-            />
-            <p className="mt-6 text-lg text-gray-600">
-              Bekijk enkele van onze recente projecten en ontdek hoe we ondernemers zoals jij hebben geholpen.
-            </p>
-          </div>
-          
-          <CaseStudyGrid cases={featuredCaseStudies} />
-        </div>
-      </Section>
+      {/* Case Studies Section - Using FeaturedCases component */}
+      <FeaturedCases 
+        title="Marketing die écht werkt"
+        subtitle="Succesverhalen"
+        description="Bekijk enkele van onze recente projecten en ontdek hoe we ondernemers zoals jij hebben geholpen."
+        bgColor="bg-gray-50"
+        maxCases={3}
+        showHeader={true}
+      />
 
       {/* Key Values Section */}
       <Section className="py-24 bg-white">

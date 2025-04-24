@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/Dialog';
 import { cn } from '@/lib/utils';
 import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle } from '@/components/ui/Typography';
+import RelatedCases from '@/components/ui/RelatedCases';
 
 interface ImageModalProps {
   src: string;
@@ -475,6 +476,13 @@ export default function CaseStudyPage() {
           </div>
         </div>
       </Section>
+
+      {/* Related Cases Section */}
+      <RelatedCases 
+        bgColor="bg-white"
+        maxCases={3}
+        excludeCaseId="oudhollandsspel"
+      />
 
       {/* Call to Action Section */}
       <Section className="py-32 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 relative overflow-hidden">
