@@ -1,35 +1,43 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 
-// Correct type definition that matches Next.js expectations
-type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+// Define the params type
+type Params = {
+  slug: string;
+};
 
-// Generate metadata for the page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// Define metadata for the page
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Params
+}): Promise<Metadata> {
   const { slug } = params;
   
-  // Default metadata
   return {
     title: `Case Study: ${slug} | Next Win`,
     description: `Bekijk onze case study over ${slug} en leer hoe wij digitale oplossingen creëren die resultaat leveren.`
   };
 }
 
-// Function to get case data by slug - in a real app, this would fetch from a database or API
-// For now, we'll just map to known case pages
-export default function CaseDetailPage({ params }: Props) {
+// The main page component
+export default async function CaseDetailPage({ 
+  params 
+}: { 
+  params: Params 
+}) {
   const { slug } = params;
   
-  // Redirect to the appropriate case page based on the slug
+  // In a real app, you would fetch data here
+  // const data = await getCaseData(slug);
+  
+  // For now, just redirect to the proper case pages
   if (slug === 'oudhollandsspel') {
-    return notFound(); // Let Next.js handle the redirection to the case detail page
+    return notFound();
   }
   
   if (slug === 'verhuursysteem-2nd-ride') {
-    return notFound(); // Let Next.js handle the redirection to the case detail page
+    return notFound();
   }
   
   // If no matching slug is found, return not found
