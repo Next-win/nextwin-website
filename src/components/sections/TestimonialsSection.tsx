@@ -1,17 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Section from '../ui/Section';
 import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
 // Import Swiper components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay, Navigation } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 
 // Testimonial data
@@ -64,46 +66,11 @@ const decorationElements = [
   { id: 6, x: '18%', y: '65%', size: 28, delay: 6, duration: 19 },
 ];
 
-// Animation variants for smoother transitions
-const containerVariants = {
-  hidden: { 
-    opacity: 0,
-    y: 20 
-  },
-  visible: { 
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      when: "beforeChildren",
-      staggerChildren: 0.1
-    }
-  },
-  exit: { 
-    opacity: 0,
-    y: -20,
-    transition: {
-      duration: 0.3
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.4
-    }
-  }
-};
-
 const TestimonialsSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const swiperRef = useRef<SwiperType | null>(null);
   
-  // Update windowWidth on resize
+  // Update window size on resize
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -130,43 +97,14 @@ const TestimonialsSection = () => {
     ));
   };
 
-  // Calculate the total number of pages for desktop view
-  const totalPages = Math.ceil(testimonials.length / 3);
-
-  // Switch to next slide set (desktop)
-  const nextSlide = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % totalPages);
-  };
-
-  // Automatically switch slides every 8 seconds (desktop)
-  useEffect(() => {
-    if (!isMobile) {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 8000);
-      
-      return () => clearInterval(interval);
-    }
-  }, [isMobile]);
-
   // Single testimonial card component for reuse
   const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-    <motion.div
-      key={testimonial.id}
-      variants={cardVariants}
-      className="bg-white h-full rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md p-7 relative flex flex-col"
-      whileHover={{ 
-        y: -5,
-        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02)",
-        borderColor: "#E4E9F0"
-      }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+    <div
+      className="bg-white h-full rounded-xl shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md p-7 relative flex flex-col mx-0.5"
     >
       {/* Logo/Image */}
-      <motion.div 
+      <div 
         className="w-16 h-12 relative mb-6 rounded-md overflow-hidden flex-shrink-0 bg-gray-50 flex items-center justify-center"
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 400, damping: 10 }}
       >
         <Image
           src={testimonial.image}
@@ -175,7 +113,7 @@ const TestimonialsSection = () => {
           height={30}
           className="object-contain"
         />
-      </motion.div>
+      </div>
       
       {/* Quote */}
       <div className="flex-1 mb-6 relative">
@@ -186,21 +124,30 @@ const TestimonialsSection = () => {
       
       {/* Author info */}
       <div className="mt-auto pt-4 border-t border-gray-100">
-        <motion.div 
+        <div 
           className="flex mb-2"
-          initial={{ opacity: 1 }}
-          whileHover={{ scale: 1.1, x: 3 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
           {renderStars(testimonial.rating)}
-        </motion.div>
+        </div>
         <h3 className="font-bold text-base">{testimonial.name}</h3>
         <p className="text-gray-600 text-sm">
           {testimonial.role}, {testimonial.company}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
+
+  const handlePrevClick = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slidePrev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (swiperRef.current) {
+      swiperRef.current.slideNext();
+    }
+  };
 
   return (
     <Section className="relative overflow-hidden">
@@ -338,79 +285,170 @@ const TestimonialsSection = () => {
           </div>
         </ScrollAnimationWrapper>
         
-        {/* Testimonials - Conditional rendering based on screen size */}
-        <div className="relative">
-          {isMobile ? (
-            /* Mobile view - Swiper slider with 1 card per view */
-            <Swiper
-              modules={[Pagination, Autoplay]}
-              slidesPerView={1}
-              spaceBetween={20}
-              pagination={{
-                clickable: true,
-                dynamicBullets: true,
-              }}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false
-              }}
-              loop={true}
-              className="w-full testimonial-slider pb-12 overflow-hidden"
-            >
-              {testimonials.map((testimonial) => (
-                <SwiperSlide key={testimonial.id}>
-                  <TestimonialCard testimonial={testimonial} />
-                </SwiperSlide>
-              ))}
+        {/* Testimonials - Swiper slider for both mobile and desktop */}
+        <div className="relative testimonials-container mx-auto max-w-7xl px-6 md:px-20">
+          <Swiper
+            modules={[Pagination, Autoplay, Navigation]}
+            slidesPerView={1}
+            spaceBetween={16}
+            centerInsufficientSlides={true}
+            pagination={{
+              clickable: true,
+              dynamicBullets: false,
+              el: '.testimonial-pagination',
+              type: 'bullets',
+              renderBullet: function (index, className) {
+                return `<span class="${className}"></span>`;
+              },
+            }}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false
+            }}
+            loop={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 16,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 16,
+              }
+            }}
+            className="w-full testimonial-slider pb-16"
+          >
+            {testimonials.map((testimonial) => (
+              <SwiperSlide key={testimonial.id} className="px-1">
+                <TestimonialCard testimonial={testimonial} />
+              </SwiperSlide>
+            ))}
+            
+            {/* Add empty slides to ensure we have at least 3 slides for looping */}
+            {testimonials.length < 3 && testimonials.map((testimonial) => (
+              <SwiperSlide key={`duplicate-${testimonial.id}`} className="px-1">
+                <TestimonialCard testimonial={testimonial} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          
+          {/* Custom pagination outside the swiper container */}
+          <div className="testimonial-pagination flex justify-center items-center space-x-3 mt-8 h-4"></div>
+          
+          {/* Custom navigation buttons */}
+          <div 
+            className="testimonial-button-prev absolute top-1/2 -translate-y-1/2 -left-3 md:-left-10 z-10 cursor-pointer bg-white w-10 h-10 md:w-12 md:h-12 rounded-full shadow-md flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+            onClick={handlePrevClick}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <div 
+            className="testimonial-button-next absolute top-1/2 -translate-y-1/2 -right-3 md:-right-10 z-10 cursor-pointer bg-white w-10 h-10 md:w-12 md:h-12 rounded-full shadow-md flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+            onClick={handleNextClick}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+              <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+            </svg>
+          </div>
+          
+          <style jsx global>{`
+            /* Custom pagination bullets */
+            .testimonial-pagination {
+              position: relative;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-top: 1.5rem;
+              min-height: 16px;
+            }
+            
+            .testimonial-pagination .swiper-pagination-bullet {
+              background-color: #e2e8f0;
+              opacity: 1;
+              width: 8px;
+              height: 8px;
+              margin: 0 4px;
+              transition: all 0.3s ease;
+              display: inline-block;
+              border-radius: 50%;
+            }
+            
+            .testimonial-pagination .swiper-pagination-bullet-active {
+              background-color: #0062ff;
+              width: 24px;
+              height: 8px;
+              border-radius: 4px;
+            }
+            
+            /* Position navigation buttons outside the slider */
+            .testimonial-button-prev,
+            .testimonial-button-next {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              z-index: 10;
+            }
+            
+            .testimonial-button-prev {
+              left: -6px;
+            }
+            
+            .testimonial-button-next {
+              right: -6px;
+            }
+            
+            @media (min-width: 768px) {
+              .testimonial-button-prev {
+                left: -14px;
+              }
               
-              <style jsx global>{`
-                .testimonial-slider .swiper-pagination-bullet {
-                  background-color: rgb(var(--color-primary-600));
-                  opacity: 0.6;
-                }
-                .testimonial-slider .swiper-pagination-bullet-active {
-                  background-color: rgb(var(--color-primary-600));
-                  opacity: 1;
-                }
-              `}</style>
-            </Swiper>
-          ) : (
-            /* Desktop view - Grid layout with pagination */
-            <>
-              <AnimatePresence mode="wait">
-                <motion.div 
-                  key={activeIndex}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                >
-                  {testimonials.slice(0 + (activeIndex * 3), 3 + (activeIndex * 3)).map((testimonial) => (
-                    <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+              .testimonial-button-next {
+                right: -14px;
+              }
+            }
+            
+            @media (min-width: 1024px) {
+              .testimonial-button-prev {
+                left: -20px;
+              }
               
-              {/* Navigation dots - Desktop only */}
-              <div className="flex justify-center space-x-3 mt-10">
-                {Array.from({ length: totalPages }).map((_, index) => (
-                  <motion.button 
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`rounded-full transition-all duration-300 ${
-                      activeIndex === index 
-                        ? "bg-primary-600 w-8 h-3" 
-                        : "bg-gray-300 hover:bg-gray-400 w-3 h-3"
-                    }`}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                    aria-label={`View testimonials ${index * 3 + 1}-${Math.min((index + 1) * 3, testimonials.length)}`}
-                  />
-                ))}
-              </div>
-            </>
-          )}
+              .testimonial-button-next {
+                right: -20px;
+              }
+            }
+            
+            /* Hide default Swiper navigation */
+            .testimonial-slider .swiper-button-next,
+            .testimonial-slider .swiper-button-prev {
+              display: none;
+            }
+            
+            /* Make sure content is visible */
+            .testimonial-slider .swiper-wrapper {
+              padding: 8px 4px 8px 2px;
+            }
+            
+            /* Ensure slide cards are fully visible */
+            .testimonial-slider .swiper-slide {
+              height: auto;
+              display: flex;
+              padding: 0 2px;
+            }
+            
+            /* Fix for right border */
+            .testimonial-slider {
+              padding: 0 1px;
+              margin: 0 -1px;
+            }
+          `}</style>
         </div>
       </div>
     </Section>
