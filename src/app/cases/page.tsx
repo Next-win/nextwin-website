@@ -1,9 +1,12 @@
+// Just adding a comment to the file to indicate that dynamic case routing will be added later
+// We removed the [slug] dynamic routing for now due to TypeScript issues with Next.js 15
+
 import React from 'react';
 import { Metadata } from 'next';
 import Section from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import FeaturedCases from '@/components/ui/FeaturedCases';
-import { Heading1 } from '@/components/ui/Typography';
+import { Heading1, Paragraph } from '@/components/ui/Typography';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 export const metadata: Metadata = {
