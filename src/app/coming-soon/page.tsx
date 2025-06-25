@@ -27,8 +27,9 @@ const ComingSoonPage = () => {
           </h1>
           
           <p className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed max-w-2xl mx-auto">
-            We werken hard aan onze nieuwe website die jouw bedrijf naar de{' '}
-            <span className="text-primary-600 font-semibold">volgende stap</span> brengt. 
+            We werken hard aan onze nieuwe website. 
+            Samen brengen we jouw bedrijf naar de{' '}
+            <span className="text-primary-600 font-semibold">volgende stap</span>. 
             Binnenkort zijn we{' '}
             <span className="text-green-500 font-semibold">live</span>!
           </p>
