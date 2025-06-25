@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import AppLayout from "@/components/layout/AppLayout";
+import IPChecker from "@/components/IPChecker";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Import fonts
@@ -31,6 +32,16 @@ export const metadata: Metadata = {
   title: "Next Win | Creatief Digital Agency",
   description: "Next Win is een creatief digital bureau dat bedrijven helpt groeien door innovatieve digitale oplossingen.",
   keywords: ["digital agency", "webdesign", "online marketing", "website ontwikkeling", "content creatie", "Next Win"],
+  icons: {
+    icon: [
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
@@ -43,7 +54,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden relative w-full`}
       >
-        <AppLayout>{children}</AppLayout>
+        <IPChecker>
+          <AppLayout>{children}</AppLayout>
+        </IPChecker>
         <SpeedInsights />
       </body>
     </html>

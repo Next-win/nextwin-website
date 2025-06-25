@@ -16,17 +16,29 @@ export default function AppLayout({ children }: AppLayoutProps) {
   
   // Check if the current page is a case detail page
   // We want to show the specialized navbar for paths like /cases/oudhollandsspel
-  // but not for /cases (the main cases listing page)
-  const isCaseDetailPage = pathname && pathname.startsWith('/cases/') && pathname !== '/cases';
+  // but not for /cases or /cases/ (the main cases listing page)
+  const isCaseDetailPage = pathname && pathname.startsWith('/cases/') && pathname !== '/cases' && pathname !== '/cases/';
+  
+  // Check if we're on the coming soon page (handle trailing slash)
+  const isComingSoonPage = pathname === '/coming-soon' || pathname === '/coming-soon/';
   
   return (
     <>
-      {isCaseDetailPage ? <CaseNavbar /> : <Navbar />}
+      {/* Hide navbar and footer on coming soon page */}
+      {!isComingSoonPage && (
+        <>
+          {isCaseDetailPage ? <CaseNavbar /> : <Navbar />}
+        </>
+      )}
       <main className="overflow-x-hidden">
         {children}
       </main>
-      <Footer />
-      <StickyAppointmentButton />
+      {!isComingSoonPage && (
+        <>
+          <Footer />
+          <StickyAppointmentButton />
+        </>
+      )}
     </>
   );
 } 

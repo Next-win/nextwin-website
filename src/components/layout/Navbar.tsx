@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 // Define types for the service links
 interface ServiceItem {
@@ -34,6 +35,7 @@ const Navbar = () => {
   const [isDropdownAnimating, setIsDropdownAnimating] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,6 +52,10 @@ const Navbar = () => {
       }
     };
   }, []);
+
+  // Pages that should always have a solid navbar (not transparent)
+  const solidNavbarPages = ['/cases', '/about-us', '/contact', '/services'];
+  const shouldAlwaysShowSolidNavbar = solidNavbarPages.some(page => pathname?.startsWith(page));
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -136,7 +142,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 ${isScrolled ? 'bg-white shadow-md' : ''} transition-all duration-300`}>
+    <header className={`fixed top-0 w-full z-50 ${isScrolled || shouldAlwaysShowSolidNavbar ? 'bg-white' : ''} transition-all duration-300`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
