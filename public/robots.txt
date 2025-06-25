@@ -1,0 +1,29 @@
+User-Agent: *
+Allow: /
+Allow: /services/
+Allow: /cases/
+Allow: /about-us/
+Allow: /contact/
+Disallow: /demo/
+Disallow: /coming-soon/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /temp-nextwin/
+Disallow: *.pdf
+Disallow: /404
+Disallow: /500
+
+User-Agent: Googlebot
+Allow: /
+Allow: /services/
+Allow: /cases/
+Allow: /about-us/
+Allow: /contact/
+Disallow: /demo/
+Disallow: /coming-soon/
+Disallow: /admin/
+Disallow: /api/
+
+Host: https://next-win.nl
+Sitemap: https://next-win.nl/sitemap.xml 
