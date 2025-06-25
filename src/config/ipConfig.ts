@@ -1,7 +1,7 @@
 // Centralized IP configuration
 export const ALLOWED_IPS = [
-  '192.168.1.126', // Your local IP address
-  '62.45.104.183', // Your current external IP - WHITELISTED
+  '192.168.1.126', // Your local IP address - ACCESS RESTORED
+  '62.45.104.183', // Your current external IP - ACCESS RESTORED
   '127.0.0.1',     // Localhost
   '::1',           // IPv6 localhost
   
@@ -29,7 +29,7 @@ export const IP_CONFIG = {
   ENABLE_IP_PROTECTION: true,
   
   // Set to true for more detailed logging (development only)
-  DEBUG_MODE: false, // Access restored - debug complete
+  DEBUG_MODE: false, // Testing complete - mobile fixes working
   
   // Redirect URL for blocked users
   REDIRECT_URL: '/coming-soon',

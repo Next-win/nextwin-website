@@ -42,6 +42,10 @@ const nextConfig = {
             key: "X-XSS-Protection",
             value: "1; mode=block",
           },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
           // Add cache headers for static assets
           {
             key: "Cache-Control",

@@ -12,7 +12,8 @@ const IPChecker = ({ children }: { children: React.ReactNode }) => {
   // Check if we're on coming-soon page immediately (synchronously)
   const [isComingSoonPage] = useState(() => {
     if (typeof window !== 'undefined') {
-      return window.location.pathname.includes('/coming-soon');
+      const pathname = window.location.pathname;
+      return pathname === '/coming-soon' || pathname === '/coming-soon/' || pathname.includes('/coming-soon');
     }
     return false;
   });
@@ -33,11 +34,11 @@ const IPChecker = ({ children }: { children: React.ReactNode }) => {
     const checkIP = async () => {
 
       try {
-        // Try multiple IP detection services
+        // Try multiple IP detection services (all HTTPS)
         const services = [
           'https://api.ipify.org?format=json',
           'https://ipapi.co/json/',
-          'https://httpbin.org/ip'
+          'https://api.my-ip.io/ip.json'
         ];
 
         let userIP = null;
@@ -96,8 +97,12 @@ const IPChecker = ({ children }: { children: React.ReactNode }) => {
     checkIP();
   }, [router, isComingSoonPage]);
 
+  // Double-check if we're on coming-soon page (for mobile compatibility)
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+  const isCurrentlyOnComingSoon = currentPath === '/coming-soon' || currentPath === '/coming-soon/' || currentPath.includes('/coming-soon');
+  
   // If we're on coming-soon page, always show content immediately (bypass all checks)
-  if (isComingSoonPage) {
+  if (isComingSoonPage || isCurrentlyOnComingSoon) {
     return <>{children}</>;
   }
 

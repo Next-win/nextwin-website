@@ -106,16 +106,30 @@ The coming soon page is located at `/coming-soon` and includes:
 
 ### Update Contact Info
 Edit `src/app/coming-soon/page.tsx`:
-- Change email: `info@nextwin.nl`
-- Change phone: `+31 6 1234 5678`
+- Current email: `gerwin@next-win.nl`
+- Current phone: `+31 6 4354 5506`
 - Update progress percentage
 
 ### Styling
 The page uses Tailwind CSS - modify classes in the coming soon component.
 
+## 🔒 HTTPS Security
+
+**Automatic HTTPS enforcement is enabled:**
+- All HTTP requests redirect to HTTPS (except localhost)
+- HSTS headers included for enhanced security
+- All IP detection services use HTTPS only
+
+## 📱 Mobile Compatibility
+
+**Enhanced mobile support:**
+- Improved hydration handling
+- Faster coming-soon page loading
+- No white screen issues on mobile devices
+
 ## 🎯 Which Option Should You Choose?
 
-- **Option 1 (Server-side)**: More secure, works at the network level
-- **Option 2 (Client-side)**: Works with your current hosting, less secure
+- **Option 1 (Server-side)**: More secure, works at the network level, includes HTTPS enforcement
+- **Option 2 (Client-side)**: Works with your current hosting, less secure, but includes mobile fixes
 
-**Recommendation**: Go with Option 1 if you can deploy to Vercel/Netlify, otherwise use Option 2 as a temporary solution. 
+**Recommendation**: Go with Option 1 if you can deploy to Vercel/Netlify for full security, otherwise use Option 2 as a temporary solution. 

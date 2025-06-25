@@ -2,12 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ALLOWED_IPS, PUBLIC_ROUTES, IP_CONFIG } from './src/config/ipConfig';
 
 export function middleware(request: NextRequest) {
+  const { pathname, protocol, host } = request.nextUrl;
+  
+  // Force HTTPS redirect (except in development)
+  if (protocol === 'http:' && !host.includes('localhost') && !host.includes('127.0.0.1')) {
+    const httpsUrl = new URL(request.url);
+    httpsUrl.protocol = 'https:';
+    return NextResponse.redirect(httpsUrl, 301);
+  }
+
   // Skip IP protection if disabled
   if (!IP_CONFIG.ENABLE_IP_PROTECTION) {
     return NextResponse.next();
   }
-
-  const { pathname } = request.nextUrl;
   
   // Skip middleware for public routes and static assets
   if (PUBLIC_ROUTES.some(route => pathname.startsWith(route))) {

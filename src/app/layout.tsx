@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import AppLayout from "@/components/layout/AppLayout";
-import IPChecker from "@/components/IPChecker";
+import ConditionalIPChecker from "@/components/ConditionalIPChecker";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Import fonts
@@ -54,9 +53,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden relative w-full`}
       >
-        <IPChecker>
-          <AppLayout>{children}</AppLayout>
-        </IPChecker>
+        <ConditionalIPChecker>
+          {children}
+        </ConditionalIPChecker>
         <SpeedInsights />
       </body>
     </html>
