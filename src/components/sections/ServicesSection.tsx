@@ -6,7 +6,7 @@ import Section from '../ui/Section';
 import { Button } from '../ui/Button';
 import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
 
-// Extended services array to showcase the new compact design with more services
+// Services array with correct links to existing pages
 const services = [
   {
     id: 'websites',
@@ -19,17 +19,25 @@ const services = [
   {
     id: 'online-marketing',
     title: 'Online Marketing',
-    description: 'Betere vindbaarheid in Google en effectieve marketing campagnes',
+    description: 'Complete online marketing strategie voor meer klanten',
     image: '/images/marketing.png',
     icon: '/images/icons/marketing-icon.svg',
     hasPage: true,
   },
   {
-    id: 'content-creatie',
-    title: 'Content Creatie',
-    description: 'Professionele foto- en videografie voor jouw online presentatie',
+    id: 'google-ads',
+    title: 'Google Ads (SEA)',
+    description: 'Doelgerichte advertenties met directe resultaten',
+    image: '/images/marketing.png',
+    icon: '/images/icons/marketing-icon.svg',
+    hasPage: true,
+  },
+  {
+    id: 'zoekmachine-optimalisatie',
+    title: 'SEO',
+    description: 'Snel resultaat met organische zoekmachine optimalisatie',
     image: '/images/content-creatie-drone.png',
-    icon: '/images/icons/content-icon.svg',
+    icon: '/images/icons/seo-icon.svg',
     hasPage: true,
   },
   {
@@ -41,20 +49,12 @@ const services = [
     hasPage: true,
   },
   {
-    id: 'app-development',
-    title: 'App Development',
-    description: 'Native apps voor iOS en Android platforms',
-    image: '/images/marketing.png',
-    icon: '/images/icons/app-icon.svg',
-    hasPage: false,
-  },
-  {
-    id: 'seo',
-    title: 'SEO',
-    description: 'Zoekmachine optimalisatie voor betere organische vindbaarheid',
+    id: 'content-creatie',
+    title: 'Content Creatie',
+    description: 'Professionele foto- en videografie voor jouw online presentatie',
     image: '/images/content-creatie-drone.png',
-    icon: '/images/icons/seo-icon.svg',
-    hasPage: false,
+    icon: '/images/icons/content-icon.svg',
+    hasPage: true,
   },
 ];
 

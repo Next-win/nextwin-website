@@ -83,15 +83,15 @@ const Navbar = () => {
     {
       category: 'Marketing & Content',
       items: [
-        { name: 'Online marketing', href: '/services/online-marketing', description: 'Bereik en betrek je doelgroep', icon: (
+        { name: 'Zoekmachine optimalisatie', href: '/services/zoekmachine-optimalisatie', description: 'Snel resultaat met organische SEO', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        )},
+        { name: 'Google Ads (SEA)', href: '/services/google-ads', description: 'Doelgerichte advertenties met directe resultaten', icon: (
           <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-          </svg>
-        )},
-        { name: 'Zoekmachine optimalisatie', href: '/services/zoekmachine-optimalisatie', description: 'Beter vindbaar in Google', icon: (
-          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         )},
         { name: 'Content Creatie', href: '/services/content-creatie', description: 'Professionele foto- en videografie', icon: (

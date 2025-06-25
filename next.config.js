@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable static export for hosting on SiteGround
+  output: 'export',
+  trailingSlash: true,
+  
   eslint: {
     // Don't run ESLint during build, we'll fix issues gradually
     ignoreDuringBuilds: true,
@@ -7,6 +11,8 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    // Disable image optimization for static export
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

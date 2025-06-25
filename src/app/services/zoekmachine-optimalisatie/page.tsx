@@ -170,7 +170,7 @@ export default function SEOServicePage() {
                     position: 8,
                     title: "Next Win | SEO en zoekmachine optimalisatie",
                     description: "Professionele zoekmachine optimalisatie (SEO) diensten van Next Win uit Otterlo. Verbeter je online zichtbaarheid en krijg meer klanten.",
-                    url: "www.nextwin.nl"
+                    url: "www.next-win.nl"
                   },
                   competitors: [
                     {
@@ -192,7 +192,7 @@ export default function SEOServicePage() {
                     position: 1,
                     title: "Next Win | Zoekmachine Optimalisatie Specialist",
                     description: "SEO die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer organische bezoekers en meer conversies. Bekijk onze SEO cases.",
-                    url: "www.nextwin.nl"
+                    url: "www.next-win.nl"
                   },
                   competitors: [
                     {
@@ -1000,7 +1000,7 @@ export default function SEOServicePage() {
             </Button>
             
             <p className="mt-6 text-sm text-gray-500">
-              Of stuur een e-mail naar <a href="mailto:info@nextwin.nl" className="text-primary-600 hover:underline">info@nextwin.nl</a>
+                               Of stuur een e-mail naar <a href="mailto:info@next-win.nl" className="text-primary-600 hover:underline">info@next-win.nl</a>
             </p>
           </div>
         </div>

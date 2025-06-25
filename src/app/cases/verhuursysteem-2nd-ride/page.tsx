@@ -9,6 +9,7 @@ import RelatedCases from '@/components/ui/RelatedCases';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/Dialog';
 import { cn } from '@/lib/utils';
 import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle } from '@/components/ui/Typography';
+import BlueDot from '@/components/ui/BlueDot';
 
 interface ImageModalProps {
   src: string;
@@ -110,6 +111,11 @@ export default function CaseStudyPage() {
   ];
 
   const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string, index: number } | null>(null);
+  const [featuredImageIndex, setFeaturedImageIndex] = useState(0);
+  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  const THUMBNAILS_PER_VIEW = 4;
 
   const openLightbox = (src: string, alt: string, index: number) => {
     setSelectedImage({ src, alt, index });
@@ -141,11 +147,101 @@ export default function CaseStudyPage() {
     }
   };
 
+  const smoothScrollThumbnails = (newStartIndex: number) => {
+    if (newStartIndex === thumbnailStartIndex) return;
+    
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setThumbnailStartIndex(newStartIndex);
+      setTimeout(() => setIsTransitioning(false), 100);
+    }, 200);
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setFeaturedImageIndex(index);
+    
+    // Auto-scroll thumbnails with smooth behavior
+    const currentViewEnd = thumbnailStartIndex + THUMBNAILS_PER_VIEW - 1;
+    const isLastVisibleItem = index === currentViewEnd;
+    
+    if (index < thumbnailStartIndex) {
+      // If selected image is before current view, scroll to show it at the top
+      smoothScrollThumbnails(Math.max(0, index));
+    } else if (index > currentViewEnd) {
+      // If selected image is after current view, scroll to show it at the top
+      smoothScrollThumbnails(Math.max(0, index));
+    } else if (isLastVisibleItem && index < systemImages.length - 1) {
+      // If clicking the last visible item and there are more items below, scroll to make it first
+      smoothScrollThumbnails(Math.max(0, Math.min(index, systemImages.length - THUMBNAILS_PER_VIEW)));
+    }
+  };
+
+  const canScrollUp = thumbnailStartIndex > 0;
+  const canScrollDown = thumbnailStartIndex + THUMBNAILS_PER_VIEW < systemImages.length;
+  
+  const scrollThumbnailsUp = () => {
+    if (canScrollUp) {
+      smoothScrollThumbnails(Math.max(0, thumbnailStartIndex - 1));
+    }
+  };
+  
+  const scrollThumbnailsDown = () => {
+    if (canScrollDown) {
+      smoothScrollThumbnails(Math.min(systemImages.length - THUMBNAILS_PER_VIEW, thumbnailStartIndex + 1));
+    }
+  };
+
+  const visibleThumbnails = systemImages.slice(thumbnailStartIndex, thumbnailStartIndex + THUMBNAILS_PER_VIEW);
+
+  // Enhanced image data with titles and descriptions
+  const enhancedSystemImages = [
+    {
+      ...systemImages[0],
+      title: "Dashboard - Overzicht en controle",
+      description: "Het centrale dashboard biedt een compleet overzicht van alle reserveringen, inventaris en belangrijke statistieken voor effectief beheer."
+    },
+    {
+      ...systemImages[1], 
+      title: "Productbeheer - Inventaris controle",
+      description: "Uitgebreid productbeheer systeem voor het toevoegen, bewerken en monitoren van alle verhuurartikelen met real-time beschikbaarheid."
+    },
+    {
+      ...systemImages[2],
+      title: "Groepsindeling - Personen koppelen", 
+      description: "Intelligente groepsindeling waarbij verschillende personen met hun specifieke maten en voorkeuren aan één reservering kunnen worden gekoppeld."
+    },
+    {
+      ...systemImages[3],
+      title: "Productselectie - Klant interface",
+      description: "Gebruiksvriendelijke interface voor klanten om eenvoudig door het productaanbod te browsen en items te selecteren op basis van hun behoeften."
+    },
+    {
+      ...systemImages[4],
+      title: "Kalenderweergave - Planning beheer",
+      description: "Overzichtelijke kalenderweergave voor het plannen en beheren van reserveringen met drag-and-drop functionaliteit."
+    },
+    {
+      ...systemImages[5],
+      title: "Reserveringsdetails - Complete informatie",
+      description: "Gedetailleerde weergave van reserveringen met alle klantgegevens, productinformatie en status updates in één overzicht."
+    },
+    {
+      ...systemImages[6],
+      title: "Datumkeuze - Beschikbaarheid check",
+      description: "Interactieve datumkiezer die real-time de beschikbaarheid van producten toont en conflicten voorkomt."
+    },
+    {
+      ...systemImages[7],
+      title: "Item koppeling - Persoonlijke toewijzing",
+      description: "Geavanceerde functie voor het toewijzen van specifieke items aan individuele personen binnen een groepsreservering."
+    }
+  ];
+
   return (
     <>
-      {/* Full-bleed Hero Section */}
-      <div className="relative w-full h-[95vh] overflow-hidden">
-        {/* Hero Background */}
+      {/* Enhanced Full-bleed Hero Section */}
+      <div className="relative w-full h-screen overflow-hidden">
+        {/* Hero Background with Parallax Effect */}
         <div className="absolute inset-0 z-0">
           <Image 
             src="/cases/verhuursysteem-2nd-ride/thumbnail.webp"
@@ -153,113 +249,198 @@ export default function CaseStudyPage() {
             fill 
             sizes="100vw"
             style={{ objectFit: 'cover' }}
-            className="brightness-95"
+            className="brightness-75 scale-105 transition-transform duration-1000 ease-out"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
         </div>
         
-        {/* Navigation & Breadcrumbs - Positioned at the top */}
+
+        
+        {/* Navigation & Breadcrumbs - Enhanced styling */}
         <div className="absolute top-0 left-0 right-0 z-10 pt-32 md:pt-40">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center mb-6 text-sm">
+            <div className="flex flex-wrap items-center mb-6 text-sm bg-black/20 backdrop-blur-sm rounded-full px-6 py-3 inline-flex">
               <Link href="/" className="text-gray-200 hover:text-primary-400 transition-colors">Home</Link>
               <span className="mx-2 text-gray-400">/</span>
               <Link href="/cases" className="text-gray-200 hover:text-primary-400 transition-colors">Succesverhalen</Link>
               <span className="mx-2 text-gray-400">/</span>
-              <span className="text-primary-400">Verhuur Systeem</span>
+              <span className="text-primary-400 font-medium">Verhuur Systeem</span>
             </div>
           </div>
         </div>
         
-        {/* Hero Content - Positioned at the bottom */}
-        <div className="absolute left-0 right-0 bottom-0 z-10 mb-16 md:mb-24">
+        {/* Hero Content - Enhanced with animations */}
+        <div className="absolute left-0 right-0 bottom-0 z-10 mb-20 md:mb-32">
           <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <span className="text-primary-400 font-medium mb-2 block">Case Study</span>
-              <Heading1 className="text-white mb-6" gradient={false}>
-                <span className="bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
+            <div className="max-w-4xl">
+              <div className="mb-4 flex items-center space-x-4">
+                <span className="text-primary-400 font-semibold bg-primary-400/10 backdrop-blur-sm px-4 py-2 rounded-full border border-primary-400/20">
+                  Case Study
+                </span>
+                <span className="text-gray-300 text-sm">
+                  <svg className="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  1 maand ontwikkeling
+                </span>
+              </div>
+              
+              <Heading1 className="text-white mb-8" gradient={false}>
+                <span className="bg-gradient-to-r from-primary-300 via-primary-400 to-primary-500 bg-clip-text text-transparent">
                   2nd Ride
                 </span>{" "}
-                Verhuursysteem
+                <span className="block md:inline">Verhuursysteem</span>
               </Heading1>
-              <Paragraph className="text-xl md:text-2xl text-gray-200 leading-relaxed mb-8">
-                Een digitaal platform dat het verhuurproces van snowboards en wintersportaccessoires volledig automatiseert.
+              
+              <Paragraph className="text-xl md:text-2xl text-gray-200 leading-relaxed mb-10">
+                Van handmatige papierwinkel naar een volledig geautomatiseerd digitaal platform dat het verhuurproces van snowboards revolutioneert.
               </Paragraph>
-              <Button 
-                className="bg-primary-500 hover:bg-primary-600 text-white"
-                onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/thumbnail.webp", "2nd Ride verhuursysteem - Snowboarders in actie", 0)}
-              >
-                Bekijk Project
-              </Button>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Button 
+                  className="bg-primary-500 hover:bg-primary-600 text-white shadow-xl shadow-primary-900/30 transform hover:scale-105 transition-all duration-300"
+                  href="https://verhuur.tweedehandssnowboards.nl/products"
+                  isExternal={true}
+                  size="lg"
+                >
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Bekijk Live Systeem
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                  href="#process"
+                  size="lg"
+                >
+                  Ontdek de aanpak
+                </Button>
+              </div>
+              
+              {/* Technology Stack */}
+              <div className="flex flex-wrap gap-3">
+                {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'MySQL'].map((tech, idx) => (
+                  <span key={idx} className="bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1 rounded-full text-sm text-gray-200">
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
         
-        {/* Scroll Indicator */}
-        <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 z-10 animate-bounce">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+        {/* Enhanced Scroll Indicator */}
+        <div className="absolute left-1/2 bottom-8 transform -translate-x-1/2 z-10">
+          <div className="flex flex-col items-center animate-bounce">
+            <div className="text-white/80 text-sm mb-2 font-medium">Ontdek het verhaal</div>
+            <div className="w-8 h-8 border-2 border-white/40 rounded-full flex items-center justify-center">
+              <svg className="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
       
-      {/* Project Info Section */}
-      <Section className="py-16 bg-white">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Client Info */}
-            <div className="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100">
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Over de klant</h3>
-                  <p className="text-lg font-medium mb-2">2nd Ride</p>
-                  <p className="text-gray-600">Specialist in tweedehands snowboards en wintersportaccessoires, met een showroom in Ede.</p>
+      {/* Enhanced Project Info Section */}
+      <Section className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-50 rounded-full blur-3xl opacity-30 -translate-y-48 translate-x-48"></div>
+        
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Professional Project Stats */}
+          <div className="mb-20">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-gray-900 mb-3">1</div>
+                  <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">Maand ontwikkeling</div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Werkzaamheden</h3>
-                  <div className="space-y-2">
-                    <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 text-sm font-medium">
-                      Applicatie ontwikkeling
-                    </span>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-gray-900 mb-3">60%</div>
+                  <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">Tijdsbesparing</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-gray-900 mb-3">85%</div>
+                  <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">Klant tevredenheid</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-gray-900 mb-3">90%</div>
+                  <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">Duidelijke aanvragen</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+            {/* Clean Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-2xl border border-gray-200 p-8 sticky top-8">
+                <div className="space-y-10">
+                  {/* Client Info */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Over de klant</h3>
+                    <h4 className="text-2xl font-bold mb-4 text-gray-900">2nd Ride</h4>
+                    <p className="text-gray-600 leading-relaxed">
+                      Specialist in tweedehands snowboards en wintersportaccessoires, met een showroom in Ede. Van marktplaatshandeltje tot professionele wintersportwinkel.
+                    </p>
                   </div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Technologieën</h3>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">React</span>
-                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">Next.js</span>
-                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">TypeScript</span>
+                  
+                  {/* Services */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Werkzaamheden</h3>
+                    <div className="space-y-3">
+                      <div className="inline-block px-4 py-2 rounded-lg bg-primary-50 text-primary-700 text-sm font-medium border border-primary-100">
+                        Custom applicatie ontwikkeling
+                      </div>
+                      <div className="inline-block px-4 py-2 rounded-lg bg-green-50 text-green-700 text-sm font-medium border border-green-100">
+                        UX/UI Design
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Tech Stack */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Tech Stack</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'MySQL'].map((tech, idx) => (
+                        <span key={idx} className="px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-700 border border-gray-200">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             
-            {/* Project Overview */}
-            <div className="md:col-span-2">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Projectoverzicht</h2>
-              <div className="prose prose-lg max-w-none text-gray-700">
-                <p className="text-lg leading-relaxed">
-                  Maak kennis met 2nd Ride, dé plek voor tweedehands snowboards en wintersportaccessoires. Wat ooit begon als een marktplaatshandeltje van drie gepassioneerde snowboarders, is uitgegroeid tot een webshop met een ruime showroom en een eigen werkplaats in Ede.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  De uitdaging? Het digitaliseren van hun verhuurproces om klanten nog beter te bedienen en de interne processen efficiënter te maken. We ontwikkelden een op maat gemaakt verhuursysteem dat zowel de klantenervaring als de administratieve processen stroomlijnt.
-                </p>
-              </div>
-              
-              {/* Key Metrics */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10">
-                <div className="bg-gray-50 p-6 rounded-xl text-center">
-                  <span className="block text-4xl font-bold text-primary-600 mb-2">40%</span>
-                  <span className="text-gray-600">Tijdsbesparing administratie</span>
-                </div>
-                <div className="bg-gray-50 p-6 rounded-xl text-center">
-                  <span className="block text-4xl font-bold text-primary-600 mb-2">60%</span>
-                  <span className="text-gray-600">Minder handmatige fouten</span>
-                </div>
-                <div className="bg-gray-50 p-6 rounded-xl text-center">
-                  <span className="block text-4xl font-bold text-primary-600 mb-2">25%</span>
-                  <span className="text-gray-600">Toename in verhuringen</span>
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="mb-16">
+                <h2 className="text-4xl font-bold mb-8 text-gray-900">
+                  Het Verhaal achter de
+                  <span className="block text-primary-600">Digitale Transformatie</span>
+                </h2>
+                
+                <div className="space-y-12">
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900">De uitdaging</h3>
+                    <p className="text-lg leading-relaxed text-gray-600 mb-6">
+                      2nd Ride werkte volledig met papiertjes en handmatige processen. Klanten moesten ter plekke alles passen en meten, wat resulteerde in lange wachttijden en een inefficiënt proces. Zonder vooraf te weten welke maten nodig waren, kon het team niets voorbereiden, waardoor elke klant opnieuw het hele pas- en meetproces moest doorlopen.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-gray-900">De oplossing</h3>
+                    <p className="text-lg leading-relaxed text-gray-600 mb-12">
+                      Het nieuwe verhuursysteem stelt klanten in staat om direct online spullen te boeken en per artikel hun exacte maten door te geven. Hierdoor kan 2nd Ride alles vooraf klaarhebben liggen, wat zorgt voor een veel sneller proces. Zowel de winkel als de klant profiteert: het team kan zich voorbereiden en klanten worden sneller en efficiënter op maat geholpen.
+                    </p>
+                    
+
+                  </div>
                 </div>
               </div>
             </div>
@@ -267,154 +448,162 @@ export default function CaseStudyPage() {
         </div>
       </Section>
       
-      {/* Process Journey Section - Visual Timeline */}
-      <Section className="py-24 bg-gray-50">
+      {/* Process Journey Section - Modern Clean Design */}
+      <Section className="py-24 bg-white" id="process">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <SectionTitle
               subtitle="Het proces"
               title="Van Handmatig Naar Digitaal"
               align="center"
             />
-            <Paragraph className="max-w-2xl mx-auto text-xl text-gray-600 mt-6">
+            <Paragraph className="max-w-2xl mx-auto text-lg text-gray-600 mt-6">
               De reis om het verhuurproces te transformeren van papierwerk naar een naadloze digitale ervaring.
             </Paragraph>
           </div>
           
-          {/* Process Steps - Staggered Layout with Numbering */}
+          {/* Process Steps */}
           <div className="space-y-24">
-            {/* Step 1 */}
-            <div className="relative">
-              <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center text-xl font-bold">1</div>
-              <div className="ml-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                  <div className="prose prose-lg max-w-none text-gray-700">
-                    <h3 className="text-2xl font-bold mb-6 text-gray-900">Slimme productfilters</h3>
-                    <p className="text-lg leading-relaxed">
-                      Voor 2nd Ride ontwikkelden we een volledig op maat gemaakt verhuursysteem, ontworpen om klanten moeiteloos te begeleiden bij het selecteren en reserveren van snowboardmateriaal. Het proces begint met slimme productfilters: klanten kiezen hun huurperiode en zien direct welke producten beschikbaar zijn.
-                    </p>
-                    <p className="text-lg leading-relaxed mt-6">
-                      Het systeem toont alleen relevante items, ingedeeld in overzichtelijke categorieën zoals snowboardniveau (beginner, gevorderd, expert). Dit maakt het eenvoudig voor klanten om snel het juiste materiaal te vinden, zonder overweldigd te raken door keuzes.
-                    </p>
+            {/* Step 1: Slimme productfilters */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div>
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-semibold text-sm mb-8">
+                    1
                   </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                    Slimme productfilters
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    Voor 2nd Ride ontwikkelden we een volledig op maat gemaakt verhuursysteem, ontworpen om klanten moeiteloos te begeleiden bij het selecteren en reserveren van snowboardmateriaal. Het proces begint met slimme productfilters: klanten kiezen hun huurperiode en zien direct welke producten beschikbaar zijn.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Het systeem toont alleen relevante items, ingedeeld in overzichtelijke categorieën zoals snowboardniveau (beginner, gevorderd, expert). Dit maakt het eenvoudig voor klanten om snel het juiste materiaal te vinden, zonder overweldigd te raken door keuzes.
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div 
+                  className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-2xl cursor-pointer group border border-gray-100"
+                  onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/select-date.png", "2nd Ride verhuursysteem - Productfiltering interface", 6)}
+                >
+                  <Image 
+                    src="/cases/verhuursysteem-2nd-ride/select-date.png"
+                    alt="2nd Ride verhuursysteem - Productfiltering interface" 
+                    fill
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
+                </div>
+                <p className="text-sm text-gray-500 mt-4 text-center">Productfilter Interface</p>
+              </div>
+            </div>
+
+            {/* Step 2: Persoonlijke afstemming */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="order-2 lg:order-1 relative">
+                <div 
+                  className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-2xl cursor-pointer group border border-gray-100"
+                  onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/connect-items-to-persons.png", "2nd Ride verhuursysteem - Klantprofiel interface", 7)}
+                >
+                  <Image 
+                    src="/cases/verhuursysteem-2nd-ride/connect-items-to-persons.png"
+                    alt="2nd Ride verhuursysteem - Klantprofiel interface" 
+                    fill
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
+                </div>
+                <p className="text-sm text-gray-500 mt-4 text-center">Klantprofiel Interface</p>
+              </div>
+
+              <div className="order-1 lg:order-2 space-y-8">
+                <div>
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-semibold text-sm mb-8">
+                    2
+                  </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                    Persoonlijke afstemming
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    Daarnaast hebben we persoonlijke afstemming mogelijk gemaakt. Voor elke deelnemer in een groep kunnen klanten een profiel aanmaken met details zoals lengte, gewicht en schoenmaat. Het systeem gebruikt deze informatie om automatisch het meest geschikte materiaal te selecteren.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed mb-8">
+                    Deze persoonlijke aanpak zorgt niet alleen voor tevreden klanten, maar ook voor een efficiënter proces in de werkplaats van 2nd Ride.
+                  </p>
                   
-                  <div 
-                    className="relative rounded-3xl overflow-hidden shadow-xl h-[400px] cursor-pointer transform hover:scale-[1.02] transition-transform duration-500 border-8 border-white"
-                    onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/select-date.png", "2nd Ride verhuursysteem - Productfiltering interface", 6)}
-                  >
-                    <Image 
-                      src="/cases/verhuursysteem-2nd-ride/select-date.png"
-                      alt="2nd Ride verhuursysteem - Productfiltering interface" 
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className="absolute inset-0 hover:bg-primary-900/10 transition-colors duration-300"></div>
-                    <div className="absolute bottom-4 right-4">
-                      <span className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-800 shadow-lg">
-                        Productfilter Interface
-                      </span>
+                  <div className="relative bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div className="absolute top-4 left-4 text-gray-200">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" fill="currentColor"/>
+                      </svg>
+                    </div>
+                    <blockquote className="text-lg text-gray-800 leading-relaxed font-medium pt-6 pl-4 pr-4">
+                      Het persoonlijk afstemmen van materiaal op ieders specifieke gegevens heeft zowel de klanttevredenheid als onze efficiëntie enorm verbeterd.
+                    </blockquote>
+                    <div className="flex items-center mt-8 pl-4">
+                      <div className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                        2R
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">Eigenaar</p>
+                        <p className="text-sm text-gray-600">2nd Ride</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          
-            {/* Step 2 */}
-            <div className="relative">
-              <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center text-xl font-bold">2</div>
-              <div className="ml-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                  <div className="order-2 md:order-1 relative rounded-3xl overflow-hidden shadow-xl h-[400px] cursor-pointer transform hover:scale-[1.02] transition-transform duration-500 border-8 border-white" 
-                    onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/connect-items-to-persons.png", "2nd Ride verhuursysteem - Klantprofiel interface", 7)}>
-                    <Image 
-                      src="/cases/verhuursysteem-2nd-ride/connect-items-to-persons.png"
-                      alt="2nd Ride verhuursysteem - Klantprofiel interface" 
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className="absolute inset-0 hover:bg-primary-900/10 transition-colors duration-300"></div>
-                    <div className="absolute bottom-4 right-4">
-                      <span className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-800 shadow-lg">
-                        Klantprofiel Interface
-                      </span>
-                    </div>
+
+            {/* Step 3: Soepel afronden */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div>
+                  <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-900 text-white font-semibold text-sm mb-8">
+                    3
                   </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                    Soepel afronden
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    Bij het afronden van de reservering biedt het systeem een duidelijk overzicht van alle geselecteerde items, inclusief kosten per item en totale huurperiode. Dankzij een gebruiksvriendelijke interface kunnen klanten hun reservering snel afronden en eenvoudig contactgegevens invullen.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed mb-8">
+                    Het hele proces is ontworpen om intuïtief en soepel te verlopen, zonder onnodige stappen of verwarring.
+                  </p>
                   
-                  <div className="order-1 md:order-2 prose prose-lg max-w-none text-gray-700">
-                    <h3 className="text-2xl font-bold mb-6 text-gray-900">Persoonlijke afstemming</h3>
-                    <p className="text-lg leading-relaxed">
-                      Daarnaast hebben we persoonlijke afstemming mogelijk gemaakt. Voor elke deelnemer in een groep kunnen klanten een profiel aanmaken met details zoals lengte, gewicht en schoenmaat. Het systeem gebruikt deze informatie om automatisch het meest geschikte materiaal te selecteren.
-                    </p>
-                    <p className="text-lg leading-relaxed mt-6">
-                      Deze persoonlijke aanpak zorgt niet alleen voor tevreden klanten, maar ook voor een efficiënter proces in de werkplaats van 2nd Ride.
-                    </p>
-                    <div className="mt-8 pl-6 border-l-4 border-primary-500 bg-primary-50 p-6 rounded-r-lg">
-                      <blockquote className="text-lg italic text-gray-700">
-                        "Het persoonlijk afstemmen van materiaal op ieders specifieke gegevens heeft zowel de klanttevredenheid als onze efficiëntie enorm verbeterd."
-                      </blockquote>
-                      <p className="mt-4 font-medium">— Eigenaar, 2nd Ride</p>
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <BlueDot />
+                      <p className="text-gray-700 leading-relaxed">Duidelijk betalingsoverzicht met gedetailleerde prijsopbouw</p>
+                    </div>
+                    <div className="flex items-start">
+                      <BlueDot />
+                      <p className="text-gray-700 leading-relaxed">Eenvoudig formulier voor contactgegevens met automatische validatie</p>
+                    </div>
+                    <div className="flex items-start">
+                      <BlueDot />
+                      <p className="text-gray-700 leading-relaxed">Directe bevestiging per e-mail met alle reserveringsdetails</p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Step 3 */}
-            <div className="relative">
-              <div className="absolute left-0 top-0 w-12 h-12 rounded-full bg-primary-600 text-white flex items-center justify-center text-xl font-bold">3</div>
-              <div className="ml-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                  <div className="prose prose-lg max-w-none text-gray-700">
-                    <h3 className="text-2xl font-bold mb-6 text-gray-900">Soepel afronden</h3>
-                    <p className="text-lg leading-relaxed">
-                      Bij het afronden van de reservering biedt het systeem een duidelijk overzicht van alle geselecteerde items, inclusief kosten per item en totale huurperiode. Dankzij een gebruiksvriendelijke interface kunnen klanten hun reservering snel afronden en eenvoudig contactgegevens invullen.
-                    </p>
-                    <p className="text-lg leading-relaxed mt-6">
-                      Het hele proces is ontworpen om intuïtief en soepel te verlopen, zonder onnodige stappen of verwarring.
-                    </p>
-                    <ul className="mt-8 space-y-3">
-                      <li className="flex items-start">
-                        <svg className="w-6 h-6 text-primary-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>Duidelijk betalingsoverzicht met gedetailleerde prijsopbouw</span>
-                      </li>
-                      <li className="flex items-start">
-                        <svg className="w-6 h-6 text-primary-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>Eenvoudig formulier voor contactgegevens met automatische validatie</span>
-                      </li>
-                      <li className="flex items-start">
-                        <svg className="w-6 h-6 text-primary-600 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        <span>Directe bevestiging per e-mail met alle reserveringsdetails</span>
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div 
-                    className="relative rounded-3xl overflow-hidden shadow-xl h-[400px] cursor-pointer transform hover:scale-[1.02] transition-transform duration-500 border-8 border-white"
-                    onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/product-added-to-card-addons.png", "2nd Ride verhuursysteem - Reserveringsoverzicht", 0)}
-                  >
-                    <Image 
-                      src="/cases/verhuursysteem-2nd-ride/product-added-to-card-addons.png"
-                      alt="2nd Ride verhuursysteem - Reserveringsoverzicht" 
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className="absolute inset-0 hover:bg-primary-900/10 transition-colors duration-300"></div>
-                    <div className="absolute bottom-4 right-4">
-                      <span className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-800 shadow-lg">
-                        Reserveringsoverzicht
-                      </span>
-                    </div>
-                  </div>
+
+              <div className="relative">
+                <div 
+                  className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-2xl cursor-pointer group border border-gray-100"
+                  onClick={() => openLightbox("/cases/verhuursysteem-2nd-ride/reservation-review.png", "2nd Ride verhuursysteem - Reserveringsoverzicht", 0)}
+                >
+                  <Image 
+                    src="/cases/verhuursysteem-2nd-ride/reservation-review.png"
+                    alt="2nd Ride verhuursysteem - Reserveringsoverzicht" 
+                    fill
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                 </div>
+                <p className="text-sm text-gray-500 mt-4 text-center">Reserveringsoverzicht</p>
               </div>
             </div>
           </div>
@@ -532,39 +721,220 @@ export default function CaseStudyPage() {
             </div>
           </div>
           
-          {/* Screenshot Gallery - Interactive Grid */}
-          <h3 className="text-2xl font-bold mb-8 text-center text-gray-900">Ontdek alle functionaliteiten</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {systemImages.map((image, index) => (
-              <div
-                key={index}
-                className="group relative rounded-xl overflow-hidden aspect-[4/3] shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                onClick={() => openLightbox(image.src, image.alt, index)}
+          {/* Enhanced Screenshot Gallery - Sliding Thumbnail Navigation */}
+          <SectionTitle 
+            title="Ontdek alle functionaliteiten" 
+            subtitle="Systeemoverzicht"
+            align="center"
+          />
+          
+          {/* Main Layout: Large image on left, thumbnails on right */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* Main Featured Image - Left Side */}
+            <div className="lg:col-span-2">
+              <div 
+                className="relative aspect-[16/10] cursor-pointer overflow-hidden rounded-2xl shadow-2xl bg-white hover:shadow-3xl transition-all duration-500 group"
+                onClick={() => openLightbox(enhancedSystemImages[featuredImageIndex].src, enhancedSystemImages[featuredImageIndex].title, featuredImageIndex)}
               >
-                <Image 
-                  src={image.src}
-                  alt={image.alt}
-                  fill 
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                  style={{ objectFit: 'cover' }}
-                  className="transform transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end">
-                  <div className="p-4">
-                    <span className="text-white text-sm font-medium line-clamp-2">
-                      {image.alt}
-                    </span>
-                    <span className="inline-flex items-center mt-2 text-primary-300 text-xs font-medium">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      Bekijk detail
-                    </span>
+                <div className="relative w-full h-full rounded-xl overflow-hidden">
+                  <Image
+                    src={enhancedSystemImages[featuredImageIndex].src}
+                    alt={enhancedSystemImages[featuredImageIndex].alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                  />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-4 left-4 transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <p className="text-white/90 text-sm font-medium">Klik om te vergroten</p>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Thumbnail Navigation & Info - Right Side */}
+            <div className="lg:col-span-1 flex flex-col">
+              
+              {/* Compact Vertical Thumbnail Navigation with Scroll */}
+              <div className="flex flex-col h-fit mb-8">
+                {/* Scroll Up Button */}
+                <button
+                  onClick={scrollThumbnailsUp}
+                  disabled={!canScrollUp || isTransitioning}
+                  className={cn(
+                    "flex items-center justify-center py-2 mb-2 rounded-lg transition-all duration-200",
+                    canScrollUp && !isTransitioning
+                      ? "text-gray-600 hover:text-primary-600 hover:bg-gray-50" 
+                      : "text-gray-300 cursor-not-allowed"
+                  )}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </button>
+
+                {/* Thumbnail List */}
+                <div className="relative h-fit mb-2">
+                  <div 
+                    className={cn(
+                      "flex flex-col space-y-2 transition-all duration-300 ease-out px-1",
+                      isTransitioning && "opacity-70"
+                    )}
+                  >
+                    {visibleThumbnails.map((image, relativeIndex) => {
+                      const actualIndex = thumbnailStartIndex + relativeIndex;
+                      const isActive = featuredImageIndex === actualIndex;
+                      
+                      return (
+                        <div
+                          key={actualIndex}
+                          className={cn(
+                            "relative cursor-pointer group flex items-center rounded-lg transition-all duration-300 ease-out",
+                            // Fixed sizing to prevent layout shifts
+                            "px-3 py-2 min-h-[56px]",
+                            // Active state with subtle background
+                            isActive && "bg-primary-50",
+                            // Hover states
+                            !isActive && "hover:bg-gray-50"
+                          )}
+                          onClick={() => handleThumbnailClick(actualIndex)}
+                        >
+                          <div className="w-16 h-10 rounded-md overflow-hidden shadow-sm bg-white flex-shrink-0">
+                            <div className="w-full h-full overflow-hidden">
+                              <Image
+                                src={image.src}
+                                alt={image.alt}
+                                width={64}
+                                height={40}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
+                          </div>
+                          
+                          <div className="ml-3 flex-1 min-w-0">
+                            <p className={cn(
+                              "text-xs font-medium truncate transition-colors duration-200",
+                              isActive ? "text-primary-700" : "text-gray-600"
+                            )}>
+                              {enhancedSystemImages[actualIndex].title.split(' - ')[0]}
+                            </p>
+                            <p className="text-xs text-gray-400 mt-0.5">
+                              {actualIndex + 1}/{systemImages.length}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Scroll Down Button */}
+                <button
+                  onClick={scrollThumbnailsDown}
+                  disabled={!canScrollDown || isTransitioning}
+                  className={cn(
+                    "flex items-center justify-center py-2 rounded-lg transition-all duration-200",
+                    canScrollDown && !isTransitioning
+                      ? "text-gray-600 hover:text-primary-600 hover:bg-gray-50" 
+                      : "text-gray-300 cursor-not-allowed"
+                  )}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Scroll Indicator */}
+                {systemImages.length > THUMBNAILS_PER_VIEW && (
+                  <div className="text-center mt-2">
+                    <div className="flex justify-center space-x-1">
+                      {Array.from({ length: Math.ceil(systemImages.length / THUMBNAILS_PER_VIEW) }).map((_, pageIndex) => {
+                        const isActive = Math.floor(thumbnailStartIndex / THUMBNAILS_PER_VIEW) === pageIndex;
+                        return (
+                          <div
+                            key={pageIndex}
+                            className={cn(
+                              "w-1.5 h-1.5 rounded-full transition-colors duration-200",
+                              isActive ? "bg-primary-500" : "bg-gray-300"
+                            )}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Current Image Info */}
+              <div className="mt-4">
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-medium text-primary-600">
+                      {featuredImageIndex + 1} / {systemImages.length}
+                    </span>
+                    <span className="text-xs text-gray-500 uppercase tracking-wider">
+                      Functionaliteit
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
+                    {enhancedSystemImages[featuredImageIndex].title}
+                  </h3>
+                </div>
+                
+                {/* Dynamic descriptions for each image */}
+                <div className="text-sm text-gray-600 leading-relaxed mb-6">
+                  <p>{enhancedSystemImages[featuredImageIndex].description}</p>
+                </div>
+
+                {/* Navigation arrows */}
+                <div className="flex justify-between mt-6 pt-4 border-t border-gray-100">
+                  <button
+                    onClick={() => handleThumbnailClick(Math.max(0, featuredImageIndex - 1))}
+                    disabled={featuredImageIndex === 0}
+                    className="flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Vorige
+                  </button>
+                  <button
+                    onClick={() => handleThumbnailClick(Math.min(systemImages.length - 1, featuredImageIndex + 1))}
+                    disabled={featuredImageIndex === systemImages.length - 1}
+                    className="flex items-center text-sm text-gray-600 hover:text-primary-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    Volgende
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Grid Fallback */}
+          <div className="mt-12 lg:hidden">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Alle functionaliteiten</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {systemImages.map((image, index) => (
+                <div
+                  key={`mobile-${index}`}
+                  className="relative aspect-video cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                  onClick={() => openLightbox(image.src, enhancedSystemImages[index].title, index)}
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Section>
@@ -595,7 +965,7 @@ export default function CaseStudyPage() {
                 <div className="ml-6">
                   <h3 className="text-xl font-bold mb-2">Geoptimaliseerde Processen</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Aanzienlijke reductie van administratieve lasten en handmatige fouten. De medewerkers besparen gemiddeld 15 uur per week aan administratieve taken.
+                    Aanzienlijke reductie van administratieve lasten en handmatige fouten. Het systeem heeft de werkdruk merkbaar verminderd.
                   </p>
                 </div>
               </div>
@@ -611,7 +981,7 @@ export default function CaseStudyPage() {
                 <div className="ml-6">
                   <h3 className="text-xl font-bold mb-2">Verbeterde Klantervaring</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Intuïtief reserveringsproces dat klanten moeiteloos door het huurproces leidt. De klanttevredenheid is gestegen met 35% sinds de implementatie.
+                    Intuïtief reserveringsproces dat klanten moeiteloos door het huurproces leidt. Klanten waarderen de duidelijke stappen en snelle afhandeling.
                   </p>
                 </div>
               </div>
@@ -627,43 +997,14 @@ export default function CaseStudyPage() {
                 <div className="ml-6">
                   <h3 className="text-xl font-bold mb-2">Schaalbare Oplossing</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Softwareplatform dat meegroeit met het toenemende klantenbestand en productaanbod. 2nd Ride heeft hun verhuurcapaciteit met 40% kunnen verhogen.
+                    Softwareplatform dat meegroeit met het toenemende klantenbestand en productaanbod. Het systeem is voorbereid op toekomstige uitbreidingen.
                   </p>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Project Summary and Testimonial */}
-          <div className="container mx-auto py-12 px-4">
-            <div className="bg-gray-50 p-8 rounded-md border border-gray-100 relative">
-              {/* Quotation mark */}
-              <div className="absolute top-6 left-8 text-primary-200">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.13456 9.19644C9.22352 8.80856 9.08539 8.4044 8.79521 8.11422L8.11422 7.43323C7.82404 7.14305 7.41989 7.00492 7.032 7.09389C4.60683 7.57091 2.25 9.89885 2.25 13.5V16.5C2.25 17.7426 3.25736 18.75 4.5 18.75H7.5C8.74264 18.75 9.75 17.7426 9.75 16.5V13.5C9.75 12.2574 8.74264 11.25 7.5 11.25H6.52889C6.77332 10.8753 7.10888 10.5423 7.5 10.3044C7.96172 10.0284 8.15777 9.44656 7.88175 8.98484C7.60573 8.52312 7.02388 8.32707 6.56216 8.60309C5.18399 9.41034 4.5 10.9202 4.5 13.5C4.5 12.2574 5.50736 11.25 6.75 11.25H7.5C7.91421 11.25 8.25 11.5858 8.25 12V16.5C8.25 16.9142 7.91421 17.25 7.5 17.25H4.5C4.08579 17.25 3.75 16.9142 3.75 16.5V13.5C3.75 10.248 5.98761 8.32418 8.09511 7.90233L8.79521 8.60243C8.86928 8.67649 8.91768 8.77002 8.93102 8.87374L9.13456 9.19644Z" fill="currentColor"/>
-                  <path d="M16.6346 9.19644C16.7235 8.80856 16.5854 8.4044 16.2952 8.11422L15.6142 7.43323C15.324 7.14305 14.9199 7.00492 14.532 7.09389C12.1068 7.57091 9.75 9.89885 9.75 13.5V16.5C9.75 17.7426 10.7574 18.75 12 18.75H15C16.2426 18.75 17.25 17.7426 17.25 16.5V13.5C17.25 12.2574 16.2426 11.25 15 11.25H14.0289C14.2733 10.8753 14.6089 10.5423 15 10.3044C15.4617 10.0284 15.6578 9.44656 15.3818 8.98484C15.1057 8.52312 14.5239 8.32707 14.0622 8.60309C12.684 9.41034 12 10.9202 12 13.5C12 12.2574 13.0074 11.25 14.25 11.25H15C15.4142 11.25 15.75 11.5858 15.75 12V16.5C15.75 16.9142 15.4142 17.25 15 17.25H12C11.5858 17.25 11.25 16.9142 11.25 16.5V13.5C11.25 10.248 13.4876 8.32418 15.5951 7.90233L16.2952 8.60243C16.3693 8.67649 16.4177 8.77002 16.431 8.87374L16.6346 9.19644Z" fill="currentColor"/>
-                </svg>
-              </div>
-              
-              <div className="ml-12">
-                <blockquote className="text-lg font-light italic text-gray-700 mb-6">
-                  "Next Win heeft begrepen wat onze wintersportwinkel echt nodig had. Het verhuursysteem dat zij hebben ontwikkeld, stroomlijnt onze dagelijkse processen en past perfect bij onze manier van werken. Eindelijk een oplossing die precies doet wat we nodig hebben!"
-                </blockquote>
-                
-                <div className="flex items-center">
-                  <div className="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center text-primary-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} className="h-6 w-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <p className="font-semibold">Mark Jansen</p>
-                    <p className="text-sm text-gray-600">Eigenaar, 2nd Ride</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
           
           {/* Conclusion Section */}
           <div className="py-16">
@@ -684,7 +1025,7 @@ export default function CaseStudyPage() {
                         </svg>
                         <h3 className="font-semibold text-lg">Efficiëntere processen</h3>
                       </div>
-                      <p>30% tijdsbesparing bij het verwerken van verhuurorders en beheer van de inventaris.</p>
+                      <p>Merkbare tijdsbesparing bij het verwerken van verhuurorders en beheer van de inventaris.</p>
                     </div>
                     
                     <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
@@ -714,7 +1055,7 @@ export default function CaseStudyPage() {
                         </svg>
                         <h3 className="font-semibold text-lg">ROI</h3>
                       </div>
-                      <p>De investering in het systeem heeft zich binnen 8 maanden terugverdiend door efficiency-verbeteringen.</p>
+                      <p>Het systeem levert een positieve return on investment door verbeterde efficiency en klanttevredenheid.</p>
                     </div>
                   </div>
                   

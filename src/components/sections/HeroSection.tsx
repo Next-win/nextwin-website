@@ -210,14 +210,14 @@ const HeroSection = () => {
               
               {/* Results card */}
               <div className="absolute bottom-8 left-6 bg-primary-600 rounded-xl shadow-lg p-5 text-white max-w-[200px] z-10">
-                <div className="text-2xl font-bold mb-1">100+</div>
+                <div className="text-2xl font-bold mb-1">50+</div>
                 <div className="text-sm mb-4">Tevreden klanten</div>
                 <div className="flex -space-x-3">
                   <div className="w-7 h-7 rounded-full bg-primary-400 border-2 border-white"></div>
                   <div className="w-7 h-7 rounded-full bg-primary-300 border-2 border-white"></div>
                   <div className="w-7 h-7 rounded-full bg-primary-200 border-2 border-white"></div>
                   <div className="w-7 h-7 rounded-full bg-primary-100 border-2 border-white flex items-center justify-center text-xs font-medium text-primary-700">
-                    +97
+                    +46
                   </div>
                 </div>
               </div>

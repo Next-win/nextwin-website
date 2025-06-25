@@ -51,7 +51,7 @@ export default function SearchResultsVisualization({
         position: 8,
         title: "Next Win | Digitaal bureau en online marketing",
         description: "Professionele online marketing diensten van Next Win uit Otterlo. Verbeter je online zichtbaarheid en krijg meer klanten.",
-        url: "www.nextwin.nl"
+        url: "www.next-win.nl"
       },
       competitors: [
         {
@@ -73,7 +73,7 @@ export default function SearchResultsVisualization({
         position: 1,
         title: "Next Win | Resultaatgericht Digitaal Bureau Otterlo",
         description: "Online marketing die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer bezoekers en meer klanten. Bekijk onze cases.",
-        url: "www.nextwin.nl"
+        url: "www.next-win.nl"
       },
       competitors: [
         {

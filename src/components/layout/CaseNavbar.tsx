@@ -18,9 +18,13 @@ interface ServiceCategory {
   items: ServiceItem[];
 }
 
+type ServiceLink = 
+  | { name: string; href: string; description: string }
+  | ServiceCategory;
+
 // Type guard function
-function isServiceCategory(item: ServiceItem | ServiceCategory): item is ServiceCategory {
-  return (item as ServiceCategory).category !== undefined;
+function isServiceCategory(service: ServiceLink): service is ServiceCategory {
+  return 'category' in service && 'items' in service;
 }
 
 const CaseNavbar = () => {
@@ -59,62 +63,52 @@ const CaseNavbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  // Services dropdown content
-  const serviceLinks = [
-    {
-      name: 'Alle diensten',
-      href: '/services',
-      description: 'Bekijk al onze digitale diensten',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-        </svg>
-      )
+  const serviceLinks: ServiceLink[] = [
+    { name: 'Alle diensten', href: '/services', description: 'Bekijk al onze digitale diensten' },
+    { 
+      category: 'Websites & Shops',
+      items: [
+        { name: 'Websites', href: '/services/websites', description: 'Professionele, responsieve websites', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        )},
+        { name: 'Webshops', href: '/services/webshops', description: 'E-commerce oplossingen die verkopen', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+        )}
+      ]
     },
     {
-      category: 'Digitale diensten',
+      category: 'Marketing & Content',
       items: [
-        {
-          name: 'Websites',
-          href: '/services/websites',
-          description: 'Professionele website die resultaat levert',
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-            </svg>
-          )
-        },
-        {
-          name: 'Webshops',
-          href: '/services/webshops',
-          description: 'E-commerce oplossingen voor jouw bedrijf',
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-          )
-        },
-        {
-          name: 'Online Marketing',
-          href: '/services/online-marketing',
-          description: 'SEO, SEA en content marketing',
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-            </svg>
-          )
-        },
-        {
-          name: 'Content Creatie',
-          href: '/services/content-creatie',
-          description: 'Professionele video & fotografie',
-          icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-          )
-        }
+        { name: 'Zoekmachine optimalisatie', href: '/services/zoekmachine-optimalisatie', description: 'Snel resultaat met organische SEO', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        )},
+        { name: 'Google Ads (SEA)', href: '/services/google-ads', description: 'Doelgerichte advertenties met directe resultaten', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+          </svg>
+        )},
+        { name: 'Content Creatie', href: '/services/content-creatie', description: 'Professionele foto- en videografie', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        )}
+      ]
+    },
+    {
+      category: 'Bedrijfssystemen',
+      items: [
+        { name: 'CRM & Salesforce', href: '/services/crm-salesforce', description: 'Stroomlijn je klantprocessen', icon: (
+          <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )}
       ]
     }
   ];
@@ -189,41 +183,59 @@ const CaseNavbar = () => {
                   
                   {(isServicesDropdownOpen || isDropdownAnimating) && (
                     <div 
-                      className={`absolute left-0 mt-2 w-max max-w-7xl bg-white shadow-lg rounded-xl transition-all duration-200 z-50 grid grid-cols-12 gap-4 p-4 ${isServicesDropdownOpen ? 'dropdown-enter' : 'dropdown-exit'}`}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
+                      className={`absolute left-0 mt-5 w-[600px] transform -translate-x-1/4 rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 z-50 overflow-hidden transition-all duration-300 ease-in-out ${isServicesDropdownOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-3 pointer-events-none'}`}
                     >
-                      {/* Services Links */}
-                      <div className="col-span-12">
-                        <div className="p-4">
-                          {serviceLinks.slice(1).map((category, idx) => (
-                            <div key={idx} className="mb-6 last:mb-0">
-                              {isServiceCategory(category) && (
-                                <>
-                                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">
-                                    {category.category}
-                                  </h3>
-                                  <div className="space-y-1">
-                                    {category.items.map((item) => (
-                                      <Link 
-                                        key={item.name} 
-                                        href={item.href}
-                                        className="flex items-start rounded-lg p-2 hover:bg-gray-50 transition-all duration-200 group"
-                                      >
-                                        <div className="flex-shrink-0 h-6 w-6 group-hover:text-primary-700 transition-colors">
-                                          {item.icon}
-                                        </div>
-                                        <div className="ml-4">
-                                          <p className="text-base font-medium text-gray-800 group-hover:text-primary-700 transition-colors">{item.name}</p>
-                                          <p className="text-sm text-gray-500">{item.description}</p>
-                                        </div>
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </>
-                              )}
+                      <div className="grid grid-cols-12 w-full">
+                        {/* All Services Link */}
+                        <div className="col-span-12 bg-gray-50 border-b border-gray-200">
+                          <Link 
+                            href="/services"
+                            className="block px-6 py-4 hover:bg-gray-100 transition-colors"
+                          >
+                            <div className="flex items-center">
+                              <svg className="w-5 h-5 text-primary-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                              </svg>
+                              <div>
+                                <span className="font-medium text-gray-800">Alle diensten</span>
+                                <p className="text-sm text-gray-500">Bekijk al onze digitale diensten</p>
+                              </div>
                             </div>
-                          ))}
+                          </Link>
+                        </div>
+                        
+                        {/* Service Categories */}
+                        <div className="col-span-12">
+                          <div className="p-4">
+                            {serviceLinks.slice(1).map((category, idx) => (
+                              <div key={idx} className="mb-6 last:mb-0">
+                                {isServiceCategory(category) && (
+                                  <>
+                                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">
+                                      {category.category}
+                                    </h3>
+                                    <div className="space-y-1">
+                                      {category.items.map((item) => (
+                                        <Link 
+                                          key={item.name} 
+                                          href={item.href}
+                                          className="flex items-start rounded-lg p-2 hover:bg-gray-50 transition-all duration-200 group"
+                                        >
+                                          <div className="flex-shrink-0 h-6 w-6 group-hover:text-primary-700 transition-colors">
+                                            {item.icon}
+                                          </div>
+                                          <div className="ml-4">
+                                            <p className="text-base font-medium text-gray-800 group-hover:text-primary-700 transition-colors">{item.name}</p>
+                                            <p className="text-sm text-gray-500">{item.description}</p>
+                                          </div>
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  </>
+                                )}
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>

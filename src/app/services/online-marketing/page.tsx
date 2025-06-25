@@ -262,7 +262,7 @@ export default function OnlineMarketingServicePage() {
                     position: 8,
                     title: "Next Win | Digitaal bureau en online marketing",
                     description: "Professionele online marketing diensten van Next Win uit Otterlo. Verbeter je online zichtbaarheid en krijg meer klanten.",
-                    url: "www.nextwin.nl"
+                    url: "www.next-win.nl"
                   },
                   competitors: [
                     {
@@ -284,7 +284,7 @@ export default function OnlineMarketingServicePage() {
                     position: 1,
                     title: "Next Win | Resultaatgericht Digitaal Bureau Otterlo",
                     description: "Online marketing die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer bezoekers en meer klanten. Bekijk onze cases.",
-                    url: "www.nextwin.nl"
+                    url: "www.next-win.nl"
                   },
                   competitors: [
                     {
@@ -728,7 +728,7 @@ export default function OnlineMarketingServicePage() {
                                   position1.textContent = 'Positie 8';
                                   position1.className = 'card-position inline-block px-2 py-1 rounded-md bg-red-100 text-red-800 text-xs font-medium';
                                 }
-                                if (url1) url1.textContent = 'www.nextwin.nl';
+                                if (url1) url1.textContent = 'www.next-win.nl';
                                 
                                 // Card 2 (now position 1): Update to Competitor1
                                 const title2 = card2.querySelector('.card-title');
@@ -827,7 +827,7 @@ export default function OnlineMarketingServicePage() {
                                   position3.innerHTML = '<span class="inline-block mr-1">↑</span>Positie 1';
                                   position3.className = 'card-position inline-block px-2 py-1 rounded-md bg-green-100 text-green-800 text-xs font-medium';
                                 }
-                                if (url3) url3.textContent = 'www.nextwin.nl';
+                                if (url3) url3.textContent = 'www.next-win.nl';
                                 
                                 // Add animate pulse indicator to top result
                                 let pulseDot = card3.querySelector('.pulse-dot');
@@ -947,7 +947,7 @@ export default function OnlineMarketingServicePage() {
                       {/* Card 3 - Initially NextWin at position 8 */}
                       <div className="result-card bg-white rounded-lg p-2 sm:p-3 border border-gray-100 shadow-sm transform transition-all duration-300 absolute w-full h-[110px] sm:h-[120px] z-1" style={{ transform: 'translateY(260px) scale(1)', opacity: '1' }}>
                         <div className="flex justify-between items-center mb-1 sm:mb-2">
-                          <span className="card-url text-green-600 text-xs">www.nextwin.nl</span>
+                          <span className="card-url text-green-600 text-xs">www.next-win.nl</span>
                           <div className="flex items-center text-sm">
                             <span className="card-position inline-block px-1 sm:px-2 py-0.5 sm:py-1 rounded-md bg-red-100 text-red-800 text-xs font-medium">
                               Positie 8
