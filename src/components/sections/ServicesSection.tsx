@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Section from '../ui/Section';
 import { Button } from '../ui/Button';
+import { Subtitle } from '../ui/Typography';
 import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
 
 // Services array with correct links to existing pages
@@ -67,7 +68,7 @@ const ServicesSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <ScrollAnimationWrapper>
-                <span className="inline-block py-1 px-3 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-4">Over ons</span>
+                <Subtitle>Over ons</Subtitle>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
                     Wie zijn wij?
@@ -136,7 +137,7 @@ const ServicesSection = () => {
         <div className="container mx-auto px-4 relative z-10">
           <ScrollAnimationWrapper>
             <div className="text-center max-w-3xl mx-auto mb-20">
-              <span className="inline-block py-1 px-3 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-4">Wat wij doen</span>
+              <Subtitle>Wat wij doen</Subtitle>
               <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
                   Onze Services

@@ -3,6 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Section from '../ui/Section';
+import { Button } from '../ui/Button';
+import { Subtitle } from '../ui/Typography';
 
 const values = [
   {
@@ -88,7 +90,7 @@ const AboutSection = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-20">
-            <span className="inline-block text-primary-600 font-semibold mb-2">Waar we voor staan</span>
+            <Subtitle className="mb-2">Waar we voor staan</Subtitle>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
                 Onze waarden
@@ -134,12 +136,16 @@ const AboutSection = () => {
           </div>
           
           <div className="mt-20 text-center">
-            <a href="/contact" className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium shadow-lg">
+            <Button 
+              href="/contact" 
+              size="lg"
+              className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 !rounded-md"
+            >
               Benieuwd hoe we samen kunnen werken?
               <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </a>
+            </Button>
           </div>
         </div>
       </Section>

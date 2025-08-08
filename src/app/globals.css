@@ -400,6 +400,31 @@
     100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
   }
 
+  /* Trusted Logos Carousel Styles */
+  .trusted-logos-carousel .logos-swiper {
+    overflow: visible !important;
+  }
+  
+  .trusted-logos-carousel .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+  
+  .trusted-logos-carousel:hover .swiper-wrapper {
+    animation-play-state: paused;
+  }
+  
+  .trusted-logos-carousel .swiper-slide {
+    transition: all 0.3s ease;
+  }
+  
+  .trusted-logos-carousel:hover .swiper-slide {
+    transform: scale(1.05);
+  }
+  
+  .trusted-logos-carousel .swiper-slide img {
+    transition: all 0.3s ease;
+  }
+
   /* Disable animations for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .animate-slow-spin,
@@ -416,6 +441,10 @@
       transition: none !important;
       transform: none !important;
       opacity: 1 !important;
+    }
+    
+    .trusted-logos-carousel .swiper-wrapper {
+      animation: none !important;
     }
   }
 }

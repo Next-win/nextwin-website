@@ -33,6 +33,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isDropdownAnimating, setIsDropdownAnimating] = useState(false);
+  const [mobileView, setMobileView] = useState<'root' | 'services'>('root');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
@@ -52,6 +53,17 @@ const Navbar = () => {
       }
     };
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = previousOverflow;
+      };
+    }
+  }, [isMobileMenuOpen]);
 
   // Pages that should always have a solid navbar (not transparent)
   const solidNavbarPages = ['/cases', '/about-us', '/contact', '/services'];
@@ -265,8 +277,10 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden flex items-center"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
+            onClick={() => { setIsMobileMenuOpen(!isMobileMenuOpen); setMobileView('root'); setIsServicesDropdownOpen(false); }}
+            aria-label="Open mobiele navigatie"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -285,105 +299,174 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Creative overlay */}
       {isMobileMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden bg-white shadow-lg py-4 max-h-[80vh] overflow-y-auto"
+        <motion.div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden fixed inset-0 z-[60]"
         >
-          <div className="container mx-auto px-4">
-            <nav className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                link.hasDropdown ? (
-                  <div key={link.name}>
-                    <button
-                      onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-                      className="text-gray-700 hover:text-primary-700 font-medium transition-colors py-2 flex items-center justify-between w-full"
-                    >
-                      {link.name}
-                      <svg 
-                        className={`ml-1 h-4 w-4 transition-transform duration-300 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    
-                    {isServicesDropdownOpen && (
-                      <div className="pl-4 border-l-2 border-gray-200 mt-2 mb-4">
-                        <Link 
-                          href="/services"
-                          className="flex items-center py-3 text-gray-700 hover:text-primary-700 transition-colors"
-                          onClick={() => {
-                            setIsServicesDropdownOpen(false);
-                            setIsMobileMenuOpen(false);
-                          }}
-                        >
-                          <svg className="w-5 h-5 text-primary-600 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                          </svg>
-                          <span className="font-medium">Alle diensten</span>
-                        </Link>
-                        
-                        {serviceLinks.slice(1).map((category, idx) => (
-                          <div key={idx} className="my-3">
-                            {isServiceCategory(category) && (
-                              <>
-                                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                                  {category.category}
-                                </h4>
-                                <div className="space-y-3">
-                                  {category.items.map((item) => (
-                                    <Link 
-                                      key={item.name} 
-                                      href={item.href}
-                                      className="flex items-center py-2 text-gray-700 hover:text-primary-700 transition-colors group"
-                                      onClick={() => {
-                                        setIsServicesDropdownOpen(false);
-                                        setIsMobileMenuOpen(false);
-                                      }}
-                                    >
-                                      <div className="flex-shrink-0 h-5 w-5 mr-2 group-hover:text-primary-700 transition-colors">
-                                        {item.icon}
-                                      </div>
-                                      <span className="group-hover:text-primary-700 transition-colors">
-                                        {item.name}
-                                      </span>
-                                    </Link>
-                                  ))}
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link 
-                    key={link.name} 
-                    href={link.href}
-                    className="text-gray-700 hover:text-primary-700 font-medium transition-colors py-2"
-                    onClick={() => setIsMobileMenuOpen(false)}
+          {/* Backdrop with subtle brand gradient */}
+          <button
+            aria-label="Sluit mobiele navigatie"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="absolute inset-0 bg-gradient-to-br from-white/70 via-primary-50/60 to-white/70 dark:from-gray-900/70 dark:via-primary-900/50 dark:to-gray-900/70 backdrop-blur-xl"
+          />
+
+          {/* Slide-up panel */}
+          <motion.div
+            initial={{ y: 24, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="relative h-full overflow-y-auto"
+          >
+            <div className="container mx-auto px-4 pt-4 pb-28">
+              {/* Top bar */}
+              <div className="flex items-center justify-between py-3">
+                <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center">
+                  <Image src="/logo-200x37-nextwin.svg" alt="Next Win Logo" width={130} height={26} className="h-6 w-auto" />
+                </Link>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="h-10 w-10 rounded-xl bg-white/70 dark:bg-gray-800/70 border border-gray-200/60 dark:border-gray-700/60 backdrop-blur flex items-center justify-center shadow-sm"
+                  aria-label="Sluiten"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700 dark:text-gray-200" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Sub-header for drilldown views */}
+              {mobileView !== 'root' && (
+                <div className="mt-2 mb-1">
+                  <button
+                    className="inline-flex items-center gap-2 text-sm text-gray-700 hover:text-primary-700"
+                    onClick={() => setMobileView('root')}
+                    aria-label="Terug"
                   >
-                    {link.name}
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Terug
+                  </button>
+                </div>
+              )}
+
+              {/* Navigation (drilldown style) */}
+              {mobileView === 'root' ? (
+                <nav className="mt-2" aria-label="Mobiele navigatie">
+                  {navLinks.map((link) => (
+                    link.hasDropdown ? (
+                      <div key={link.name}>
+                        {(() => { const isActive = pathname?.startsWith(link.href || ''); return (
+                        <button
+                          onClick={() => { setMobileView('services'); }}
+                          className={`w-full flex items-center justify-between px-1 py-4 text-lg font-medium ${isActive ? 'text-primary-700 dark:text-primary-400' : 'text-gray-900 dark:text-gray-100'}`}
+                          aria-haspopup="menu"
+                          aria-controls="mobile-services"
+                        >
+                          <span>{link.name}</span>
+                          <div className="flex items-center gap-2">
+                            {isActive && <span className="text-xs text-primary-600">Huidig</span>}
+                            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </button>
+                        ); })()}
+                        <div className="h-px bg-gray-200/70 dark:bg-gray-700/60" />
+                      </div>
+                    ) : (
+                      <div key={link.name}>
+                        {(() => { const isActive = link.href === '/' ? pathname === '/' : pathname?.startsWith(link.href || '') ; return (
+                        <Link
+                          href={link.href}
+                          className={`flex items-center justify-between px-1 py-4 text-lg font-medium transition-colors ${isActive ? 'text-primary-700 dark:text-primary-400' : 'text-gray-900 dark:text-gray-100 hover:text-primary-700'}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <span>{link.name}</span>
+                          {isActive && <span className="text-xs text-primary-600">Huidig</span>}
+                        </Link>
+                        ); })()}
+                        <div className="h-px bg-gray-200/70 dark:bg-gray-700/60" />
+                      </div>
+                    )
+                  ))}
+                </nav>
+              ) : (
+                <nav id="mobile-services" className="mt-2" aria-label="Diensten submenu">
+                  {serviceLinks.slice(1).map((category, idx) => (
+                    isServiceCategory(category) && (
+                      <div key={idx} className="py-3">
+                        <div className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2">{category.category}</div>
+                        <div className="flex flex-col">
+                          {category.items.map((item) => (
+                            (() => { const isActive = pathname?.startsWith(item.href || ''); return (
+                              <Link
+                                key={item.name}
+                                href={item.href}
+                                className={`py-3 text-base flex items-center justify-between ${isActive ? 'text-primary-700 dark:text-primary-400' : 'text-gray-900 dark:text-gray-100 hover:text-primary-700'}`}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <span>{item.name}</span>
+                                {isActive && <span className="text-xs text-primary-600">Huidig</span>}
+                              </Link>
+                            ); })()
+                          ))}
+                        </div>
+                        <div className="h-px bg-gray-200/70 dark:bg-gray-700/60 mt-3" />
+                      </div>
+                    )
+                  ))}
+                </nav>
+              )}
+
+              {/* Contact CTA - show only on root view */}
+              {mobileView === 'root' && (
+              <div className="mt-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-900 dark:text-gray-100">Direct contact?</span>
+                  <span className="text-xs text-gray-500">Reactie binnen 24 uur</span>
+                </div>
+                <div className="mt-3 flex gap-3">
+                  <Link
+                    href="tel:+31636164419"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 inline-flex items-center justify-center h-10 rounded-full bg-primary-600 text-white font-medium hover:bg-primary-700 transition-colors"
+                  >
+                    Bel ons
                   </Link>
-                )
-              ))}
-              <Link 
-                href="/contact"
-                className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-all text-center shadow-button"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Maak een afspraak
-              </Link>
-            </nav>
-          </div>
+                  <Link
+                    href="mailto:info@next-win.nl"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex-1 inline-flex items-center justify-center h-10 rounded-full border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 font-medium hover:border-primary-600 transition-colors"
+                  >
+                    E-mail
+                  </Link>
+                </div>
+              </div>
+              )}
+            </div>
+
+            {/* Sticky bottom primary action */}
+            <div className="fixed inset-x-0 bottom-0 z-[61] px-4 pb-6 pt-3 bg-gradient-to-t from-white/90 via-white/70 to-transparent dark:from-gray-900/90 dark:via-gray-900/70">
+              <div className="container mx-auto px-0">
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full inline-flex items-center justify-center rounded-xl bg-primary-600 text-white py-3 font-semibold shadow-md shadow-primary-600/25 hover:bg-primary-700 transition-colors"
+                >
+                  Gratis adviesgesprek
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       )}
 

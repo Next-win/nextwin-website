@@ -49,8 +49,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className="scroll-smooth overflow-x-hidden">
+    <html lang="nl" className="scroll-smooth overflow-x-hidden" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden relative w-full`}
       >
         <ConditionalIPChecker>

@@ -7,7 +7,7 @@ import Section from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/Dialog';
 import { cn } from '@/lib/utils';
-import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle } from '@/components/ui/Typography';
+import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle, Subtitle } from '@/components/ui/Typography';
 import RelatedCases from '@/components/ui/RelatedCases';
 import BlueDot from '@/components/ui/BlueDot';
 
@@ -375,9 +375,9 @@ export default function CaseStudyPage() {
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Werkzaamheden</h3>
                   <div className="space-y-2">
-                    <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 text-sm font-medium">
+                    <Subtitle className="!mb-0 !px-4 !py-2 !inline-flex items-center">
                       Webdesign
-                    </span>
+                    </Subtitle>
                   </div>
                 </div>
                 <div>

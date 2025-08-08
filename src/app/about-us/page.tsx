@@ -1,6 +1,7 @@
 import AboutSection from "@/components/sections/AboutSection";
 import TeamSection from "@/components/sections/TeamSection";
 import Section from "@/components/ui/Section";
+import { Subtitle } from "@/components/ui/Typography";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ const AboutUsPage = () => {
     <>
       <Section className="pt-32 md:pt-40 mb-8">
         <div className="max-w-3xl mx-auto text-center">
+          <Subtitle className="mb-4">Over ons</Subtitle>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
               Samen creëren we online succes

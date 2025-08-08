@@ -572,7 +572,7 @@ export default function GoogleAdsServicePage() {
              <div className="text-center">
                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                  <svg className="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />
                  </svg>
                </div>
                <h3 className="text-lg font-bold mb-2">Resultaat</h3>
@@ -730,119 +730,242 @@ export default function GoogleAdsServicePage() {
        <TestimonialsSection />
 
        {/* Waarom Google Ads vaak faalt (en hoe wij dat anders doen) */}
-       <Section className="py-24 bg-white">
+       <Section className="py-24 bg-gray-50">
          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="max-w-3xl mx-auto text-center mb-16">
+           <div className="max-w-3xl mx-auto text-center mb-20">
              <SectionTitle
                subtitle="Inzichten"
                title="Waarom Google Ads vaak faalt"
                align="center"
              />
              <p className="mt-6 text-lg text-gray-600">
-               Uit <a href="https://www.wordstream.com/blog/2025-google-ads-benchmarks" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">WordStream's 2025 onderzoek</a> blijkt dat kosten stijgen (87% van sectoren), maar 65% van sectoren zag ook betere conversierates. Het probleem? Veel accounts missen strategische focus. Hier zie je waar het misgaat en hoe wij dat anders aanpakken.
+               Uit <a href="https://www.wordstream.com/blog/2025-google-ads-benchmarks" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline font-medium">WordStream's 2025 onderzoek</a> blijkt dat kosten stijgen (87% van sectoren), maar 65% van sectoren zag ook betere conversierates. Het probleem? Veel accounts missen strategische focus. Hier zie je waar het misgaat en hoe wij dat anders aanpakken.
              </p>
            </div>
            
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-             <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border border-red-200">
-               <div className="flex items-start mb-6">
-                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mr-4 shadow-sm">
-                   <span className="text-2xl">⚠️</span>
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+             {/* Problems Section */}
+             <div className="space-y-6">
+               <div className="text-center lg:text-left mb-8">
+                 <div className="inline-flex items-center justify-center w-20 h-20 bg-red-50 rounded-2xl mb-6 border border-red-100">
+                   <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                   </svg>
                  </div>
-                 <div>
-                   <h3 className="text-xl font-bold mb-1 text-red-800">Waar het misgaat</h3>
-                   <p className="text-gray-600">Typische Google Ads problemen</p>
-                 </div>
+                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Waar het misgaat</h3>
+                 <p className="text-gray-600 text-lg">Typische Google Ads problemen</p>
                </div>
+               
                <div className="space-y-4">
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Slechte keyword selectie → verkeerd publiek</p>
+                 <div className="bg-white rounded-xl p-6 border border-red-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Slechte keyword selectie</h4>
+                       <p className="text-gray-600">Advertenties worden getoond aan verkeerd publiek</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Geen negatieve keywords → geld verspild</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-red-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Geen negatieve keywords</h4>
+                       <p className="text-gray-600">Budget wordt verspild aan irrelevante zoekopdrachten</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Zwakke advertentieteksten → lage click-through</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-red-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Zwakke advertentieteksten</h4>
+                       <p className="text-gray-600">Lage click-through rates door saaie advertenties</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Geen landing page optimalisatie</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-red-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Geen landing page optimalisatie</h4>
+                       <p className="text-gray-600">Bezoekers vertrekken direct na klik op advertentie</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Onvoldoende tracking en optimalisatie</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-red-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Onvoldoende tracking</h4>
+                       <p className="text-gray-600">Geen inzicht in wat werkt en wat niet</p>
+                     </div>
+                   </div>
                  </div>
                </div>
              </div>
              
-             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200">
-               <div className="flex items-start mb-6">
-                 <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mr-4 shadow-sm">
-                   <span className="text-2xl">✅</span>
+             {/* Solutions Section */}
+             <div className="space-y-6">
+               <div className="text-center lg:text-left mb-8">
+                 <div className="inline-flex items-center justify-center w-20 h-20 bg-green-50 rounded-2xl mb-6 border border-green-100">
+                   <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                   </svg>
                  </div>
-                 <div>
-                   <h3 className="text-xl font-bold mb-1 text-green-800">Onze aanpak</h3>
-                   <p className="text-gray-600">Hoe wij dit anders doen</p>
-                 </div>
+                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Onze aanpak</h3>
+                 <p className="text-gray-600 text-lg">Hoe wij dit anders doen</p>
                </div>
+               
                <div className="space-y-4">
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Diepgaande keyword research per branche</p>
+                 <div className="bg-white rounded-xl p-6 border border-green-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Diepgaande keyword research</h4>
+                       <p className="text-gray-600">Specifieke analyse per branche en doelgroep</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Uitgebreide negative keyword lists</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-green-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Uitgebreide negative keyword lists</h4>
+                       <p className="text-gray-600">Voorkomen dat budget wordt verspild aan irrelevante zoektermen</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">A/B testing van alle advertentieteksten</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-green-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">A/B testing van advertentieteksten</h4>
+                       <p className="text-gray-600">Continue optimalisatie voor hogere click-through rates</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Landing page advies en optimalisatie</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-green-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Landing page advies en optimalisatie</h4>
+                       <p className="text-gray-600">Zorgen dat bezoekers daadwerkelijk converteren</p>
+                     </div>
+                   </div>
                  </div>
-                 <div className="flex items-start">
-                   <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                   <p className="text-gray-700">Real-time dashboard met alle belangrijke KPI's</p>
+                 
+                 <div className="bg-white rounded-xl p-6 border border-green-100 hover:shadow-md transition-all duration-300">
+                   <div className="flex items-start">
+                     <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                       <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                       </svg>
+                     </div>
+                     <div>
+                       <h4 className="font-semibold text-gray-900 mb-2">Real-time dashboard</h4>
+                       <p className="text-gray-600">Alle belangrijke KPI's live inzichtelijk op één plek</p>
+                     </div>
+                   </div>
                  </div>
                </div>
              </div>
            </div>
            
-           <div className="max-w-2xl mx-auto mt-12 text-center">
-             <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
-               <p className="text-blue-800 font-medium mb-4">
-                 📊 2025 Google Ads Benchmarks (16.000+ campagnes geanalyseerd):
-               </p>
-               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                 <div>
-                   <div className="text-xl font-bold text-blue-700">6.66%</div>
-                   <div className="text-sm text-gray-600">Gemiddelde CTR</div>
+           {/* Integrated Statistics Section */}
+           <div className="bg-white rounded-3xl p-10 border border-primary-100 shadow-lg">
+             <div className="text-center mb-10">
+               <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-50 rounded-2xl mb-6 border border-primary-100">
+                 <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 00-2-2z" />
+                 </svg>
+               </div>
+               <h3 className="text-2xl font-bold text-gray-900 mb-3">2025 Google Ads Benchmarks</h3>
+               <p className="text-gray-600 text-lg">16.000+ campagnes geanalyseerd</p>
+             </div>
+             
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+               <div className="text-center p-6 bg-primary-25 rounded-xl border border-primary-50 hover:shadow-md transition-all duration-300">
+                 <div className="text-3xl font-bold text-primary-700 mb-2">6.66%</div>
+                 <div className="text-gray-600 font-medium">Gemiddelde CTR</div>
+               </div>
+               <div className="text-center p-6 bg-primary-25 rounded-xl border border-primary-50 hover:shadow-md transition-all duration-300">
+                 <div className="text-3xl font-bold text-primary-700 mb-2">5.65%</div>
+                 <div className="text-gray-600 font-medium">Business Services CTR</div>
+               </div>
+               <div className="text-center p-6 bg-primary-25 rounded-xl border border-primary-50 hover:shadow-md transition-all duration-300">
+                 <div className="text-3xl font-bold text-primary-700 mb-2">65%</div>
+                 <div className="text-gray-600 font-medium">Industries met betere conversies</div>
+               </div>
+               <div className="text-center p-6 bg-primary-25 rounded-xl border border-primary-50 hover:shadow-md transition-all duration-300">
+                 <div className="text-3xl font-bold text-primary-700 mb-2">76%</div>
+                 <div className="text-gray-600 font-medium">MKB tevreden met Google Ads</div>
+               </div>
+             </div>
+             
+             <div className="bg-primary-50 rounded-2xl p-8 border border-primary-100">
+               <div className="flex items-start">
+                 <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mr-6 flex-shrink-0">
+                   <svg className="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                   </svg>
                  </div>
                  <div>
-                   <div className="text-xl font-bold text-blue-700">5.65%</div>
-                   <div className="text-sm text-gray-600">Business Services CTR</div>
-                 </div>
-                 <div>
-                   <div className="text-xl font-bold text-blue-700">65%</div>
-                   <div className="text-sm text-gray-600">Industries met betere conversies</div>
-                 </div>
-                 <div>
-                   <div className="text-xl font-bold text-blue-700">76%</div>
-                   <div className="text-sm text-gray-600">MKB tevreden met Google Ads</div>
+                   <h4 className="font-bold text-primary-800 mb-3 text-lg">Key insight 2025</h4>
+                   <p className="text-primary-700 text-lg leading-relaxed">
+                     "Kosten stijgen, maar prestaties ook - 65% van sectoren zag betere conversierates. De belangrijkste conclusie: een slimme strategie verslaat goedkope clicks." 
+                     <span className="block mt-2 text-primary-600 font-medium">- Cliff Sizemore, LocaliQ/WordStream</span>
+                   </p>
                  </div>
                </div>
-               <div className="mt-4 p-3 bg-blue-100 rounded-lg">
-                 <p className="text-sm text-blue-800">
-                   💡 <strong>Key insight 2025:</strong> "Kosten stijgen, maar prestaties ook - 65% van sectoren zag betere conversierates. De belangrijkste conclusie: een slimme strategie verslaat goedkope clicks." - Cliff Sizemore, LocaliQ/WordStream
-                 </p>
-               </div>
-               <p className="text-sm text-blue-600 mt-4">
-                 *Bron: <a href="https://www.wordstream.com/blog/2025-google-ads-benchmarks" target="_blank" rel="noopener noreferrer" className="hover:text-blue-800 underline">Google Ads benchmarks 2025, WordStream</a>
+             </div>
+             
+             <div className="text-center mt-8">
+               <p className="text-gray-500">
+                 Bron: <a href="https://www.wordstream.com/blog/2025-google-ads-benchmarks" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline font-medium">Google Ads benchmarks 2025, WordStream</a>
                </p>
              </div>
            </div>
@@ -896,8 +1019,7 @@ export default function GoogleAdsServicePage() {
                      <div className="h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center">
                        <svg className="h-5 w-5 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                       </svg>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                      </div>
                    </div>
                    <div className="ml-4">

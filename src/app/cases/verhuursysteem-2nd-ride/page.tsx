@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button';
 import RelatedCases from '@/components/ui/RelatedCases';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/Dialog';
 import { cn } from '@/lib/utils';
-import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle } from '@/components/ui/Typography';
+import { Heading1, Heading2, Heading3, Heading4, Paragraph, SectionTitle, Subtitle } from '@/components/ui/Typography';
 import BlueDot from '@/components/ui/BlueDot';
 
 interface ImageModalProps {
@@ -393,9 +393,9 @@ export default function CaseStudyPage() {
                   <div>
                     <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Werkzaamheden</h3>
                     <div className="space-y-3">
-                      <div className="inline-block px-4 py-2 rounded-lg bg-primary-50 text-primary-700 text-sm font-medium border border-primary-100">
+                      <Subtitle className="!mb-0 !px-4 !py-2 !inline-block !rounded-lg border border-primary-100">
                         Custom applicatie ontwikkeling
-                      </div>
+                      </Subtitle>
                       <div className="inline-block px-4 py-2 rounded-lg bg-green-50 text-green-700 text-sm font-medium border border-green-100">
                         UX/UI Design
                       </div>

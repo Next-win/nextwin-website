@@ -4,7 +4,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Section from '../ui/Section';
+import { Subtitle } from '../ui/Typography';
 import ScrollAnimationWrapper from '../ui/ScrollAnimationWrapper';
+import { trustedLogos } from '../ui/TrustedLogosSlider';
 // Import Swiper components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation } from 'swiper/modules';
@@ -16,7 +18,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 
-// Testimonial data
+// Testimonial data - using trustedLogos for consistent logo sources
 const testimonials = [
   {
     id: 1,
@@ -24,7 +26,7 @@ const testimonials = [
     company: 'Oud Hollands Spel',
     role: 'Eigenaar',
     text: 'Next Win heeft onze website volledig getransformeerd. Niet alleen ziet het er fantastisch uit, maar de conversies zijn met 75% gestegen sinds de lancering. Het team denkt echt mee en komt met oplossingen die werken.',
-    image: '/images/trusted/oud_hollands_spel_logo_svg.svg',
+    image: trustedLogos.find(logo => logo.company === 'Oud Hollands Spel')?.src || '/images/trusted/oud_hollands_spel_logo_svg.svg',
     rating: 5
   },
   {
@@ -33,7 +35,7 @@ const testimonials = [
     company: 'Baderie Barneveld',
     role: 'Marketing Manager',
     text: 'De samenwerking met Next Win is ontzettend prettig. Ze zijn proactief, denken mee en leveren kwaliteit. Onze nieuwe webshop presteert boven verwachting en de klanttevredenheid is significant gestegen.',
-    image: '/images/trusted/Logo_baderie_barneveld.svg',
+    image: trustedLogos.find(logo => logo.company === 'Baderie Barneveld')?.src || '/images/trusted/Logo_baderie_barneveld.svg',
     rating: 5
   },
   {
@@ -42,7 +44,7 @@ const testimonials = [
     company: 'Access Safety',
     role: 'Directeur',
     text: 'Van strategie tot uitvoering, Next Win heeft ons geholpen om online beter zichtbaar te worden. Hun kennis van SEO en online marketing heeft onze organische traffic met 95% verhoogd binnen 6 maanden.',
-    image: '/images/trusted/access-safety.png',
+    image: trustedLogos.find(logo => logo.company === 'Access Safety')?.src || '/images/trusted/access-safety.png',
     rating: 5
   },
   {
@@ -51,7 +53,7 @@ const testimonials = [
     company: '2nd Ride',
     role: 'E-commerce Manager',
     text: 'Next Win begrijpt precies wat we nodig hebben. Ze hebben niet alleen een prachtige webshop gebouwd, maar zorgen er ook voor dat deze goed converteert. De klantreis is geoptimaliseerd en dat zien we terug in de cijfers.',
-    image: '/images/trusted/2nd-Ride-logo.jpg',
+    image: trustedLogos.find(logo => logo.company === '2nd Ride')?.src || '/images/trusted/2nd-Ride-logo.jpg',
     rating: 5
   },
 ];
@@ -262,25 +264,15 @@ const TestimonialsSection = () => {
       
       <div className="container mx-auto px-4 relative z-10 py-20 md:py-32">
         <ScrollAnimationWrapper>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block py-1 px-3 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-4">Klantervaringen</span>
-            <motion.h2 
-              className="text-3xl md:text-5xl font-bold mb-6"
-              animate={{ 
-                textShadow: ["0px 0px 0px rgba(0,0,0,0)", "0px 0px 5px rgba(0,0,0,0.1)", "0px 0px 0px rgba(0,0,0,0)"]
-              }}
-              transition={{ 
-                duration: 5, 
-                repeat: Infinity,
-                ease: "easeInOut" 
-              }}
-            >
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <Subtitle>Klantervaringen</Subtitle>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-gray-900 to-primary-600 bg-clip-text text-transparent">
                 Wat onze klanten zeggen
               </span>
-            </motion.h2>
+            </h2>
             <p className="text-xl text-gray-600">
-              Echte resultaten voor echte ondernemers
+              Ontdek waarom bedrijven kiezen voor Next Win en lees hun ervaringen met onze diensten.
             </p>
           </div>
         </ScrollAnimationWrapper>

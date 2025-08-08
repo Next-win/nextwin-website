@@ -134,16 +134,39 @@ export function Paragraph({
   );
 }
 
+export function Subtitle({
+  children,
+  className,
+  variant = 'default',
+}: {
+  children: React.ReactNode;
+  className?: string;
+  variant?: 'default' | 'simple';
+}) {
+  return (
+    <span className={cn(
+      variant === 'default' 
+        ? 'inline-block py-1 px-3 rounded-full bg-primary-50 text-primary-700 text-sm font-medium mb-4'
+        : 'inline-block text-primary-600 font-semibold mb-2',
+      className
+    )}>
+      {children}
+    </span>
+  );
+}
+
 export function SectionTitle({ 
   subtitle, 
   title, 
   className, 
   align = 'center',
+  subtitleVariant = 'default',
 }: { 
   subtitle?: string; 
   title: string; 
   className?: string;
   align?: 'left' | 'center' | 'right';
+  subtitleVariant?: 'default' | 'simple';
 }) {
   return (
     <div className={cn(
@@ -153,9 +176,9 @@ export function SectionTitle({
       className
     )}>
       {subtitle && (
-        <span className="inline-block text-primary-600 font-semibold mb-2">
+        <Subtitle variant={subtitleVariant} className="mb-2">
           {subtitle}
-        </span>
+        </Subtitle>
       )}
       <Heading2 align={align}>{title}</Heading2>
     </div>

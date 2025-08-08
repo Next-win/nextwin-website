@@ -5,47 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '../ui/Button';
 import Image from 'next/image';
 import Section from '../ui/Section';
-// Import Swiper components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/autoplay';
-
-// Trusted logos array
-const trustedLogos = [
-  {
-    src: '/images/trusted/2nd-Ride-logo.jpg',
-    alt: '2nd Ride Logo',
-    width: 120
-  },
-  {
-    src: '/images/trusted/Flexplek-Logo-R-3.svg',
-    alt: 'Flexplek Logo',
-    width: 110
-  },
-  {
-    src: '/images/trusted/Logo_baderie_barneveld.svg',
-    alt: 'Baderie Barneveld Logo',
-    width: 100
-  },
-  {
-    src: '/images/trusted/Logo_SantosBoats_Navy-1.png',
-    alt: 'RRReis Logo',
-    width: 90
-  },
-  {
-    src: '/images/trusted/access-safety.png',
-    alt: 'Access Safety Logo',
-    width: 100
-  },
-  {
-    src: '/images/trusted/oud_hollands_spel_logo_svg.svg',
-    alt: 'Oud Hollands Spel Logo',
-    width: 120
-  }
-];
+import TrustedLogosSlider, { trustedLogos } from '../ui/TrustedLogosSlider';
 
 const HeroSection = () => {
   const ref = useRef(null);
@@ -60,13 +20,11 @@ const HeroSection = () => {
   
   // State to track window width for responsive behavior
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  const [isMobile, setIsMobile] = useState(false);
 
   // Update windowWidth on resize
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      setIsMobile(window.innerWidth < 768);
     };
     
     // Set initial value
@@ -195,7 +153,7 @@ const HeroSection = () => {
                 </p>
                 <div className="flex items-center">
                   <Image 
-                    src="/images/trusted/access-safety.png"
+                    src={trustedLogos.find(logo => logo.company === 'Access Safety')?.src || '/images/trusted/access-safety.png'}
                     alt="John Doe"
                     width={28} 
                     height={28}
@@ -229,53 +187,7 @@ const HeroSection = () => {
       {/* Trusted brands section */}
       <div className="absolute bottom-0 inset-x-0 bg-white/90 backdrop-blur-sm border-t border-gray-100 z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <p className="text-sm text-gray-500 mb-5 text-center font-medium">
-            Vertrouwd door toonaangevende bedrijven
-          </p>
-          
-          {/* Mobile view - slider */}
-          {isMobile ? (
-            <Swiper
-              modules={[Autoplay]}
-              slidesPerView={2.3}
-              spaceBetween={20}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false
-              }}
-              loop={true}
-              className="w-full overflow-hidden"
-            >
-              {trustedLogos.map((logo, index) => (
-                <SwiperSlide key={index}>
-                  <div className="flex items-center justify-center h-10">
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      width={logo.width}
-                      height={35}
-                      className="object-contain max-h-full grayscale hover:grayscale-0 transition-all opacity-75 hover:opacity-100"
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          ) : (
-            /* Desktop view - regular flex layout */
-            <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-4">
-              {trustedLogos.map((logo, index) => (
-                <div key={index} className="flex items-center justify-center h-10">
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={logo.width}
-                    height={35}
-                    className="object-contain max-h-full grayscale hover:grayscale-0 transition-all opacity-75 hover:opacity-100"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <TrustedLogosSlider variant="slider" />
         </div>
       </div>
     </Section>
