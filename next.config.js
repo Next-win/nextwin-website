@@ -3,6 +3,8 @@ const nextConfig = {
   // Enable static export for hosting on SiteGround
   output: 'export',
   trailingSlash: true,
+  // Ensure all routes are generated during export
+  generateBuildId: () => 'build',
   
   eslint: {
     // Don't run ESLint during build, we'll fix issues gradually
