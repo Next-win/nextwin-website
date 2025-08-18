@@ -2,8 +2,56 @@ import Section from "@/components/ui/Section";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | Next Win",
-  description: "Ontdek onze diensten op het gebied van website ontwikkeling, online marketing en content creatie.",
+  title: 'Diensten | Website, Webshop & Online Marketing | Next Win',
+  description: 'Alle digitale diensten onder één dak. Websites, webshops, SEO, Google Ads, content creatie. Van concept tot conversie met meetbare resultaten.',
+  keywords: [
+    'digitale diensten',
+    'website laten maken',
+    'webshop ontwikkeling',
+    'online marketing bureau',
+    'SEO specialist',
+    'Google Ads',
+    'content creatie',
+    'digital agency Nederland',
+    'website en webshop',
+    'online marketing diensten'
+  ],
+  openGraph: {
+    title: 'Diensten | Website, Webshop & Online Marketing | Next Win',
+    description: 'Alle digitale diensten onder één dak. Websites, webshops, SEO, Google Ads, content creatie. Van concept tot conversie.',
+    type: 'website',
+    locale: 'nl_NL',
+    url: 'https://next-win.nl/services',
+    siteName: 'Next Win',
+    images: [
+      {
+        url: '/images/services-overview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Digitale diensten overzicht Next Win',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Diensten | Website, Webshop & Online Marketing | Next Win',
+    description: 'Alle digitale diensten onder één dak. Van concept tot conversie met meetbare resultaten.',
+    images: ['/images/services-overview.png'],
+  },
+  alternates: {
+    canonical: 'https://next-win.nl/services',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const ServicesPage = () => {

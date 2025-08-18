@@ -7,8 +7,56 @@ import FaqAccordion from "@/components/ui/FaqAccordion";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Contact | Next Win",
-  description: "Neem contact op met Next Win voor vragen over onze digitale diensten of om een vrijblijvende afspraak te maken voor website ontwikkeling, online marketing of content creatie.",
+  title: 'Contact | Vrijblijvend Gesprek | Next Win',
+  description: 'Klaar voor jouw digitale project? Bel direct of plan een vrijblijvend gesprek. Persoonlijke aandacht, duidelijke communicatie, snelle reactie.',
+  keywords: [
+    'contact Next Win',
+    'afspraak maken',
+    'digitaal bureau contact',
+    'website offerte',
+    'webshop offerte',
+    'online marketing contact',
+    'vrijblijvende afspraak',
+    'digital agency contact',
+    'Next Win kantoor',
+    'website ontwikkeling contact'
+  ],
+  openGraph: {
+    title: 'Contact | Vrijblijvend Gesprek | Next Win',
+    description: 'Klaar voor jouw digitale project? Bel direct of plan een vrijblijvend gesprek. Persoonlijke aandacht, duidelijke communicatie.',
+    type: 'website',
+    locale: 'nl_NL',
+    url: 'https://next-win.nl/contact',
+    siteName: 'Next Win',
+    images: [
+      {
+        url: '/images/contact-next-win.png',
+        width: 1200,
+        height: 630,
+        alt: 'Contact opnemen met Next Win digital agency',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact | Vrijblijvend Gesprek | Next Win',
+    description: 'Klaar voor jouw digitale project? Bel direct of plan een vrijblijvend gesprek.',
+    images: ['/images/contact-next-win.png'],
+  },
+  alternates: {
+    canonical: 'https://next-win.nl/contact',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const ContactPage = () => {

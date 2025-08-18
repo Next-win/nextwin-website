@@ -64,10 +64,10 @@ const ContactSection = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+          <div className="flex flex-col lg:flex-row gap-12 items-start justify-center">
             {/* Left column - Contact Info */}
             <motion.div
-              className="lg:col-span-5 bg-white rounded-2xl shadow-soft p-8 border border-gray-100"
+              className="flex-shrink-0 w-full lg:w-auto lg:max-w-md bg-white rounded-2xl shadow-soft p-8 border border-gray-100"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={fadeInUp}
@@ -164,7 +164,7 @@ const ContactSection = () => {
             {/* Right column - Form */}
             <motion.div
               ref={formRef}
-              className="lg:col-span-7 bg-white border border-gray-100 rounded-2xl shadow-soft p-8"
+              className="w-full max-w-[400px] bg-white border border-gray-100 rounded-2xl shadow-soft p-8"
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={fadeInUp}
@@ -202,7 +202,7 @@ const ContactSection = () => {
                   </div>
                   
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                           Naam <span className="text-red-500">*</span>
@@ -246,7 +246,7 @@ const ContactSection = () => {
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 gap-6">
                       <div>
                         <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
                           Bedrijf

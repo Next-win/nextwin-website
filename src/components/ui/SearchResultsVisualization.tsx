@@ -44,26 +44,26 @@ export default function SearchResultsVisualization({
   title = "Zoekresultaten verbeterd",
   subtitle = "Positie over tijd met actieve strategie",
   className = "",
-  searchTerm = "digitaal bureau online marketing",
+  searchTerm = "hoger in google",
   beforeAfterResults = {
     before: {
       yourResult: {
         position: 8,
-        title: "Next Win | Digitaal bureau en online marketing",
-        description: "Professionele online marketing diensten van Next Win uit Otterlo. Verbeter je online zichtbaarheid en krijg meer klanten.",
+        title: "Next Win | Zoekmachine Optimalisatie Specialist",
+        description: "SEO die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer organische bezoekers en meer conversies. Bekijk onze SEO cases.",
         url: "www.next-win.nl"
       },
       competitors: [
         {
           position: 1,
-          title: "Digitaal Marketing Bureau | Competitor 1",
-          description: "Breng uw bedrijf online naar een hoger niveau met onze marketing expertise. Wij zijn het beste digitale bureau voor online marketing.",
+          title: "SEO Specialist Ede | Competitor 1",
+          description: "Verbeter uw vindbaarheid in Google met onze SEO expertise. Wij zijn de beste SEO specialist in de regio Ede.",
           url: "www.competitor1.nl"
         },
         {
           position: 2,
-          title: "Digitale Marketing Services | Competitor 2",
-          description: "SEO, SEA en Social Media Marketing voor MKB bedrijven in heel Nederland. Neem vandaag nog contact op.",
+          title: "Zoekmachine Optimalisatie Gelderland | Competitor 2",
+          description: "SEO diensten voor MKB bedrijven in Gelderland. Betere rankings en meer bezoekers. Neem vandaag nog contact op.",
           url: "www.competitor2.nl"
         }
       ]
@@ -71,21 +71,21 @@ export default function SearchResultsVisualization({
     after: {
       yourResult: {
         position: 1,
-        title: "Next Win | Resultaatgericht Digitaal Bureau Otterlo",
-        description: "Online marketing die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer bezoekers en meer klanten. Bekijk onze cases.",
+        title: "Next Win | Hoger in Google | SEO Specialist Ede",
+        description: "Hoger in Google met bewezen SEO strategieën. Meer organische bezoekers, betere conversies. Specialist in Ede en Gelderland.",
         url: "www.next-win.nl"
       },
       competitors: [
         {
           position: 2,
-          title: "Digitaal Marketing Bureau | Competitor 1",
-          description: "Breng uw bedrijf online naar een hoger niveau met onze marketing expertise. Wij zijn het beste digitale bureau voor online marketing.",
+          title: "SEO Specialist Ede | Competitor 1",
+          description: "Verbeter uw vindbaarheid in Google met onze SEO expertise. Wij zijn de beste SEO specialist in de regio Ede.",
           url: "www.competitor1.nl"
         },
         {
           position: 3,
-          title: "Digitale Marketing Services | Competitor 2",
-          description: "SEO, SEA en Social Media Marketing voor MKB bedrijven in heel Nederland. Neem vandaag nog contact op.",
+          title: "Zoekmachine Optimalisatie Gelderland | Competitor 2",
+          description: "SEO diensten voor MKB bedrijven in Gelderland. Betere rankings en meer bezoekers. Neem vandaag nog contact op.",
           url: "www.competitor2.nl"
         }
       ]

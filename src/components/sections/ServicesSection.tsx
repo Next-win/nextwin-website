@@ -187,18 +187,7 @@ const ServicesSection = () => {
               </ScrollAnimationWrapper>
             ))}
           </div>
-          
-          <ScrollAnimationWrapper delay={0.3}>
-            <div className="text-center">
-              <Button 
-                href="/services" 
-                size="lg" 
-                className="bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-8 shadow-md hover:shadow-lg transition-all"
-              >
-                Alle services bekijken
-              </Button>
-            </div>
-          </ScrollAnimationWrapper>
+
         </div>
       </Section>
     </>

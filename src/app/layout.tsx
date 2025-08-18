@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import ConditionalIPChecker from "@/components/ConditionalIPChecker";
+import { SidebarPopupProvider } from "@/components/providers/SidebarPopupProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import MetadataViewer from "@/components/dev/MetadataViewer";
 
 // Import fonts
 import "@fontsource/inter/400.css";
@@ -54,10 +56,15 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden relative w-full`}
       >
-        <ConditionalIPChecker>
-          {children}
-        </ConditionalIPChecker>
+        <SidebarPopupProvider>
+          <ConditionalIPChecker>
+            {children}
+          </ConditionalIPChecker>
+        </SidebarPopupProvider>
         <SpeedInsights />
+        
+        {/* Development-only metadata viewer */}
+        <MetadataViewer enabled={false} />
       </body>
     </html>
   );

@@ -10,8 +10,56 @@ import { Heading1, Paragraph } from '@/components/ui/Typography';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 export const metadata: Metadata = {
-  title: 'Succesverhalen | Next Win',
-  description: 'Bekijk onze meest succesvolle klantprojecten en casestudies',
+  title: 'Case Studies & Succesverhalen | Portfolio | Next Win',
+  description: 'Bekijk onze succesverhalen: +157% omzet, 80% tijdsbesparing, +125% bezoekers. Webshops, websites en web applicaties die echt resultaat leveren.',
+  keywords: [
+    'case studies',
+    'succesverhalen',
+    'portfolio',
+    'klant resultaten',
+    'webshop succes',
+    'website portfolio',
+    'digital agency portfolio',
+    'klant reviews',
+    'project resultaten',
+    'Next Win cases'
+  ],
+  openGraph: {
+    title: 'Case Studies & Succesverhalen | Portfolio | Next Win',
+    description: 'Bekijk onze succesverhalen: +157% omzet, 80% tijdsbesparing, +125% bezoekers. Webshops, websites en web applicaties die echt resultaat leveren.',
+    type: 'website',
+    locale: 'nl_NL',
+    url: 'https://next-win.nl/cases',
+    siteName: 'Next Win',
+    images: [
+      {
+        url: '/images/portfolio-overview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Next Win portfolio en case studies',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Case Studies & Succesverhalen | Portfolio | Next Win',
+    description: 'Bekijk onze succesverhalen: +157% omzet, 80% tijdsbesparing, +125% bezoekers.',
+    images: ['/images/portfolio-overview.png'],
+  },
+  alternates: {
+    canonical: 'https://next-win.nl/cases',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function CasesPage() {

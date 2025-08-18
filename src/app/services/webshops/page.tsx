@@ -158,7 +158,7 @@ export default function WebshopsServicePage() {
           </div>
 
           {/* Right column - Featured Image */}
-          <div className="hidden lg:block relative">
+          <div className="relative mt-8 lg:mt-0">
             <div className="relative h-[580px] w-full overflow-visible rounded-3xl">
               {/* Background pattern */}
               <div className="absolute inset-0 bg-gradient-to-br opacity-80"></div>
@@ -558,10 +558,7 @@ export default function WebshopsServicePage() {
               <p className="text-gray-600 mb-4">
                 Elk element in je webshop is ontworpen om bezoekers naar de checkout te leiden en de conversieratio te maximaliseren.
               </p>
-              <div className="w-3/4 h-1 bg-primary-200 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full" style={{ width: '96%', animation: 'growWidth 2.5s ease-in-out' }}></div>
-              </div>
-              <div className="mt-2 text-right text-sm text-primary-600 font-medium">96% conversiegericht</div>
+
             </div>
 
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
@@ -575,10 +572,7 @@ export default function WebshopsServicePage() {
               <p className="text-gray-600 mb-4">
                 Zowel voor jou als voor je klanten. Het beheer is eenvoudig en het bestelproces soepel en intuïtief.
               </p>
-              <div className="w-3/4 h-1 bg-primary-200 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full" style={{ width: '93%', animation: 'growWidth 2.5s ease-in-out' }}></div>
-              </div>
-              <div className="mt-2 text-right text-sm text-primary-600 font-medium">93% gebruiksvriendelijk</div>
+
             </div>
 
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
@@ -592,10 +586,7 @@ export default function WebshopsServicePage() {
               <p className="text-gray-600 mb-4">
                 We bouwen je webshop zo dat deze kan meegroeien met je bedrijf, van enkele producten tot een uitgebreid assortiment.
               </p>
-              <div className="w-3/4 h-1 bg-primary-200 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full" style={{ width: '98%', animation: 'growWidth 2.5s ease-in-out' }}></div>
-              </div>
-              <div className="mt-2 text-right text-sm text-primary-600 font-medium">98% schaalbaar</div>
+
             </div>
           </div>
         </div>
@@ -660,53 +651,28 @@ export default function WebshopsServicePage() {
             <div>
               <div className="space-y-8">
                 <div className="animate-on-scroll">
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-bold text-gray-800">WooCommerce Expertise</h4>
-                    <span className="text-primary-600 font-semibold">96%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2.5 rounded-full animate-pulse-slow" style={{ width: '96%' }}></div>
-                  </div>
+                  <h4 className="font-bold text-gray-800 mb-2">WooCommerce Expertise</h4>
+                  <p className="text-gray-600">Uitgebreide kennis van WooCommerce en alle bijbehorende plugins en integraties.</p>
                 </div>
                 
                 <div className="animate-on-scroll" style={{ animationDelay: '0.2s' }}>
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-bold text-gray-800">Performance Optimalisatie</h4>
-                    <span className="text-primary-600 font-semibold">94%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2.5 rounded-full animate-pulse-slow" style={{ width: '94%' }}></div>
-                  </div>
+                  <h4 className="font-bold text-gray-800 mb-2">Performance Optimalisatie</h4>
+                  <p className="text-gray-600">Snelle laadtijden en optimale prestaties voor een betere gebruikerservaring en SEO.</p>
                 </div>
                 
                 <div className="animate-on-scroll" style={{ animationDelay: '0.4s' }}>
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-bold text-gray-800">Beveiliging & Compliance</h4>
-                    <span className="text-primary-600 font-semibold">98%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2.5 rounded-full animate-pulse-slow" style={{ width: '98%' }}></div>
-                  </div>
+                  <h4 className="font-bold text-gray-800 mb-2">Beveiliging & Compliance</h4>
+                  <p className="text-gray-600">Veilige betalingen, SSL-certificaten en compliance met alle e-commerce wetgeving.</p>
                 </div>
                 
                 <div className="animate-on-scroll" style={{ animationDelay: '0.6s' }}>
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-bold text-gray-800">API Integraties</h4>
-                    <span className="text-primary-600 font-semibold">92%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2.5 rounded-full animate-pulse-slow" style={{ width: '92%' }}></div>
-                  </div>
+                  <h4 className="font-bold text-gray-800 mb-2">API Integraties</h4>
+                  <p className="text-gray-600">Naadloze koppelingen met ERP-systemen, boekhoudsoftware en externe platforms.</p>
                 </div>
                 
                 <div className="animate-on-scroll" style={{ animationDelay: '0.8s' }}>
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="font-bold text-gray-800">Custom Development</h4>
-                    <span className="text-primary-600 font-semibold">95%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2.5">
-                    <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2.5 rounded-full animate-pulse-slow" style={{ width: '95%' }}></div>
-                  </div>
+                  <h4 className="font-bold text-gray-800 mb-2">Custom Development</h4>
+                  <p className="text-gray-600">Maatwerk functionaliteiten en plugins specifiek voor jouw bedrijfsprocessen.</p>
                 </div>
               </div>
               
@@ -724,8 +690,8 @@ export default function WebshopsServicePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
-                <h4 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-primary-600 transition-colors">PCI-DSS Compliance</h4>
-                <p className="text-gray-600">Veilig betalen volgens de hoogste standaarden voor betalingsveiligheid.</p>
+                <h4 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-primary-600 transition-colors">Veilige Betalingen</h4>
+                <p className="text-gray-600">Alle gangbare betaalmethoden zoals iDEAL, creditcards en AfterPay volledig beveiligd geïntegreerd.</p>
               </div>
               
               <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">

@@ -156,121 +156,17 @@ export default function GoogleAdsServicePage() {
           </div>
 
           {/* Right column - Google Ads Results Visualization */}
-          <div className="hidden lg:block relative">
-            <div className="relative h-[600px] w-full overflow-visible">
-              {/* Background elements */}
-              <div className="absolute inset-0 opacity-80">
-                <div className="absolute inset-0 overflow-visible">
-                  <div className="absolute top-[-20%] left-[-15%] w-[50%] h-[50%] rounded-full bg-gradient-to-r from-green-200/30 to-blue-300/30 blur-3xl animate-blob"></div>
-                  <div className="absolute bottom-[-20%] right-[-15%] w-[50%] h-[50%] rounded-full bg-gradient-to-r from-blue-200/30 to-green-200/30 blur-3xl animate-blob animation-delay-2000"></div>
-                  <div className="absolute top-[40%] right-[-10%] w-[35%] h-[35%] rounded-full bg-gradient-to-r from-primary-200/30 to-green-200/30 blur-3xl animate-blob animation-delay-4000"></div>
-                </div>
-              </div>
-
-              {/* Google Ads Dashboard Mockup */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-full h-full p-6 relative">
-                  
-                  {/* Main Dashboard Container */}
-                  <div className="relative w-full h-full bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
-                    
-                                         {/* Header */}
-                     <div className="bg-gradient-to-r from-primary-600 to-primary-700 p-4 text-white">
-                       <div className="flex items-center justify-between">
-                         <div className="flex items-center">
-                           <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                             <path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/>
-                           </svg>
-                           <span className="font-semibold">Multi-Platform Dashboard</span>
-                         </div>
-                         <div className="text-sm opacity-90">Real-time data</div>
-                       </div>
-                     </div>
-
-                    {/* Stats Cards */}
-                    <div className="p-4 grid grid-cols-2 gap-3">
-                      <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-                        <div className="text-xs text-green-600 font-medium mb-1">Conversies deze maand</div>
-                        <div className="text-xl font-bold text-green-700">47</div>
-                        <div className="text-xs text-green-600">↗ +23% vs vorige maand</div>
-                      </div>
-                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-                        <div className="text-xs text-blue-600 font-medium mb-1">Cost per Lead</div>
-                        <div className="text-xl font-bold text-blue-700">€24,50</div>
-                        <div className="text-xs text-blue-600">↘ -18% vs vorige maand</div>
-                      </div>
-                      <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                        <div className="text-xs text-purple-600 font-medium mb-1">ROI</div>
-                        <div className="text-xl font-bold text-purple-700">340%</div>
-                        <div className="text-xs text-purple-600">↗ +12% vs vorige maand</div>
-                      </div>
-                      <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                        <div className="text-xs text-orange-600 font-medium mb-1">Click-through Rate</div>
-                        <div className="text-xl font-bold text-orange-700">4.2%</div>
-                        <div className="text-xs text-orange-600">↗ +0.8% vs vorige maand</div>
-                      </div>
-                    </div>
-
-                    {/* Chart Area */}
-                    <div className="px-4 pb-4">
-                      <div className="bg-gray-50 rounded-lg p-3 h-40 relative overflow-hidden">
-                        <div className="text-sm font-medium text-gray-700 mb-2">Conversies afgelopen 30 dagen</div>
-                        
-                        {/* Simple chart representation */}
-                        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between h-24">
-                          <div className="w-3 bg-primary-300 rounded-t-sm" style={{height: '30%'}}></div>
-                          <div className="w-3 bg-primary-400 rounded-t-sm" style={{height: '45%'}}></div>
-                          <div className="w-3 bg-primary-500 rounded-t-sm" style={{height: '60%'}}></div>
-                          <div className="w-3 bg-primary-600 rounded-t-sm" style={{height: '80%'}}></div>
-                          <div className="w-3 bg-primary-600 rounded-t-sm" style={{height: '75%'}}></div>
-                          <div className="w-3 bg-primary-700 rounded-t-sm" style={{height: '95%'}}></div>
-                          <div className="w-3 bg-primary-700 rounded-t-sm" style={{height: '100%'}}></div>
-                        </div>
-                      </div>
-                    </div>
-
-                                         {/* Active Campaigns */}
-                     <div className="px-4 pb-4">
-                       <div className="text-sm font-medium text-gray-700 mb-2">Actieve campagnes</div>
-                       <div className="space-y-2">
-                         <div className="flex items-center justify-between p-2 bg-green-50 rounded border border-green-200">
-                           <div className="flex items-center">
-                             <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                             <span className="text-sm text-gray-700">Google Ads - Hoofdkeywords</span>
-                           </div>
-                           <span className="text-xs text-green-600 font-medium">Actief</span>
-                         </div>
-                         <div className="flex items-center justify-between p-2 bg-blue-50 rounded border border-blue-200">
-                           <div className="flex items-center">
-                             <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                             <span className="text-sm text-gray-700">Meta Ads - Doelgroeptargeting</span>
-                           </div>
-                           <span className="text-xs text-blue-600 font-medium">Optimaliseren</span>
-                         </div>
-                         <div className="flex items-center justify-between p-2 bg-purple-50 rounded border border-purple-200">
-                           <div className="flex items-center">
-                             <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
-                             <span className="text-sm text-gray-700">LinkedIn - B2B Targeting</span>
-                           </div>
-                           <span className="text-xs text-purple-600 font-medium">Actief</span>
-                         </div>
-                       </div>
-                     </div>
-                  </div>
-
-                  {/* Floating notification */}
-                  <div className="absolute top-4 right-4 bg-white shadow-lg rounded-lg p-3 border border-gray-200 animate-bounce-slow">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                      <span className="text-xs text-gray-700 font-medium">Nieuwe conversie!</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="relative mt-8 lg:mt-0">
+            <img 
+              src="/google-ads-specialist.png" 
+              alt="Google Ads specialist en resultaten" 
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </Section>
+
+
 
              {/* Hoe wij het verschil maken */}
        <Section className="py-24 bg-white">
@@ -396,35 +292,13 @@ export default function GoogleAdsServicePage() {
                </div>
              </div>
              
-             <div className="order-first lg:order-last">
-               <div className="relative">
-                 <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
-                   <h3 className="text-xl font-bold mb-6 text-center">Zo kan het anders</h3>
-                   
-                   <div className="space-y-4">
-                     <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                       <span className="text-gray-700 font-medium">Campagnes live</span>
-                       <span className="text-green-600 font-bold">48 uur</span>
-                     </div>
-                     
-                     <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                       <span className="text-gray-700 font-medium">Dashboard toegang</span>
-                       <span className="text-blue-600 font-bold">24/7 real-time</span>
-                     </div>
-                     
-                     <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
-                       <span className="text-gray-700 font-medium">Communicatie</span>
-                       <span className="text-purple-600 font-bold">Direct & duidelijk</span>
-                     </div>
-                     
-                     <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
-                       <span className="text-gray-700 font-medium">Jouw focus</span>
-                       <span className="text-orange-600 font-bold">Op je bedrijf</span>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
+                         <div className="order-first lg:order-last">
+              <img 
+                src="/google-ads-problemen.png" 
+                alt="Google Ads problemen en oplossingen" 
+                className="w-full h-auto "
+              />
+            </div>
            </div>
          </div>
        </Section>

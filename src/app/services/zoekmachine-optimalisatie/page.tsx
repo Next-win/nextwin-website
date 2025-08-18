@@ -159,30 +159,39 @@ export default function SEOServicePage() {
           </div>
 
           {/* Search Results Visualization */}
-          <div className="hidden lg:block relative">
+          <div className="relative mt-8 lg:mt-0">
+            {/* SEO Illustration - Positioned right bottom of SERP */}
+            <div className="absolute -right-16 -bottom-8 hidden lg:block z-50">
+              <img 
+                src="/hoger-in-google-met-seo.png" 
+                alt="Hoger in Google met SEO" 
+                className="w-40 h-auto opacity-80"
+              />
+            </div>
+            
             <SearchResultsVisualization 
               title="Organische groei gevisualiseerd"
               subtitle="Zoekmachine optimalisatie als duurzame investering"
-              searchTerm="seo specialist gelderse vallei"
+              searchTerm="hoger in google"
               beforeAfterResults={{
                 before: {
                   yourResult: {
                     position: 8,
-                    title: "Next Win | SEO en zoekmachine optimalisatie",
-                    description: "Professionele zoekmachine optimalisatie (SEO) diensten van Next Win uit Otterlo. Verbeter je online zichtbaarheid en krijg meer klanten.",
+                    title: "Next Win | Zoekmachine Optimalisatie Specialist",
+                    description: "SEO die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer organische bezoekers en meer conversies. Bekijk onze SEO cases.",
                     url: "www.next-win.nl"
                   },
                   competitors: [
                     {
                       position: 1,
-                      title: "SEO Specialist Gelderse Vallei | Competitor 1",
-                      description: "Verbeter uw vindbaarheid in Google met onze SEO expertise. Wij zijn de beste SEO specialist in de Gelderse Vallei.",
+                      title: "SEO Specialist Ede | Competitor 1",
+                      description: "Verbeter uw vindbaarheid in Google met onze SEO expertise. Wij zijn de beste SEO specialist in de regio Ede.",
                       url: "www.competitor1.nl"
                     },
                     {
                       position: 2,
-                      title: "Zoekmachine Optimalisatie Gelderse Vallei | Competitor 2",
-                      description: "SEO diensten voor MKB bedrijven in de Gelderse Vallei. Betere rankings en meer bezoekers. Neem vandaag nog contact op.",
+                      title: "Zoekmachine Optimalisatie Gelderland | Competitor 2",
+                      description: "SEO diensten voor MKB bedrijven in Gelderland. Betere rankings en meer bezoekers. Neem vandaag nog contact op.",
                       url: "www.competitor2.nl"
                     }
                   ]
@@ -190,21 +199,21 @@ export default function SEOServicePage() {
                 after: {
                   yourResult: {
                     position: 1,
-                    title: "Next Win | Zoekmachine Optimalisatie Specialist",
-                    description: "SEO die écht resultaat levert. Wij zorgen voor meer zichtbaarheid, meer organische bezoekers en meer conversies. Bekijk onze SEO cases.",
+                    title: "Next Win | Hoger in Google | SEO Specialist Ede",
+                    description: "Hoger in Google met bewezen SEO strategieën. Meer organische bezoekers, betere conversies. Specialist in Ede en Gelderland.",
                     url: "www.next-win.nl"
                   },
                   competitors: [
                     {
                       position: 2,
-                      title: "SEO Specialist Gelderse Vallei | Competitor 1",
-                      description: "Verbeter uw vindbaarheid in Google met onze SEO expertise. Wij zijn de beste SEO specialist in de Gelderse Vallei.",
+                      title: "SEO Specialist Ede | Competitor 1",
+                      description: "Verbeter uw vindbaarheid in Google met onze SEO expertise. Wij zijn de beste SEO specialist in de regio Ede.",
                       url: "www.competitor1.nl"
                     },
                     {
                       position: 3,
-                      title: "Zoekmachine Optimalisatie Gelderse Vallei | Competitor 2",
-                      description: "SEO diensten voor MKB bedrijven in de Gelderse Vallei. Betere rankings en meer bezoekers. Neem vandaag nog contact op.",
+                      title: "Zoekmachine Optimalisatie Gelderland | Competitor 2",
+                      description: "SEO diensten voor MKB bedrijven in Gelderland. Betere rankings en meer bezoekers. Neem vandaag nog contact op.",
                       url: "www.competitor2.nl"
                     }
                   ]

@@ -91,7 +91,7 @@ export default function CRMSalesforceServicePage() {
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left column - Text and CTA */}
-          <div className="text-left max-w-lg">
+          <div className="text-left max-w-xl mx-auto lg:mx-0">
             <div className="flex flex-wrap items-center mb-6 text-sm">
               <Link href="/" className="text-gray-700 hover:text-primary-600 transition-colors">Home</Link>
               <span className="mx-2 text-gray-500">/</span>
@@ -156,268 +156,13 @@ export default function CRMSalesforceServicePage() {
             </div>
           </div>
 
-          {/* Right column - Featured Image (Desktop) */}
-          <div className="hidden lg:block relative">
-            <div className="relative h-[580px] w-full overflow-visible rounded-3xl">
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-80">
-                {/* Creative animated background */}
-                <div className="absolute inset-0 overflow-visible">
-                  {/* Animated gradient blobs */}
-                  <div className="absolute top-[-25%] left-[-20%] w-[60%] h-[60%] rounded-full bg-gradient-to-r from-blue-200/30 to-indigo-300/30 blur-3xl animate-blob"></div>
-                  <div className="absolute bottom-[-25%] right-[-20%] w-[60%] h-[60%] rounded-full bg-gradient-to-r from-green-200/30 to-blue-200/30 blur-3xl animate-blob animation-delay-2000"></div>
-                  <div className="absolute top-[35%] right-[-15%] w-[40%] h-[40%] rounded-full bg-gradient-to-r from-purple-200/30 to-indigo-200/30 blur-3xl animate-blob animation-delay-4000"></div>
-                  <div className="absolute bottom-[25%] left-[-15%] w-[40%] h-[40%] rounded-full bg-gradient-to-r from-blue-200/30 to-green-300/30 blur-3xl animate-blob animation-delay-3000"></div>
-                  
-                  {/* Subtle grid pattern overlay */}
-                  <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                  
-                  {/* Animated accent lines */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0,150 Q100,120 200,150 Q300,180 400,150" fill="none" stroke="rgba(99, 102, 241, 0.07)" strokeWidth="1">
-                      <animate attributeName="d" values="M0,150 Q100,120 200,150 Q300,180 400,150; M0,150 Q100,180 200,150 Q300,120 400,150; M0,150 Q100,120 200,150 Q300,180 400,150" dur="20s" repeatCount="indefinite" />
-                    </path>
-                    <path d="M0,200 Q100,180 200,200 Q300,220 400,200" fill="none" stroke="rgba(79, 70, 229, 0.07)" strokeWidth="1">
-                      <animate attributeName="d" values="M0,200 Q100,180 200,200 Q300,220 400,200; M0,200 Q100,220 200,200 Q300,180 400,200; M0,200 Q100,180 200,200 Q300,220 400,200" dur="25s" repeatCount="indefinite" />
-                    </path>
-                    <path d="M0,250 Q100,230 200,250 Q300,270 400,250" fill="none" stroke="rgba(16, 185, 129, 0.05)" strokeWidth="1">
-                      <animate attributeName="d" values="M0,250 Q100,230 200,250 Q300,270 400,250; M0,250 Q100,270 200,250 Q300,230 400,250; M0,250 Q100,230 200,250 Q300,270 400,250" dur="30s" repeatCount="indefinite" />
-                    </path>
-                  </svg>
-                </div>
-              </div>
-              
-              {/* CRM Dashboard Visualization */}
-              <div className="absolute inset-0 p-6">
-                <div className="bg-white rounded-xl shadow-md w-full h-full p-6 flex flex-col">
-                  {/* Header */}
-                  <div className="flex items-center mb-5">
-                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-                      <svg className="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 13V11C21 7.73081 21 6.09621 20.0481 5.09095C19.0962 4.08569 17.5578 4.03246 14.4812 3.92601C13.2787 3.88821 12.1804 3.86261 11.2433 3.86261C10.3062 3.86261 9.25731 3.88761 8.1179 3.92444C4.98863 4.02981 3.41399 4.08249 2.45951 5.08842C1.50504 6.09434 1.5075 7.72753 1.5024 11.0022V13C1.5 16.2568 1.5 17.8854 2.45193 18.8907C3.40385 19.8959 4.94233 19.9492 8.01928 20.0557C9.22156 20.0935 10.3199 20.1191 11.2571 20.1191C12.1942 20.1191 13.2431 20.0941 14.3825 20.0573C17.5117 19.9519 19.0864 19.8992 20.0408 18.8933C20.9953 17.8874 20.9928 16.2542 20.9979 12.9793" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M7.5 15.5L9.5 17.5L16.5 10.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-xl font-bold text-gray-800">Salesforce Dashboard</h2>
-                      <p className="text-sm text-gray-500">Inzicht in klantdata en verkoopprocessen</p>
-                    </div>
-                  </div>
-                  
-                  {/* Dashboard Preview */}
-                  <div className="relative mb-6 group">
-                    <div className="w-full h-14 bg-blue-50 rounded-t-lg border border-gray-200 flex items-center px-5">
-                      <div className="flex space-x-3">
-                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                      </div>
-                      <div className="ml-4 flex space-x-4">
-                        <span className="text-gray-600 font-medium text-sm">Dashboard</span>
-                        <span className="text-gray-400 text-sm">Klanten</span>
-                        <span className="text-gray-400 text-sm">Leads</span>
-                        <span className="text-gray-400 text-sm">Verkoopkansen</span>
-                      </div>
-                    </div>
-                    <div className="absolute right-3 -bottom-4 bg-blue-50 px-2 py-1 rounded-md text-xs text-blue-700 font-semibold animate-pulse-slow">
-                      Gegevens in real-time bijgewerkt
-                    </div>
-                  </div>
-                  
-                  {/* Dashboard Content */}
-                  <div className="flex-grow overflow-hidden relative grid grid-cols-2 gap-4">
-                    {/* KPI Cards */}
-                    <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="text-sm font-semibold text-gray-500">Nieuwe leads deze maand</h3>
-                          <p className="text-2xl font-bold">127</p>
-                        </div>
-                        <div className="bg-green-100 rounded-full p-2">
-                          <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-center text-xs">
-                        <span className="text-green-600 font-medium">↑ 23%</span>
-                        <span className="text-gray-500 ml-1">vs vorige periode</span>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                      <div className="flex justify-between items-start mb-3">
-                        <div>
-                          <h3 className="text-sm font-semibold text-gray-500">Conversieratio</h3>
-                          <p className="text-2xl font-bold">32%</p>
-                        </div>
-                        <div className="bg-green-100 rounded-full p-2">
-                          <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="flex items-center text-xs">
-                        <span className="text-green-600 font-medium">↑ 12%</span>
-                        <span className="text-gray-500 ml-1">vs vorige periode</span>
-                      </div>
-                    </div>
-                    
-                    {/* Pipeline Chart */}
-                    <div className="col-span-2 bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                      <h3 className="text-sm font-semibold text-gray-700 mb-3">Sales Pipeline</h3>
-                      <div className="h-24 flex items-end space-x-2">
-                        <div className="w-1/6 bg-blue-100 h-1/3 rounded-t-md relative group">
-                          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                            Nieuwe leads: 84
-                          </div>
-                        </div>
-                        <div className="w-1/6 bg-blue-300 h-2/3 rounded-t-md relative group">
-                          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                            Gekwalificeerd: 62
-                          </div>
-                        </div>
-                        <div className="w-1/6 bg-blue-500 h-1/2 rounded-t-md relative group">
-                          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                            Propositie: 45
-                          </div>
-                        </div>
-                        <div className="w-1/6 bg-blue-600 h-2/5 rounded-t-md relative group">
-                          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                            Onderhandeling: 32
-                          </div>
-                        </div>
-                        <div className="w-1/6 bg-blue-700 h-1/4 rounded-t-md relative group">
-                          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                            Voorstel: 24
-                          </div>
-                        </div>
-                        <div className="w-1/6 bg-blue-800 h-1/6 rounded-t-md relative group">
-                          <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                            Gesloten: 18
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex justify-between mt-2 text-xs text-gray-500">
-                        <span>Lead</span>
-                        <span>Gesloten</span>
-                      </div>
-                    </div>
-                    
-                    {/* Recent Activity */}
-                    <div className="col-span-2 bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
-                      <h3 className="text-sm font-semibold text-gray-700 mb-3">Recente activiteiten</h3>
-                      <div className="space-y-2">
-                        <div className="flex items-center text-sm">
-                          <div className="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
-                          <span className="text-gray-800">Nieuwe klant: Bergo Techniek B.V.</span>
-                          <span className="ml-auto text-xs text-gray-500">14 min</span>
-                        </div>
-                        <div className="flex items-center text-sm">
-                          <div className="w-2 h-2 rounded-full bg-blue-500 mr-2"></div>
-                          <span className="text-gray-800">Meeting ingepland: VDL Groep</span>
-                          <span className="ml-auto text-xs text-gray-500">1 uur</span>
-                        </div>
-                        <div className="flex items-center text-sm">
-                          <div className="w-2 h-2 rounded-full bg-purple-500 mr-2"></div>
-                          <span className="text-gray-800">Offerte verzonden: De Jong Kantoren</span>
-                          <span className="ml-auto text-xs text-gray-500">3 uur</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Mobile visualization - visible only on small screens */}
-          <div className="lg:hidden relative mt-8 mb-4">
-            <div className="relative h-[400px] w-full overflow-hidden rounded-2xl">
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-80">
-                {/* Creative animated background */}
-                <div className="absolute inset-0 overflow-hidden">
-                  {/* Animated gradient blobs - smaller and fewer for mobile */}
-                  <div className="absolute top-[-15%] left-[-15%] w-[50%] h-[50%] rounded-full bg-gradient-to-r from-blue-200/30 to-indigo-300/30 blur-2xl animate-blob"></div>
-                  <div className="absolute bottom-[-15%] right-[-15%] w-[50%] h-[50%] rounded-full bg-gradient-to-r from-green-200/30 to-blue-200/30 blur-2xl animate-blob animation-delay-2000"></div>
-                  <div className="absolute top-[40%] right-[-10%] w-[30%] h-[30%] rounded-full bg-gradient-to-r from-purple-200/30 to-indigo-200/30 blur-2xl animate-blob animation-delay-4000"></div>
-                  
-                  {/* Subtle grid pattern overlay */}
-                  <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                </div>
-              </div>
-              
-              {/* Mobile CRM Dashboard Visualization - simplified for mobile */}
-              <div className="absolute inset-0 p-4">
-                <div className="bg-white rounded-xl shadow-md w-full h-full p-4 flex flex-col">
-                  {/* Header */}
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 13V11C21 7.73081 21 6.09621 20.0481 5.09095C19.0962 4.08569 17.5578 4.03246 14.4812 3.92601C13.2787 3.88821 12.1804 3.86261 11.2433 3.86261C10.3062 3.86261 9.25731 3.88761 8.1179 3.92444C4.98863 4.02981 3.41399 4.08249 2.45951 5.08842C1.50504 6.09434 1.5075 7.72753 1.5024 11.0022V13C1.5 16.2568 1.5 17.8854 2.45193 18.8907C3.40385 19.8959 4.94233 19.9492 8.01928 20.0557C9.22156 20.0935 10.3199 20.1191 11.2571 20.1191C12.1942 20.1191 13.2431 20.0941 14.3825 20.0573C17.5117 19.9519 19.0864 19.8992 20.0408 18.8933C20.9953 17.8874 20.9928 16.2542 20.9979 12.9793" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M7.5 15.5L9.5 17.5L16.5 10.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-bold text-gray-800">Salesforce Dashboard</h2>
-                      <p className="text-xs text-gray-500">Klantdata & verkoopprocessen</p>
-                    </div>
-                  </div>
-                  
-                  {/* Simplified KPI Cards for mobile */}
-                  <div className="grid grid-cols-2 gap-3 mb-3">
-                    <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
-                      <h3 className="text-xs font-semibold text-gray-500">Nieuwe leads</h3>
-                      <p className="text-xl font-bold">127</p>
-                      <div className="flex items-center text-xs">
-                        <span className="text-green-600 font-medium">↑ 23%</span>
-                      </div>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg border border-gray-200 p-3 shadow-sm">
-                      <h3 className="text-xs font-semibold text-gray-500">Conversieratio</h3>
-                      <p className="text-xl font-bold">32%</p>
-                      <div className="flex items-center text-xs">
-                        <span className="text-green-600 font-medium">↑ 12%</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Simplified Pipeline for mobile */}
-                  <div className="flex-grow">
-                    <h3 className="text-xs font-semibold text-gray-700 mb-2">Sales Pipeline</h3>
-                    <div className="h-8 flex items-end space-x-1 mb-6">
-                      <div className="w-1/6 bg-blue-100 h-1/3 rounded-t-md"></div>
-                      <div className="w-1/6 bg-blue-300 h-2/3 rounded-t-md"></div>
-                      <div className="w-1/6 bg-blue-500 h-1/2 rounded-t-md"></div>
-                      <div className="w-1/6 bg-blue-600 h-2/5 rounded-t-md"></div>
-                      <div className="w-1/6 bg-blue-700 h-1/4 rounded-t-md"></div>
-                      <div className="w-1/6 bg-blue-800 h-1/6 rounded-t-md"></div>
-                    </div>
-                    
-                    {/* Mobile Insight Box */}
-                    <div className="bg-blue-50 rounded-lg p-3 text-xs">
-                      <p className="font-medium text-blue-800">Impact van Salesforce</p>
-                      <div className="flex items-center mt-2 gap-2">
-                        <div className="bg-green-100 text-green-700 font-semibold rounded-full px-2 py-0.5 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                          <span>Verkoop +24%</span>
-                        </div>
-                        <div className="bg-green-100 text-green-700 font-semibold rounded-full px-2 py-0.5 flex items-center">
-                          <svg className="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                          <span>Efficiëntie +36%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Right column - Featured Image (Visible on all devices) */}
+          <div className="relative max-w-2xl mx-auto mt-8 lg:mt-0">
+            <img 
+              src="/crm-oplossingen.png" 
+              alt="CRM & Salesforce oplossingen" 
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </Section>
@@ -425,7 +170,7 @@ export default function CRMSalesforceServicePage() {
       {/* Pain Points Section */}
       <Section className="py-24 bg-gray-50" id="approach">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start lg:items-center">
             <div>
               <SectionTitle
                 subtitle="Herkenbaar?"
@@ -499,160 +244,12 @@ export default function CRMSalesforceServicePage() {
                 </div>
               </div>
             </div>
-            <div className="relative aspect-square rounded-2xl overflow-visible bg-white shadow-lg p-6">
-              {/* CRM Benefits Visualization */}
-              <div className="w-full h-full flex flex-col overflow-hidden" >
-                <div className="mb-4 flex items-center">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold">Meetbare resultaten met CRM</h4>
-                    <p className="text-sm text-gray-500">Vergelijking voor en na Salesforce implementatie</p>
-                  </div>
-                </div>
-
-                {/* CRM Benefits Visualization */}
-                <div className="min-h-[550px] bg-gray-50 rounded-xl p-5 relative overflow-visible">
-                  {/* Toggle Buttons */}
-                  <div className="absolute right-5 top-5 flex items-center text-sm bg-white rounded-full shadow-sm border border-gray-200 p-1 sm:p-1" style={{ marginRight: '5px', marginTop: '5px' }}>
-                    <div className="relative">
-                      <div id="crm-toggle-indicator" className="absolute inset-y-0 left-0 w-1/2 bg-primary-100 rounded-full transition-all duration-500"></div>
-                      <button 
-                        id="crm-toggle-before" 
-                        className="z-10 relative px-2 sm:px-3 py-1 rounded-full text-primary-700 font-medium text-xs sm:text-sm"
-                        onClick={() => {
-                          document.getElementById('crm-toggle-indicator')?.style.setProperty('transform', 'translateX(0%)');
-                          document.getElementById('crm-toggle-before')?.classList.add('text-primary-700');
-                          document.getElementById('crm-toggle-after')?.classList.remove('text-primary-700');
-                          
-                          // Hide "After" metrics, show "Before" metrics
-                          document.querySelectorAll('.before-metric').forEach(el => {
-                            (el as HTMLElement).style.display = 'flex';
-                          });
-                          document.querySelectorAll('.after-metric').forEach(el => {
-                            (el as HTMLElement).style.display = 'none';
-                          });
-                        }}
-                      >Zonder</button>
-                      <button 
-                        id="crm-toggle-after" 
-                        className="z-10 relative px-2 sm:px-3 py-1 rounded-full font-medium text-xs sm:text-sm"
-                        onClick={() => {
-                          document.getElementById('crm-toggle-indicator')?.style.setProperty('transform', 'translateX(100%)');
-                          document.getElementById('crm-toggle-after')?.classList.add('text-primary-700');
-                          document.getElementById('crm-toggle-before')?.classList.remove('text-primary-700');
-                          
-                          // Hide "Before" metrics, show "After" metrics
-                          document.querySelectorAll('.before-metric').forEach(el => {
-                            (el as HTMLElement).style.display = 'none';
-                          });
-                          document.querySelectorAll('.after-metric').forEach(el => {
-                            (el as HTMLElement).style.display = 'flex';
-                          });
-                        }}
-                      >Met Salesforce</button>
-                    </div>
-                  </div>
-
-                  {/* Metrics Display */}
-                  <div className="pt-16 space-y-8">
-                    {/* Lead Conversion Rate */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Lead Conversieratio</h5>
-                      <div className="before-metric flex items-center">
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '18%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">18%</span>
-                      </div>
-                      <div className="after-metric hidden items-center">
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '32%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">32%</span>
-                      </div>
-                      <div className="after-metric hidden mt-2 text-xs text-green-600 font-medium">
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        +77% verbetering
-                      </div>
-                    </div>
-                    
-                    {/* Average Deal Size */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Gemiddelde Deal Grootte</h5>
-                      <div className="before-metric flex items-center">
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '40%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">€5.200</span>
-                      </div>
-                      <div className="after-metric hidden items-center">
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '65%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">€8.450</span>
-                      </div>
-                      <div className="after-metric hidden mt-2 text-xs text-green-600 font-medium">
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        +62% verbetering
-                      </div>
-                    </div>
-                    
-                    {/* Sales Cycle Length */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Lengte Sales Cyclus</h5>
-                      <div className="before-metric flex items-center">
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '80%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">68 dagen</span>
-                      </div>
-                      <div className="after-metric hidden items-center">
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '45%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">38 dagen</span>
-                      </div>
-                      <div className="after-metric hidden mt-2 text-xs text-green-600 font-medium">
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        -44% verbetering
-                      </div>
-                    </div>
-                    
-                    {/* Customer Satisfaction */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Klanttevredenheid</h5>
-                      <div className="before-metric flex items-center">
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '55%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">7.2/10</span>
-                      </div>
-                      <div className="after-metric hidden items-center">
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '85%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">9.1/10</span>
-                      </div>
-                      <div className="after-metric hidden mt-2 text-xs text-green-600 font-medium">
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        +26% verbetering
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="relative max-w-lg mx-auto lg:mx-0">
+              <img 
+                src="/crm-hero-new.png" 
+                alt="CRM Salesforce resultaten" 
+                className="w-full h-auto "
+              />
             </div>
           </div>
         </div>
@@ -674,7 +271,7 @@ export default function CRMSalesforceServicePage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-xl shadow-md p-6 transform transition-transform hover:scale-105 hover:shadow-lg">
               <div className="h-12 w-12 rounded-full bg-primary-100 flex items-center justify-center mb-4">
                 <svg className="h-6 w-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -803,7 +400,7 @@ export default function CRMSalesforceServicePage() {
         </div>
         
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 text-white leading-tight">
               Klaar om jouw bedrijfsprocessen te optimaliseren?
             </h2>
@@ -811,7 +408,7 @@ export default function CRMSalesforceServicePage() {
               Laten we samen werken aan een Salesforce oplossing die jouw organisatie naar het volgende niveau tilt.
             </p>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-8 mb-8 sm:mb-12 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 sm:p-8 mb-8 sm:mb-12 border border-white/20 max-w-2xl mx-auto">
               <p className="text-white mb-4 sm:mb-6">Kies de manier die voor jou het beste werkt:</p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                 <Link href="/contact?form=salesforce" className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-colors flex items-center justify-center group shadow-lg shadow-primary-900/30">

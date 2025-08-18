@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { useSidebarPopupContext } from '../providers/SidebarPopupProvider';
 
 // Define types for the service links
 interface ServiceItem {
@@ -30,6 +31,7 @@ function isServiceCategory(service: ServiceLink): service is ServiceCategory {
 
 const CaseNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { openPopup } = useSidebarPopupContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isDropdownAnimating, setIsDropdownAnimating] = useState(false);
@@ -288,12 +290,17 @@ const CaseNavbar = () => {
 
           {/* CTA button desktop */}
           <div className="hidden md:block">
-            <Link 
-              href="/contact" 
+            <button 
+              onClick={() => openPopup({
+                title: "Gratis adviesgesprek",
+                subtitle: "Ontdek hoe wij jouw bedrijf kunnen laten groeien",
+                formType: "adviesgesprek",
+                source: "case-navbar-desktop"
+              })}
               className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-all shadow-button"
             >
               Maak een afspraak
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -397,7 +404,20 @@ const CaseNavbar = () => {
 
               <div className="fixed inset-x-0 bottom-0 z-[61] px-4 pb-6 pt-3 bg-gradient-to-t from-white/90 via-white/70 to-transparent dark:from-gray-900/90 dark:via-gray-900/70">
                 <div className="container mx-auto px-0">
-                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="w-full inline-flex items-center justify-center rounded-xl bg-primary-600 text-white py-3 font-semibold shadow-md shadow-primary-600/25 hover:bg-primary-700 transition-colors">Gratis adviesgesprek</Link>
+                  <button 
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      openPopup({
+                        title: "Gratis adviesgesprek",
+                        subtitle: "Ontdek hoe wij jouw bedrijf kunnen laten groeien",
+                        formType: "adviesgesprek",
+                        source: "case-navbar-mobile"
+                      });
+                    }} 
+                    className="w-full inline-flex items-center justify-center rounded-xl bg-primary-600 text-white py-3 font-semibold shadow-md shadow-primary-600/25 hover:bg-primary-700 transition-colors"
+                  >
+                    Gratis adviesgesprek
+                  </button>
                 </div>
               </div>
             </div>

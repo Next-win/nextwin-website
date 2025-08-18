@@ -6,6 +6,7 @@ import { Button } from '../ui/Button';
 import Image from 'next/image';
 import Section from '../ui/Section';
 import TrustedLogosSlider, { trustedLogos } from '../ui/TrustedLogosSlider';
+import PopupTrigger from '../ui/PopupTrigger';
 
 const HeroSection = () => {
   const ref = useRef(null);
@@ -62,13 +63,16 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button 
+              <PopupTrigger 
                 size="lg"
                 className="whitespace-nowrap bg-yellow-400 hover:bg-yellow-500 text-gray-900 shadow-sm flex-1"
-                href="/contact"
+                popupTitle="Gratis adviesgesprek"
+                popupSubtitle="Ontdek hoe wij jouw bedrijf kunnen laten groeien"
+                formType="adviesgesprek"
+                source="hero-section"
               >
                 Gratis adviesgesprek
-              </Button>
+              </PopupTrigger>
               <Button 
                 size="lg"
                 variant="outline"
@@ -107,7 +111,7 @@ const HeroSection = () => {
                   <span className="text-gray-700 text-sm">Online Marketing</span>
                 </div>
                 <div className="col-span-full mt-1">
-                  <a href="/services" className="text-primary-600 text-sm font-medium flex items-center hover:underline">
+                  <a href="#services" className="text-primary-600 text-sm font-medium flex items-center hover:underline">
                     Bekijk al onze diensten
                     <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

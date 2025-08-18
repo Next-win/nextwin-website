@@ -5,8 +5,56 @@ import { Subtitle } from "@/components/ui/Typography";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Over ons | Next Win",
-  description: "Leer meer over Next Win, ons team en onze waarden als creatief digital agency.",
+  title: 'Over Next Win | Persoonlijk Digital Bureau | Ons Team',
+  description: 'Ontmoet het team achter Next Win. Geen corporate gedoe, wel persoonlijke aandacht. Specialisten die écht begrijpen wat ondernemers nodig hebben.',
+  keywords: [
+    'over Next Win',
+    'digital agency team',
+    'website specialists',
+    'online marketing team',
+    'web ontwikkelaars',
+    'digital agency Nederland',
+    'Next Win team',
+    'web design bureau',
+    'ervaren specialisten',
+    'digital marketing experts'
+  ],
+  openGraph: {
+    title: 'Over Next Win | Persoonlijk Digital Bureau | Ons Team',
+    description: 'Ontmoet het team achter Next Win. Geen corporate gedoe, wel persoonlijke aandacht. Specialisten die écht begrijpen wat ondernemers nodig hebben.',
+    type: 'website',
+    locale: 'nl_NL',
+    url: 'https://next-win.nl/about-us',
+    siteName: 'Next Win',
+    images: [
+      {
+        url: '/images/team/ourteam.avif',
+        width: 1200,
+        height: 630,
+        alt: 'Next Win team - digital agency specialisten',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Over Next Win | Persoonlijk Digital Bureau | Ons Team',
+    description: 'Ontmoet het team achter Next Win. Geen corporate gedoe, wel persoonlijke aandacht.',
+    images: ['/images/team/ourteam.avif'],
+  },
+  alternates: {
+    canonical: 'https://next-win.nl/about-us',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const AboutUsPage = () => {

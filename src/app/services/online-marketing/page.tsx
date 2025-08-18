@@ -251,7 +251,7 @@ export default function OnlineMarketingServicePage() {
           </div>
 
           {/* Right column - Featured Image (Desktop) */}
-          <div className="hidden lg:block relative">
+          <div className="relative mt-8 lg:mt-0">
             <SearchResultsVisualization 
               title="Zoekresultaten verbeterd"
               subtitle="Positie over tijd met actieve strategie"

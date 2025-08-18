@@ -202,7 +202,7 @@ export default function ContentCreationServicePage() {
           </div>
 
           {/* Right column - Visual Storytelling */}
-          <div className="hidden lg:block relative">
+          <div className="relative mt-8 lg:mt-0">
             <div className="relative h-[580px] w-full overflow-visible rounded-3xl">
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-80">
@@ -658,138 +658,18 @@ export default function ContentCreationServicePage() {
                 </div>
               </div>
             </div>
-            <div className="relative aspect-square rounded-2xl overflow-visible bg-white shadow-lg p-6">
-              {/* Content Creation Benefits Visualization */}
-              <div className="w-full h-full flex flex-col overflow-hidden" >
-                <div className="mb-4 flex items-center">
-                  <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold">De impact van professionele content</h4>
-                    <p className="text-sm text-gray-500">Voor en na professionele content creatie</p>
-                  </div>
-                </div>
-
-                {/* Content Creation Benefits Visualization */}
-                <div className="min-h-[550px] bg-gray-50 rounded-xl p-5 relative overflow-visible">
-                  {/* Toggle Buttons */}
-                  <div className="absolute right-5 top-5 flex items-center text-sm bg-white rounded-full shadow-sm border border-gray-200 p-1 sm:p-1" style={{ marginRight: '5px', marginTop: '5px' }}>
-                    <div className="relative">
-                      <div id="content-toggle-indicator" className="absolute inset-y-0 left-0 w-1/2 bg-primary-100 rounded-full transition-all duration-500"></div>
-                      <button 
-                        id="content-toggle-before" 
-                        className="z-10 relative px-2 sm:px-3 py-1 rounded-full text-primary-700 font-medium text-xs sm:text-sm"
-                      >Voor</button>
-                      <button 
-                        id="content-toggle-after" 
-                        className="z-10 relative px-2 sm:px-3 py-1 rounded-full font-medium text-xs sm:text-sm"
-                      >Na</button>
-                    </div>
-                  </div>
-
-                  {/* Metrics Display */}
-                  <div className="pt-16 space-y-8">
-                    {/* Website Engagement Rate */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Website Engagement</h5>
-                      <div className={`before-metric ${isBrowser ? '' : 'flex'}`} style={{ display: isBrowser ? 'flex' : undefined }}>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '22%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">22%</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '68%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">68%</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        <span className="text-xs text-green-600 font-medium">+209% verbetering</span>
-                      </div>
-                    </div>
-                    
-                    {/* Social Media CTR */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Social Media Klikratio</h5>
-                      <div className={`before-metric ${isBrowser ? '' : 'flex'}`} style={{ display: isBrowser ? 'flex' : undefined }}>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '1.8%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">1.8%</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '4.7%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">4.7%</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        <span className="text-xs text-green-600 font-medium">+161% verbetering</span>
-                      </div>
-                    </div>
-                    
-                    {/* Conversion Rate */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Conversieratio</h5>
-                      <div className={`before-metric ${isBrowser ? '' : 'flex'}`} style={{ display: isBrowser ? 'flex' : undefined }}>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '2.3%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">2.3%</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '5.8%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">5.8%</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        <span className="text-xs text-green-600 font-medium">+152% verbetering</span>
-                      </div>
-                    </div>
-                    
-                    {/* Brand Perception */}
-                    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
-                      <h5 className="text-sm font-medium text-gray-700 mb-3">Merkperceptie (score 1-10)</h5>
-                      <div className={`before-metric ${isBrowser ? '' : 'flex'}`} style={{ display: isBrowser ? 'flex' : undefined }}>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
-                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: '62%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-gray-500">6.2/10</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <div className="w-full bg-primary-100 rounded-full h-2">
-                          <div className="bg-primary-500 h-2 rounded-full" style={{ width: '89%' }}></div>
-                        </div>
-                        <span className="ml-3 text-lg font-bold text-primary-600">8.9/10</span>
-                      </div>
-                      <div className="after-metric" style={{ display: 'none' }}>
-                        <svg className="inline-block w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                        </svg>
-                        <span className="text-xs text-green-600 font-medium">+44% verbetering</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="relative">
+              <img 
+                src="/content-creatie-lastig.png" 
+                alt="Content creatie problemen en uitdagingen" 
+                className="w-full h-auto "
+              />
             </div>
           </div>
         </div>
       </Section>
+
+
 
       {/* Content Creation Solutions Section */}
       <Section className="py-24 bg-gradient-to-b from-white to-primary-50" id="solution">

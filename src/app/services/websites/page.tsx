@@ -136,7 +136,7 @@ export default function WebsitesServicePage() {
           </div>
 
           {/* Right column - Featured Image */}
-          <div className="hidden lg:block relative">
+          <div className="relative mt-8 lg:mt-0">
             <div className="relative h-[580px] w-full overflow-visible rounded-3xl">
               {/* Background pattern */}
               <div className="absolute inset-0 bg-gradient-to-br opacity-80"></div>
